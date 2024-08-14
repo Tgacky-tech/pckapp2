@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pckapp2/iLiteracy.dart';
 
 void main() {
-  runApp(new MaterialApp(home: new iLiteracy(),));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
