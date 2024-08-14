@@ -40,7 +40,7 @@ class home_screen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //pushButton1,
+            pushButton1,
             pushButton2,
             pushButton3,
             pushButton4,
