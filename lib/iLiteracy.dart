@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:pckapp2/home_screen.dart';
+import 'package:pckapp2/collection_screen.dart';
+import 'package:pckapp2/ranking_screen.dart';
+import 'package:pckapp2/rule_screen.dart';
+import 'package:pckapp2/settings_screen.dart';
+import 'package:go_router/go_router.dart';
+
+void main(){
+  runApp(iLiteracy());
+}
+
+class iLiteracy extends StatelessWidget {
+  iLiteracy({super.key});
+
+  final router = GoRouter(
+      initialLocation: '/home',
+      routes: [
+        GoRoute(
+          path: '/home',
+          builder: (context, state) => home_screen(),
+        ),
+        GoRoute(
+          path: '/ranking',
+          builder: (context, state) => ranking_screen(),
+        ),
+        GoRoute(
+          path: '/collection',
+          builder: (context, state) => collection_screen(),
+        ),
+        GoRoute(
+          path: '/settings',
+          builder: (context, state) => settings_screen(),
+        ),
+        GoRoute(
+          path: '/rule',
+          builder: (context, state) => rule_screen(),
+        ),
+      ],
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+    );
+  }
+}
