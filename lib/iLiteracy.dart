@@ -7,6 +7,11 @@ import 'package:pckapp2/settings_screen.dart';
 import 'package:pckapp2/0-1_screen.dart';
 import 'package:pckapp2/0-2_screen.dart';
 import 'package:pckapp2/0-3_screen.dart';
+import 'package:pckapp2/0-4_screen.dart';
+import 'package:pckapp2/0-5_screen.dart';
+import 'package:pckapp2/0-6_screen.dart';
+import 'package:pckapp2/0-7_screen.dart';
+import 'package:pckapp2/0-8_screen.dart';
 import 'package:pckapp2/1_screen.dart';
 import 'package:pckapp2/2_screen.dart';
 import 'package:pckapp2/3_screen.dart';
@@ -57,6 +62,26 @@ class iLiteracy extends StatelessWidget {
         GoRoute(
           path: '/03',
           builder: (context, state) => screen03(),
+        ),
+        GoRoute(
+          path: '/04',
+          builder: (context, state) => screen04(),
+        ),
+        GoRoute(
+          path: '/05',
+          builder: (context, state) => screen05(),
+        ),
+        GoRoute(
+          path: '/06',
+          builder: (context, state) => screen06(),
+        ),
+        GoRoute(
+          path: '/07',
+          builder: (context, state) => screen07(),
+        ),
+        GoRoute(
+          path: '/08',
+          builder: (context, state) => screen08(),
         ),
         GoRoute(
           path: '/1',

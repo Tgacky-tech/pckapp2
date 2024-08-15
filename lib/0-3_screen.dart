@@ -41,7 +41,7 @@ class screen03 extends StatelessWidget {
       child: const Text('メニュー'),
     );
     final pushButton7 = TextButton(
-      onPressed: () => context.push('/result'),
+      onPressed: () => context.push('/04'),
       child: const Text('〇'),
     );
     final pushButton8 = TextButton(
