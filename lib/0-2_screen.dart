@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class screen0 extends StatelessWidget {
-  const screen0({super.key});
+class screen02 extends StatelessWidget {
+  const screen02({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      backgroundColor: Colors.yellow,
+      title: const Text('2:00'),
+    );
     final pushButton1 = ElevatedButton(
       onPressed: () => context.push('/1'),
       style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
@@ -36,7 +40,16 @@ class screen0 extends StatelessWidget {
       style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
       child: const Text('メニュー'),
     );
+    final pushButton7 = TextButton(
+        onPressed: () => context.push('/03'),
+        child: const Text('〇'),
+    );
+    final pushButton8 = TextButton(
+      onPressed: () => context.push('/01'),
+      child: const Text('✖'),
+    );
     return Scaffold(
+      appBar: appBar,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,6 +60,13 @@ class screen0 extends StatelessWidget {
             pushButton4,
             pushButton5,
             pushButton6,
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  pushButton7,
+                  pushButton8,
+                ],
+            ),
           ],
         ),
       ),

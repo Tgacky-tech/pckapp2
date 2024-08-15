@@ -4,13 +4,16 @@ import 'package:pckapp2/collection_screen.dart';
 import 'package:pckapp2/ranking_screen.dart';
 import 'package:pckapp2/rule_screen.dart';
 import 'package:pckapp2/settings_screen.dart';
-import 'package:pckapp2/0_screen.dart';
+import 'package:pckapp2/0-1_screen.dart';
+import 'package:pckapp2/0-2_screen.dart';
+import 'package:pckapp2/0-3_screen.dart';
 import 'package:pckapp2/1_screen.dart';
 import 'package:pckapp2/2_screen.dart';
 import 'package:pckapp2/3_screen.dart';
 import 'package:pckapp2/4_screen.dart';
 import 'package:pckapp2/5_screen.dart';
 import 'package:pckapp2/menu_screen.dart';
+import 'package:pckapp2/result_screen.dart';
 import 'package:go_router/go_router.dart';
 
 void main(){
@@ -44,8 +47,16 @@ class iLiteracy extends StatelessWidget {
           builder: (context, state) => rule_screen(),
         ),
         GoRoute(
-          path: '/0',
-          builder: (context, state) => screen0(),
+          path: '/01',
+          builder: (context, state) => screen01(),
+        ),
+        GoRoute(
+          path: '/02',
+          builder: (context, state) => screen02(),
+        ),
+        GoRoute(
+          path: '/03',
+          builder: (context, state) => screen03(),
         ),
         GoRoute(
           path: '/1',
@@ -70,6 +81,10 @@ class iLiteracy extends StatelessWidget {
         GoRoute(
           path: '/menu',
           builder: (context, state) => menu_screen(),
+        ),
+        GoRoute(
+          path: '/result',
+          builder: (context, state) => result_screen(),
         ),
       ],
   );
