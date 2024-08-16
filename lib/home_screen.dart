@@ -15,7 +15,7 @@ class home_screen extends StatelessWidget {
       title: const Text('iLiteracy'),
     );
     final pushButton1 = ElevatedButton(
-        onPressed: () => context.push('/0'),
+        onPressed: () => context.push('/01'),
         style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
         child: const Text('ゲーム')
     );
@@ -40,7 +40,7 @@ class home_screen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //pushButton1,
+            pushButton1,
             pushButton2,
             pushButton3,
             pushButton4,
