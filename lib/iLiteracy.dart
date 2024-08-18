@@ -4,6 +4,7 @@ import 'package:pckapp2/collection_screen.dart';
 import 'package:pckapp2/ranking_screen.dart';
 import 'package:pckapp2/rule_screen.dart';
 import 'package:pckapp2/settings_screen.dart';
+import 'package:pckapp2/0-0_screen.dart';
 import 'package:pckapp2/0-1_screen.dart';
 import 'package:pckapp2/0-2_screen.dart';
 import 'package:pckapp2/0-3_screen.dart';
@@ -39,10 +40,10 @@ class iLiteracy extends StatelessWidget {
           path: '/ranking',
           builder: (context, state) => ranking_screen(),
         ),
-        // GoRoute(
-        //   path: '/collection',
-        //   builder: (context, state) => collection_screen(),
-        // ),
+         //GoRoute(
+           //path: '/collection',
+           //builder: (context, state) => collection_screen(),
+         //),
         GoRoute(
           path: '/settings',
           builder: (context, state) => settings_screen(),
@@ -50,6 +51,10 @@ class iLiteracy extends StatelessWidget {
         GoRoute(
           path: '/rule',
           builder: (context, state) => rule_screen(),
+        ),
+        GoRoute(
+          path: '/00',
+          builder: (context, state) => screen00(),
         ),
         GoRoute(
           path: '/01',

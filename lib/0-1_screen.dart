@@ -46,7 +46,7 @@ class screen01 extends StatelessWidget {
       child: const Text('〇'),
     );
     final pushButton8 = TextButton(
-      onPressed: () => context.push('/01'),
+      onPressed: () => context.push('/00'),
       child: const Text('✖'),
     );
     return Scaffold(

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class screen04 extends StatelessWidget {
-  const screen04({super.key});
+
+class screen00 extends StatelessWidget {
+  const screen00({super.key});
 
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
       backgroundColor: Colors.yellow,
-      title: const Text('4:00'),
+      title: const Text('0:00'),
     );
     final pushButton1 = ElevatedButton(
       onPressed: () => context.push('/1'),
@@ -41,7 +42,7 @@ class screen04 extends StatelessWidget {
       child: const Text('メニュー'),
     );
     final pushButton7 = TextButton(
-      onPressed: () => context.push('/05'),
+      onPressed: () => context.push('/01'),
       child: const Text('〇'),
     );
     final pushButton8 = TextButton(
@@ -53,7 +54,7 @@ class screen04 extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
+          children: <Widget>[
             pushButton1,
             pushButton2,
             pushButton3,
