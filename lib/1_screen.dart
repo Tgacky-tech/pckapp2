@@ -9,38 +9,35 @@ class screen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-          child: AspectRatio(
-            aspectRatio: 9/ 16,
               child: Container(
-                color: Colors.white,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      // ボタンが押された時の処理
-                    },
-                    child: Text('メール一覧',
-                      style: TextStyle(
-                      fontSize: 20,
+                  AspectRatio(
+                    aspectRatio: 27 / 2,
+                    child: Container(
+                      color: Colors.blue,
                     ),
+                  ),
+                  AspectRatio(
+                    aspectRatio: 27 / 46,
+                    child: Container(
+                      child: SvgPicture.asset(
+                        'images/メール.svg'
                     ),
-                    style:TextButton.styleFrom(foregroundColor: Colors.blue),
                   ),
-                  Container(
-                    width: 100,
-                    height: 80,
-                    child: SvgPicture.asset(
-                      'images/受信.svg',
-                      width: 400,
-                    )
                   ),
+                  AspectRatio(
+                    aspectRatio: 27 / 4,
+                    child: Container(
+                      color: Colors.blue,
+                    ),
+                  )
+                  // TextButton(
                 ],
               ),
           ),
           ),
-        ),
       );
   }
 }

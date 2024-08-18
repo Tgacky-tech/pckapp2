@@ -39,10 +39,10 @@ class iLiteracy extends StatelessWidget {
           path: '/ranking',
           builder: (context, state) => ranking_screen(),
         ),
-        GoRoute(
-          path: '/collection',
-          builder: (context, state) => collection_screen(),
-        ),
+        // GoRoute(
+        //   path: '/collection',
+        //   builder: (context, state) => collection_screen(),
+        // ),
         GoRoute(
           path: '/settings',
           builder: (context, state) => settings_screen(),
