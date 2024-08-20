@@ -14,8 +14,8 @@ class screen00 extends StatelessWidget {
     final pushButton1 = MaterialButton(
       onPressed: () => context.push('/1'),
       child: Container(
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/mail.png'),
@@ -26,8 +26,8 @@ class screen00 extends StatelessWidget {
     final pushButton2 = MaterialButton(
       onPressed: () => context.push('/2'),
       child: Container(
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/sns.png'),
@@ -38,8 +38,8 @@ class screen00 extends StatelessWidget {
     final pushButton3 = MaterialButton(
       onPressed: () => context.push('/3'),
       child: Container(
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/browsericon.png'),
@@ -50,8 +50,8 @@ class screen00 extends StatelessWidget {
     final pushButton4 = MaterialButton(
       onPressed: () => context.push('/4'),
       child: Container(
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/settingsicon.png'),
