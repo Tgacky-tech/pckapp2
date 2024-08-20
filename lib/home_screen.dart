@@ -15,7 +15,7 @@ class home_screen extends StatelessWidget {
       title: const Text('iLiteracy'),
     );
     final pushButton1 = ElevatedButton(
-        onPressed: () => context.push('/00'),
+        onPressed: () => context.push('/rule'),
         style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
         child: const Text('ゲーム')
     );

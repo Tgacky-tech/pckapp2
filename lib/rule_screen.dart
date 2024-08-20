@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -12,12 +13,45 @@ class rule_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appBar = AppBar(
-      backgroundColor: Colors.grey,
-      title: const Text('ルール説明'),
-    );
     return Scaffold(
-      appBar: appBar,
+      body: Center(
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              AspectRatio(
+                aspectRatio: 27 / 46,
+                child: Container(
+                  child: SvgPicture.asset(
+                      'images/ゲームの流れ.svg'
+                  ),
+                ),
+              ),
+              AspectRatio(
+                aspectRatio: 27 / 6,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(),
+                      SizedBox(
+                        child: ElevatedButton(
+                            onPressed: () => context.push('/00'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow,
+                              fixedSize: const Size(200, 60)
+                            ),
+                            child: const Text('スタート')
+                        ),
+                      ),
+                      Container(),
+                    ],
+                ),
+              )
+              // TextButton(
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
