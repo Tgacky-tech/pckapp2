@@ -18,7 +18,7 @@ class screen00 extends StatelessWidget {
         height: 70,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/mail.png'),
+              image: AssetImage('images/nmail.png'),
               fit: BoxFit.cover,
             )),
     ),
@@ -30,7 +30,7 @@ class screen00 extends StatelessWidget {
         height: 70,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/sns.png'),
+              image: AssetImage('images/nsns.png'),
               fit: BoxFit.cover,
             )),
       ),
@@ -42,7 +42,7 @@ class screen00 extends StatelessWidget {
         height: 70,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/browsericon.png'),
+              image: AssetImage('images/nbrowser.png'),
               fit: BoxFit.cover,
             )),
       ),
@@ -54,7 +54,7 @@ class screen00 extends StatelessWidget {
         height: 70,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/settingsicon.png'),
+              image: AssetImage('images/nsettings.png'),
               fit: BoxFit.cover,
             )),
       ),

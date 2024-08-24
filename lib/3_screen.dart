@@ -23,7 +23,7 @@ class screen3 extends StatelessWidget {
                 aspectRatio: 27 / 46,
                 child: Container(
                   child: SvgPicture.asset(
-                      'images/news.svg'
+                      'images/newscreen.svg'
                   ),
                 ),
               ),
