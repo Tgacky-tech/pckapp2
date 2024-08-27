@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pckapp2/providers/stopwatch_provider.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -8,11 +10,11 @@ void main() {
   ));
 }
 
-class rule_screen extends StatelessWidget {
-  const rule_screen({super.key});
-
+class rule_screen extends ConsumerWidget {
+  const rule_screen({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     return Scaffold(
       body: Center(
         child: Container(
@@ -35,7 +37,11 @@ class rule_screen extends StatelessWidget {
                       Container(),
                       SizedBox(
                         child: ElevatedButton(
-                            onPressed: () => context.push('/00'),
+                            onPressed: () {
+                              stopwatchNotifier.reset(); // ストップウォッチリセット
+                              stopwatchNotifier.start(); // 計測開始
+                              context.push('/00');
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow,
                               fixedSize: const Size(200, 60)
@@ -55,3 +61,4 @@ class rule_screen extends StatelessWidget {
     );
   }
 }
+

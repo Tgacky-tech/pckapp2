@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pckapp2/providers/stopwatch_provider.dart';
 
-
-class screen00 extends StatelessWidget {
-  const screen00({super.key});
+class screen00 extends ConsumerWidget {
+  const screen00({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+    final elapsedTime = stopwatchNotifier.elapsedTime;
     final appBar = AppBar(
       backgroundColor: Colors.yellow,
       title: const Text('0:00'),
@@ -94,6 +97,7 @@ class screen00 extends StatelessWidget {
       color: Color(0xFF636363),
       child: Text(
         '00:00',
+        // 'Elapsed Time: ${stopwatchNotifier.formattedElapsedTime}',
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,
