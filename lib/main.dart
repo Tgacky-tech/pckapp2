@@ -20,6 +20,7 @@ import 'package:pckapp2/4_screen.dart';
 import 'package:pckapp2/5_screen.dart';
 import 'package:pckapp2/menu_screen.dart';
 import 'package:pckapp2/result_screen.dart';
+import 'package:pckapp2/task_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
@@ -122,6 +123,10 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: '/result',
         builder: (context, state) => result_screen(),
+      ),
+      GoRoute(
+        path: '/task',
+        builder: (context, state) => task_screen(),
       ),
     ],
   );

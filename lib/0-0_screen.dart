@@ -80,6 +80,10 @@ class screen00 extends ConsumerWidget {
       onPressed: () => context.push('/00'),
       child: const Text('✖'),
     );
+    final pushButton9 = TextButton(
+      onPressed: () => context.push('/task'),
+      child: const Text('□'),
+    );
     return Scaffold(
     body: Center(
     child: Container(
@@ -183,6 +187,7 @@ class screen00 extends ConsumerWidget {
           pushButton6,
           pushButton7,
           pushButton8,
+          pushButton9,
         ],
       ),
     ),
