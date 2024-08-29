@@ -4,13 +4,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pckapp2/rule_screen.dart';
+import 'package:pckapp2/main.dart';
 
 final scrollPositionProvider = StateProvider<double>((ref) => 0);
+final counterProvider = StateProvider<int>((ref) => 0);
 
 class task_screen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollPosition = ref.watch(scrollPositionProvider);
+    final counter = ref.watch(counterProvider);
 
     return Scaffold(
       body: Center(
@@ -24,16 +27,19 @@ class task_screen extends ConsumerWidget {
                     notification.metrics.pixels;
 
                 // スクロール位置が100ピクセルを超えたときに画面遷移を実行
-                if (notification.metrics.pixels > 10) {
+                if (notification.metrics.pixels > 150) {
                   // 遷移が実行済みでない場合にのみ遷移を実行
-                  if (scrollPosition <= 10) {
+                  if (scrollPosition <= 150) {
                     ref.read(scrollPositionProvider.notifier).state =
                         notification.metrics.pixels;
+                    ref.read(counterProvider.notifier).state++;
+                    final proceedPath = '/0${ref.read(counterProvider)}';
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => rule_screen()),
-                      );
+                      context.push(proceedPath);
+                      //Navigator.push(
+                        //context,
+                        //MaterialPageRoute(builder: (context) => rule_screen()),
+                      //);
                     });
                   }
                 }
@@ -66,7 +72,11 @@ class task_screen extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 0.8,
                           child:MaterialButton(
-                            onPressed: () => context.push('/4'),
+                            onPressed: () {
+                              ref.read(counterProvider.notifier).state = 0;
+                              final backPath = '/0${ref.read(counterProvider)}';
+                              context.push(backPath);
+                            },
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.78,
                               height: MediaQuery.of(context).size.width * 1.4,

@@ -48,6 +48,10 @@ class screen05 extends StatelessWidget {
       onPressed: () => context.push('/00'),
       child: const Text('✖'),
     );
+    final pushButton9 = TextButton(
+      onPressed: () => context.push('/task'),
+      child: const Text('□'),
+    );
     return Scaffold(
       appBar: appBar,
       body: Center(
@@ -65,6 +69,7 @@ class screen05 extends StatelessWidget {
               children: [
                 pushButton7,
                 pushButton8,
+                pushButton9,
               ],
             ),
           ],

@@ -25,8 +25,6 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 
-
-
 void main(){
   runApp(
     ProviderScope(
