@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 
+
 void main() {
   runApp(MaterialApp(
     home: rule_screen(),
@@ -15,6 +16,11 @@ class rule_screen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+    // final level = ref.watch(levelProvider);
+    final valueProvider = StateProvider<int>((ref) {
+      // 初期値を設定
+      return 0;
+    });
     return Scaffold(
       body: Center(
         child: Container(
@@ -38,6 +44,7 @@ class rule_screen extends ConsumerWidget {
                       SizedBox(
                         child: ElevatedButton(
                             onPressed: () {
+
                               stopwatchNotifier.reset(); // ストップウォッチリセット
                               stopwatchNotifier.start(); // 計測開始
                               context.push('/00');

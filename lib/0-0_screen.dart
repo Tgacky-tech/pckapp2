@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
+import 'package:pckapp2/providers/level.dart';
 
 class screen00 extends ConsumerWidget {
   const screen00({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final level = ref.watch(levelProvider);
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final elapsedTime = stopwatchNotifier.elapsedTime;
     final appBar = AppBar(
@@ -73,11 +75,24 @@ class screen00 extends ConsumerWidget {
       child: const Text('メニュー'),
     );
     final pushButton7 = TextButton(
-      onPressed: () => context.push('/01'),
+      onPressed: (){
+        ref.read(levelProvider.notifier).state++;
+        final level = ref.watch(levelProvider);
+        if (level > 8) {
+          ref.read(levelProvider.notifier).state = 0;
+              context.push('/result');
+        } else {
+              context.push('/00');
+        }
+      },
       child: const Text('〇'),
     );
     final pushButton8 = TextButton(
-      onPressed: () => context.push('/00'),
+      onPressed: (){
+        ref.read(levelProvider.notifier).state = 0;
+        final level = ref.watch(levelProvider);
+            () => context.push('/00');
+      },
       child: const Text('✖'),
     );
     final pushButton9 = TextButton(
@@ -100,7 +115,7 @@ class screen00 extends ConsumerWidget {
     child: Container(
       color: Color(0xFF636363),
       child: Text(
-        '00:00',
+        "0"+"$level"+":00",
         // 'Elapsed Time: ${stopwatchNotifier.formattedElapsedTime}',
         textAlign: TextAlign.center,
         style: TextStyle(

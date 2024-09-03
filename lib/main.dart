@@ -24,6 +24,8 @@ import 'package:pckapp2/task_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
+import 'providers/user_provider.dart';
+import 'models/user.dart';
 
 void main(){
   runApp(
@@ -130,6 +132,11 @@ class MyApp extends StatelessWidget {
   );
 
   @override
+  void initState(){
+    //アプリ起動時に一度だけ実行される
+
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routeInformationProvider: router.routeInformationProvider,

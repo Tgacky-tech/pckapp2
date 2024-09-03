@@ -5,6 +5,7 @@ import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pckapp2/rule_screen.dart';
 import 'package:pckapp2/main.dart';
+import 'package:pckapp2/providers/level.dart';
 
 final scrollPositionProvider = StateProvider<double>((ref) => 0);
 final counterProvider = StateProvider<int>((ref) => 0);
@@ -14,6 +15,7 @@ class task_screen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollPosition = ref.watch(scrollPositionProvider);
     final counter = ref.watch(counterProvider);
+    final level = ref.watch(levelProvider);
 
     return Scaffold(
       body: Center(
@@ -30,12 +32,20 @@ class task_screen extends ConsumerWidget {
                 if (notification.metrics.pixels > 150) {
                   // 遷移が実行済みでない場合にのみ遷移を実行
                   if (scrollPosition <= 150) {
+                    ref.read(levelProvider.notifier).state++;
+                    final level = ref.read(levelProvider);
                     ref.read(scrollPositionProvider.notifier).state =
                         notification.metrics.pixels;
                     ref.read(counterProvider.notifier).state++;
                     final proceedPath = '/0${ref.read(counterProvider)}';
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      context.push(proceedPath);
+                      // context.push(proceedPath);
+                      if (level > 8) {
+                        ref.read(levelProvider.notifier).state = 0;
+                        context.push('/result');
+                      } else {
+                        context.push('/00');
+                      }
                       //Navigator.push(
                         //context,
                         //MaterialPageRoute(builder: (context) => rule_screen()),
@@ -74,8 +84,16 @@ class task_screen extends ConsumerWidget {
                           child:MaterialButton(
                             onPressed: () {
                               ref.read(counterProvider.notifier).state = 0;
+                              ref.read(levelProvider.notifier).state++;
+                              final level = ref.read(levelProvider);
                               final backPath = '/0${ref.read(counterProvider)}';
-                              context.push(backPath);
+                              // context.push(backPath);
+                              if (level > 8) {
+                                ref.read(levelProvider.notifier).state = 0;
+                                context.push('/result');
+                              } else {
+                                context.push('/00');
+                              }
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.78,

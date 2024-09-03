@@ -52,5 +52,10 @@ class StopwatchNotifier extends StateNotifier<StopwatchState> {
     return '${_twoDigits(hours)}:${_twoDigits(minutes)}:${_twoDigits(seconds)}';
   }
 
+  int get ElapsedTime {
+    final seconds = elapsedTime.inSeconds % 60;
+    return seconds;
+  }
+
   String _twoDigits(int n) => n.toString().padLeft(2, '0');
 }
