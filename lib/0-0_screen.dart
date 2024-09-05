@@ -19,8 +19,8 @@ class screen00 extends ConsumerWidget {
     final pushButton1 = MaterialButton(
       onPressed: () => context.push('/1'),
       child: Container(
-        width: 70,
-        height: 70,
+        width: MediaQuery.of(context).size.width * 0.17,
+        height: MediaQuery.of(context).size.width * 0.17,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nmail.png'),
@@ -31,8 +31,8 @@ class screen00 extends ConsumerWidget {
     final pushButton2 = MaterialButton(
       onPressed: () => context.push('/2'),
       child: Container(
-        width: 70,
-        height: 70,
+        width: MediaQuery.of(context).size.width * 0.17,
+        height: MediaQuery.of(context).size.width * 0.17,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nsns.png'),
@@ -43,8 +43,8 @@ class screen00 extends ConsumerWidget {
     final pushButton3 = MaterialButton(
       onPressed: () => context.push('/3'),
       child: Container(
-        width: 70,
-        height: 70,
+        width: MediaQuery.of(context).size.width * 0.17,
+        height: MediaQuery.of(context).size.width * 0.17,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nbrowser.png'),
@@ -55,8 +55,8 @@ class screen00 extends ConsumerWidget {
     final pushButton4 = MaterialButton(
       onPressed: () => context.push('/4'),
       child: Container(
-        width: 70,
-        height: 70,
+        width: MediaQuery.of(context).size.width * 0.17,
+        height: MediaQuery.of(context).size.width * 0.17,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nsettings.png'),
@@ -69,10 +69,12 @@ class screen00 extends ConsumerWidget {
     //   style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
     //   child: const Text('バッテリー'),
     // );
-    final pushButton6 = ElevatedButton(
+    final pushButton6 = TextButton(
       onPressed: () => context.push('/menu'),
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
-      child: const Text('メニュー'),
+      child: const Text('◁',
+        style: TextStyle(
+        fontSize: 25/*サイズ*/,
+      ),),
     );
     final pushButton7 = TextButton(
       onPressed: (){
@@ -89,15 +91,16 @@ class screen00 extends ConsumerWidget {
     );
     final pushButton8 = TextButton(
       onPressed: (){
-        ref.read(levelProvider.notifier).state = 0;
-        final level = ref.watch(levelProvider);
-            () => context.push('/00');
+        Navigator.of(context).pop();
+        () => context.push('/00');
       },
       child: const Text('✖'),
     );
     final pushButton9 = TextButton(
       onPressed: () => context.push('/task'),
-      child: const Text('□'),
+      child: const Text('□',
+        style: TextStyle(
+            fontSize: 25),),
     );
     return Scaffold(
     body: Center(
@@ -201,7 +204,7 @@ class screen00 extends ConsumerWidget {
         children: [
           pushButton6,
           pushButton7,
-          pushButton8,
+          // pushButton8,
           pushButton9,
         ],
       ),
