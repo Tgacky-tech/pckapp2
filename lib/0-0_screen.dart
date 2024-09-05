@@ -19,8 +19,8 @@ class screen00 extends ConsumerWidget {
     final pushButton1 = MaterialButton(
       onPressed: () => context.push('/1'),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.17,
-        height: MediaQuery.of(context).size.width * 0.17,
+        width: MediaQuery.of(context).size.width * 0.16,
+        height: MediaQuery.of(context).size.width * 0.16,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nmail.png'),
@@ -31,8 +31,8 @@ class screen00 extends ConsumerWidget {
     final pushButton2 = MaterialButton(
       onPressed: () => context.push('/2'),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.17,
-        height: MediaQuery.of(context).size.width * 0.17,
+        width: MediaQuery.of(context).size.width * 0.16,
+        height: MediaQuery.of(context).size.width * 0.16,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nsns.png'),
@@ -43,8 +43,8 @@ class screen00 extends ConsumerWidget {
     final pushButton3 = MaterialButton(
       onPressed: () => context.push('/3'),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.17,
-        height: MediaQuery.of(context).size.width * 0.17,
+        width: MediaQuery.of(context).size.width * 0.16,
+        height: MediaQuery.of(context).size.width * 0.16,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nbrowser.png'),
@@ -55,8 +55,8 @@ class screen00 extends ConsumerWidget {
     final pushButton4 = MaterialButton(
       onPressed: () => context.push('/4'),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.17,
-        height: MediaQuery.of(context).size.width * 0.17,
+        width: MediaQuery.of(context).size.width * 0.16,
+        height: MediaQuery.of(context).size.width * 0.16,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nsettings.png'),
@@ -78,14 +78,7 @@ class screen00 extends ConsumerWidget {
     );
     final pushButton7 = TextButton(
       onPressed: (){
-        ref.read(levelProvider.notifier).state++;
-        final level = ref.watch(levelProvider);
-        if (level > 8) {
-          ref.read(levelProvider.notifier).state = 0;
-              context.push('/result');
-        } else {
-              context.push('/00');
-        }
+        Navigator.of(context).pop();
       },
       child: const Text('〇'),
     );

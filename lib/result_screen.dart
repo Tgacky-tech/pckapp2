@@ -41,16 +41,22 @@ class result_screen extends ConsumerWidget {
                         fontSize: 30,
                       ),
                     ),
-                    Text(
-                      'クリアタイム: ${stopwatchNotifier.formattedElapsedTime}\n自己ベスト: $btime',
-                      style: TextStyle(fontSize: 35, color: Colors.black),
-                    ),
-                    Text(
-                      '登場した異変一覧\nコレクションに保存されたよ！',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30,
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'クリアタイム: ${stopwatchNotifier.formattedElapsedTime}\n自己ベスト: $btime',
+                        style: TextStyle(fontSize: 35, color: Colors.black),
                       ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                '登場した異変一覧\nコレクションに保存されたよ！',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                fontSize: 30,
+                ),
+                    ),
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
