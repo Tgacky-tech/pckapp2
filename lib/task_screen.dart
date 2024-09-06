@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:math' as math;
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pckapp2/rule_screen.dart';
 import 'package:pckapp2/main.dart';
-import 'package:pckapp2/providers/level.dart';
-import 'package:pckapp2/providers/scrollPositionProvider.dart';
-import 'package:pckapp2/providers/counterProvider.dart';
+import 'package:pckapp2/providers/level_provider.dart';
+import 'package:pckapp2/providers/scrollPosition_provider.dart';
+import 'package:pckapp2/providers/counter_provider.dart';
+import 'package:pckapp2/providers/error_provider.dart';
 
 class task_screen extends ConsumerWidget {
   @override
@@ -16,6 +18,7 @@ class task_screen extends ConsumerWidget {
     final scrollPosition = ref.watch(scrollPositionProvider);
     final counter = ref.watch(counterProvider);
     final level = ref.watch(levelProvider);
+    var random = math.Random();
 
     return Scaffold(
       body: Center(
@@ -52,6 +55,7 @@ class task_screen extends ConsumerWidget {
                         //MaterialPageRoute(builder: (context) => rule_screen()),
                       //);
                     });
+                    ref.read(errorProvider.notifier).state = random.nextInt(40);
                   }
                 }
               }

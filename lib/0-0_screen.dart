@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
-import 'package:pckapp2/providers/level.dart';
+import 'package:pckapp2/providers/level_provider.dart';
+import 'package:pckapp2/providers/error_provider.dart';
 
 class screen00 extends ConsumerWidget {
   const screen00({Key? key}) : super(key: key);
@@ -11,8 +12,15 @@ class screen00 extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final level = ref.watch(levelProvider);
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+    final error = ref.watch(errorProvider);
     final pushButton1 = MaterialButton(
-      onPressed: () => context.push('/1'),
+      onPressed: () {
+        if (1 <= error && error <= 5) {
+          context.push('/5');
+        } else {
+          context.push('/1');
+        }
+      },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.16,
         height: MediaQuery.of(context).size.width * 0.16,
@@ -24,7 +32,13 @@ class screen00 extends ConsumerWidget {
     ),
     );
     final pushButton2 = MaterialButton(
-      onPressed: () => context.push('/2'),
+      onPressed: () {
+        if (6 <= error && error <= 10) {
+          context.push('/5');
+        } else {
+          context.push('/2');
+        }
+      },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.16,
         height: MediaQuery.of(context).size.width * 0.16,
@@ -36,7 +50,13 @@ class screen00 extends ConsumerWidget {
       ),
     );
     final pushButton3 = MaterialButton(
-      onPressed: () => context.push('/3'),
+      onPressed: () {
+        if (11 <= error && error <= 15) {
+          context.push('/5');
+        } else {
+          context.push('/3');
+        }
+      },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.16,
         height: MediaQuery.of(context).size.width * 0.16,
@@ -48,7 +68,13 @@ class screen00 extends ConsumerWidget {
       ),
     );
     final pushButton4 = MaterialButton(
-      onPressed: () => context.push('/4'),
+      onPressed: () {
+        if (16 <= error && error <= 20) {
+          context.push('/5');
+        } else {
+          context.push('/4');
+        }
+      },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.16,
         height: MediaQuery.of(context).size.width * 0.16,
