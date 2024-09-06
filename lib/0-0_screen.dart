@@ -11,11 +11,6 @@ class screen00 extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final level = ref.watch(levelProvider);
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
-    final elapsedTime = stopwatchNotifier.elapsedTime;
-    final appBar = AppBar(
-      backgroundColor: Colors.yellow,
-      title: const Text('0:00'),
-    );
     final pushButton1 = MaterialButton(
       onPressed: () => context.push('/1'),
       child: Container(
@@ -70,24 +65,24 @@ class screen00 extends ConsumerWidget {
     //   child: const Text('バッテリー'),
     // );
     final pushButton6 = TextButton(
-      onPressed: () => context.push('/menu'),
+      onPressed: (){
+        stopwatchNotifier.stop();
+        context.push('/menu');
+      },
+
       child: const Text('◁',
         style: TextStyle(
         fontSize: 25/*サイズ*/,
       ),),
     );
+
     final pushButton7 = TextButton(
-      onPressed: (){
-        Navigator.of(context).pop();
+      onPressed: () {
+        context.push('/00');
       },
-      child: const Text('〇'),
-    );
-    final pushButton8 = TextButton(
-      onPressed: (){
-        Navigator.of(context).pop();
-        () => context.push('/00');
-      },
-      child: const Text('✖'),
+      child: const Text('〇',
+        style: TextStyle(
+            fontSize: 20),),
     );
     final pushButton9 = TextButton(
       onPressed: () => context.push('/task'),
@@ -191,7 +186,7 @@ class screen00 extends ConsumerWidget {
     AspectRatio(
     aspectRatio: 27 / 4,
     child: Container(
-    color: Colors.blue,
+    color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
