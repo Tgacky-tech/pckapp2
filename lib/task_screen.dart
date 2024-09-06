@@ -6,10 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pckapp2/rule_screen.dart';
 import 'package:pckapp2/main.dart';
 import 'package:pckapp2/providers/level.dart';
-
-
-final scrollPositionProvider = StateProvider<double>((ref) => 0);
-final counterProvider = StateProvider<int>((ref) => 0);
+import 'package:pckapp2/providers/scrollPositionProvider.dart';
+import 'package:pckapp2/providers/counterProvider.dart';
 
 class task_screen extends ConsumerWidget {
   @override
