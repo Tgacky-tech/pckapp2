@@ -7,12 +7,14 @@ import 'package:pckapp2/rule_screen.dart';
 import 'package:pckapp2/main.dart';
 import 'package:pckapp2/providers/level.dart';
 
+
 final scrollPositionProvider = StateProvider<double>((ref) => 0);
 final counterProvider = StateProvider<int>((ref) => 0);
 
 class task_screen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final scrollPosition = ref.watch(scrollPositionProvider);
     final counter = ref.watch(counterProvider);
     final level = ref.watch(levelProvider);
@@ -29,19 +31,20 @@ class task_screen extends ConsumerWidget {
                     notification.metrics.pixels;
 
                 // スクロール位置が100ピクセルを超えたときに画面遷移を実行
-                if (notification.metrics.pixels > 150) {
+                if (notification.metrics.pixels > 110) {
                   // 遷移が実行済みでない場合にのみ遷移を実行
-                  if (scrollPosition <= 150) {
+                  if (scrollPosition <= 110) {
                     ref.read(levelProvider.notifier).state++;
                     final level = ref.read(levelProvider);
                     ref.read(scrollPositionProvider.notifier).state =
                         notification.metrics.pixels;
-                    ref.read(counterProvider.notifier).state++;
-                    final proceedPath = '/0${ref.read(counterProvider)}';
+                    // ref.read(counterProvider.notifier).state++;
+                    // final proceedPath = '/0${ref.read(counterProvider)}';
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       // context.push(proceedPath);
                       if (level > 8) {
                         ref.read(levelProvider.notifier).state = 0;
+                        stopwatchNotifier.stop();
                         context.push('/result');
                       } else {
                         context.push('/00');
@@ -89,6 +92,7 @@ class task_screen extends ConsumerWidget {
                               final backPath = '/0${ref.read(counterProvider)}';
                               // context.push(backPath);
                               if (level > 8) {
+                                stopwatchNotifier.stop();
                                 ref.read(levelProvider.notifier).state = 0;
                                 context.push('/result');
                               } else {
