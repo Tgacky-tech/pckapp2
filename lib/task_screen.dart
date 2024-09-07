@@ -20,6 +20,7 @@ class task_screen extends ConsumerWidget {
     final level = ref.watch(levelProvider);
     final error = ref.watch(errorProvider);
     var random = math.Random();
+    int n = 0;
 
     return Scaffold(
       body: Center(
@@ -35,7 +36,8 @@ class task_screen extends ConsumerWidget {
                 // スクロール位置が100ピクセルを超えたときに画面遷移を実行
                 if (notification.metrics.pixels > 110) {
                   // 遷移が実行済みでない場合にのみ遷移を実行
-                  if (scrollPosition <= 110) {
+                  if (scrollPosition <= 110 && n==0) {
+                    n++;
                     if(error <= 18){
                       ref.read(levelProvider.notifier).state++;
                       ref.read(errorProvider.notifier).state = random.nextInt(36);
@@ -54,7 +56,7 @@ class task_screen extends ConsumerWidget {
                           context.push('/00');
                         }
                       });
-                    } else(){
+                    } else{
                       ref.read(levelProvider.notifier).state=0;
                       ref.read(errorProvider.notifier).state = random.nextInt(36);
                       final level = ref.read(levelProvider);
@@ -64,13 +66,7 @@ class task_screen extends ConsumerWidget {
                       // final proceedPath = '/0${ref.read(counterProvider)}';
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         // context.push(proceedPath);
-                        if (level > 8) {
-                          ref.read(levelProvider.notifier).state = 0;
-                          stopwatchNotifier.stop();
-                          context.push('/result');
-                        } else {
-                          context.push('/00');
-                        }
+                        context.push('/00');
                       });
                     };
                   }
@@ -122,7 +118,7 @@ class task_screen extends ConsumerWidget {
                                         context.push('/00');
                                       }
                                     });
-                                  } else(){
+                                  } else{
                                     ref.read(levelProvider.notifier).state=0;
                                     ref.read(errorProvider.notifier).state = random.nextInt(36);
                                     final level = ref.read(levelProvider);
@@ -130,13 +126,7 @@ class task_screen extends ConsumerWidget {
                                     // final proceedPath = '/0${ref.read(counterProvider)}';
                                     WidgetsBinding.instance.addPostFrameCallback((_) {
                                       // context.push(proceedPath);
-                                      if (level > 8) {
-                                        ref.read(levelProvider.notifier).state = 0;
-                                        stopwatchNotifier.stop();
-                                        context.push('/result');
-                                      } else {
-                                        context.push('/00');
-                                      }
+                                      context.push('/00');
                                     });
                                   };
                                 },
