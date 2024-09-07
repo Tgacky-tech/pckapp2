@@ -63,15 +63,15 @@ class screen5 extends ConsumerWidget {
               AspectRatio(
                 aspectRatio: 27 / 46,
                 child: Container(
-                  child: Image.asset(
-                      'images/異変$error.png'
+                  child: SvgPicture.asset(
+                      'images/異変$error.svg'
                   ),
                 ),
               ),
               AspectRatio(
                 aspectRatio: 27 / 4,
                 child: Container(
-                  color: Colors.blue,
+                  color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

@@ -69,7 +69,7 @@ class screen1 extends ConsumerWidget {
                   AspectRatio(
                     aspectRatio: 27 / 4,
                     child: Container(
-                      color: Colors.blue,
+                      color: Colors.white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
