@@ -18,6 +18,7 @@ class task_screen extends ConsumerWidget {
     final scrollPosition = ref.watch(scrollPositionProvider);
     final counter = ref.watch(counterProvider);
     final level = ref.watch(levelProvider);
+    final error = ref.watch(errorProvider);
     var random = math.Random();
 
     return Scaffold(
@@ -35,27 +36,43 @@ class task_screen extends ConsumerWidget {
                 if (notification.metrics.pixels > 110) {
                   // 遷移が実行済みでない場合にのみ遷移を実行
                   if (scrollPosition <= 110) {
-                    ref.read(levelProvider.notifier).state++;
-                    final level = ref.read(levelProvider);
-                    ref.read(scrollPositionProvider.notifier).state =
-                        notification.metrics.pixels;
-                    // ref.read(counterProvider.notifier).state++;
-                    // final proceedPath = '/0${ref.read(counterProvider)}';
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      // context.push(proceedPath);
-                      if (level > 8) {
-                        ref.read(levelProvider.notifier).state = 0;
-                        stopwatchNotifier.stop();
-                        context.push('/result');
-                      } else {
-                        context.push('/00');
-                      }
-                      //Navigator.push(
-                        //context,
-                        //MaterialPageRoute(builder: (context) => rule_screen()),
-                      //);
-                    });
-                    ref.read(errorProvider.notifier).state = random.nextInt(40);
+                    if(error <= 18){
+                      ref.read(levelProvider.notifier).state++;
+                      ref.read(errorProvider.notifier).state = random.nextInt(36);
+                      final level = ref.read(levelProvider);
+                      ref.read(scrollPositionProvider.notifier).state =
+                          notification.metrics.pixels;
+                      // ref.read(counterProvider.notifier).state++;
+                      // final proceedPath = '/0${ref.read(counterProvider)}';
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        // context.push(proceedPath);
+                        if (level > 8) {
+                          ref.read(levelProvider.notifier).state = 0;
+                          stopwatchNotifier.stop();
+                          context.push('/result');
+                        } else {
+                          context.push('/00');
+                        }
+                      });
+                    } else(){
+                      ref.read(levelProvider.notifier).state=0;
+                      ref.read(errorProvider.notifier).state = random.nextInt(36);
+                      final level = ref.read(levelProvider);
+                      ref.read(scrollPositionProvider.notifier).state =
+                          notification.metrics.pixels;
+                      // ref.read(counterProvider.notifier).state++;
+                      // final proceedPath = '/0${ref.read(counterProvider)}';
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        // context.push(proceedPath);
+                        if (level > 8) {
+                          ref.read(levelProvider.notifier).state = 0;
+                          stopwatchNotifier.stop();
+                          context.push('/result');
+                        } else {
+                          context.push('/00');
+                        }
+                      });
+                    };
                   }
                 }
               }
@@ -71,54 +88,78 @@ class task_screen extends ConsumerWidget {
                       fit: BoxFit.cover,
                     )),
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 1.05, // 高さを大きくしてスクロール可能にする
+                    height: MediaQuery.of(context).size.height *
+                        1.05, // 高さを大きくしてスクロール可能にする
                     child: Center(
                       child: Column(
-                      children:[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.03,
-                          height: MediaQuery.of(context).size.height * 0.03,
-                        ),
-                      Container(
-                        // color: Colors.yellow,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          height: MediaQuery.of(context).size.height * 0.8,
-                          child:MaterialButton(
-                            onPressed: () {
-                              ref.read(counterProvider.notifier).state = 0;
-                              ref.read(levelProvider.notifier).state++;
-                              final level = ref.read(levelProvider);
-                              final backPath = '/0${ref.read(counterProvider)}';
-                              // context.push(backPath);
-                              if (level > 8) {
-                                stopwatchNotifier.stop();
-                                ref.read(levelProvider.notifier).state = 0;
-                                context.push('/result');
-                              } else {
-                                context.push('/00');
-                              }
-                            },
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.03,
+                            height: MediaQuery.of(context).size.height * 0.03,
+                          ),
+                          Container(
+                            // color: Colors.yellow,
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            height: MediaQuery.of(context).size.height * 0.8,
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.78,
-                              height: MediaQuery.of(context).size.width * 1.4,
-                              child: Image.asset(
-                                'images/mscreen.png',
-                                fit: BoxFit.cover,
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height: MediaQuery.of(context).size.height * 0.8,
+                              child: MaterialButton(
+                                onPressed: () {
+                                  if(error >= 18){
+                                    ref.read(levelProvider.notifier).state++;
+                                    ref.read(errorProvider.notifier).state = random.nextInt(36);
+                                    final level = ref.read(levelProvider);
+                                    // ref.read(counterProvider.notifier).state++;
+                                    // final proceedPath = '/0${ref.read(counterProvider)}';
+                                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                                      // context.push(proceedPath);
+                                      if (level > 8) {
+                                        ref.read(levelProvider.notifier).state = 0;
+                                        stopwatchNotifier.stop();
+                                        context.push('/result');
+                                      } else {
+                                        context.push('/00');
+                                      }
+                                    });
+                                  } else(){
+                                    ref.read(levelProvider.notifier).state=0;
+                                    ref.read(errorProvider.notifier).state = random.nextInt(36);
+                                    final level = ref.read(levelProvider);
+                                    // ref.read(counterProvider.notifier).state++;
+                                    // final proceedPath = '/0${ref.read(counterProvider)}';
+                                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                                      // context.push(proceedPath);
+                                      if (level > 8) {
+                                        ref.read(levelProvider.notifier).state = 0;
+                                        stopwatchNotifier.stop();
+                                        context.push('/result');
+                                      } else {
+                                        context.push('/00');
+                                      }
+                                    });
+                                  };
+                                },
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.78,
+                                  height:
+                                      MediaQuery.of(context).size.width * 1.4,
+                                  child: Image.asset(
+                                    'images/mscreen.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                          // Container(
+                          //   width: MediaQuery.of(context).size.width * 0.8,
+                          //   height: MediaQuery.of(context).size.height * 0.8,
+                          // )
+                        ],
+                      ),
                     ),
-                        // Container(
-                        //   width: MediaQuery.of(context).size.width * 0.8,
-                        //   height: MediaQuery.of(context).size.height * 0.8,
-                        // )
-                      ],
-                    ),
-                  ),
                   ),
                 ],
               ),

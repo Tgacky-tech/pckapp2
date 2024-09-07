@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/level_provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pckapp2/providers/error_provider.dart';
 
 class screen5 extends ConsumerWidget {
   const screen5({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class screen5 extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final level = ref.watch(levelProvider);
+    final error = ref.watch(errorProvider);
     final pushButton6 = TextButton(
       onPressed: (){
         stopwatchNotifier.stop();
@@ -61,8 +63,8 @@ class screen5 extends ConsumerWidget {
               AspectRatio(
                 aspectRatio: 27 / 46,
                 child: Container(
-                  child: SvgPicture.asset(
-                      'images/wifi.svg'
+                  child: Image.asset(
+                      'images/異変$error.png'
                   ),
                 ),
               ),

@@ -3,7 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
-
+import 'package:pckapp2/providers/error_provider.dart';
+import 'dart:math' as math;
 
 void main() {
   runApp(MaterialApp(
@@ -16,6 +17,8 @@ class rule_screen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+    final error = ref.watch(errorProvider);
+    var random = math.Random();
     // final level = ref.watch(levelProvider);
     final valueProvider = StateProvider<int>((ref) {
       // 初期値を設定
@@ -44,7 +47,7 @@ class rule_screen extends ConsumerWidget {
                       SizedBox(
                         child: ElevatedButton(
                             onPressed: () {
-
+                              ref.read(errorProvider.notifier).state = random.nextInt(36);
                               stopwatchNotifier.reset(); // ストップウォッチリセット
                               stopwatchNotifier.start(); // 計測開始
                               context.push('/00');

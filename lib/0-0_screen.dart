@@ -15,7 +15,7 @@ class screen00 extends ConsumerWidget {
     final error = ref.watch(errorProvider);
     final pushButton1 = MaterialButton(
       onPressed: () {
-        if (1 <= error && error <= 5) {
+        if (1 <= error && error <= 4) {
           context.push('/5');
         } else {
           context.push('/1');
@@ -33,7 +33,7 @@ class screen00 extends ConsumerWidget {
     );
     final pushButton2 = MaterialButton(
       onPressed: () {
-        if (6 <= error && error <= 10) {
+        if (5 <= error && error <= 9) {
           context.push('/5');
         } else {
           context.push('/2');
@@ -51,7 +51,7 @@ class screen00 extends ConsumerWidget {
     );
     final pushButton3 = MaterialButton(
       onPressed: () {
-        if (11 <= error && error <= 15) {
+        if (10 <= error && error <= 14) {
           context.push('/5');
         } else {
           context.push('/3');
@@ -69,7 +69,7 @@ class screen00 extends ConsumerWidget {
     );
     final pushButton4 = MaterialButton(
       onPressed: () {
-        if (16 <= error && error <= 20) {
+        if (15 <= error && error <= 18) {
           context.push('/5');
         } else {
           context.push('/4');
