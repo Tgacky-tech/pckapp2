@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final sharedPreferencesProvider =
     FutureProvider<SharedPreferences>((ref) async {
-      SharedPreferences.setMockInitialValues({});
+      // SharedPreferences.setMockInitialValues({});
   return SharedPreferences.getInstance();
 });
 
@@ -65,7 +65,7 @@ class result_screen extends ConsumerWidget {
                           await SharedPreferences.getInstance();
                           int etime = stopwatchNotifier.ElapsedTime;
                           final int ctime = prefs.getInt('counter_key') ?? 0;
-                          if (etime < ctime) {
+                          if (ctime ==0||etime < ctime) {
                             await prefs.setInt('counter_key', etime);
                           }
                           ;
