@@ -31,7 +31,8 @@ dependencies:
   go_router:
   flutter:
     sdk: flutter
-  mysql1: ^0.19.2
+  firebase_core:
+  cloud_firestore:
 
 
   # The following adds the Cupertino Icons font to your application.

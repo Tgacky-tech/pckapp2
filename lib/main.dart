@@ -16,10 +16,11 @@ import 'package:pckapp2/task_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
-import 'providers/user_provider.dart';
-import 'models/user.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main(){
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     ProviderScope(
         child: MyApp()),

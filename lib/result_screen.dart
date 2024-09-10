@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
+import 'package:pckapp2/providers/sharedPreferences_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final sharedPreferencesProvider =
-    FutureProvider<SharedPreferences>((ref) async {
-      // SharedPreferences.setMockInitialValues({});
-  return SharedPreferences.getInstance();
-});
+
 
 class result_screen extends ConsumerWidget {
   const result_screen({Key? key}) : super(key: key);

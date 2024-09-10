@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
 import 'dart:math' as math;
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MaterialApp(
