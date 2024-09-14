@@ -46,24 +46,24 @@ class CollectionScreen extends StatelessWidget {
         childAspectRatio: 1 / 1,
         // アスペクト比
         children: <Widget>[
-          _imageItem("異変1-1"),
-          _imageItem("異変1-2"),
-          _imageItem("異変1-3"),
-          _imageItem("異変1-4"),
-          _imageItem("異変2-1"),
-          _imageItem("異変2-2"),
-          _imageItem("異変2-3"),
-          _imageItem("異変2-4"),
-          _imageItem("異変2-5"),
-          _imageItem("異変3-1"),
-          _imageItem("異変3-2"),
-          _imageItem("異変3-3"),
-          _imageItem("異変3-4"),
-          _imageItem("異変3-5"),
-          _imageItem("異変4-1"),
-          _imageItem("異変4-2"),
-          _imageItem("異変4-3"),
-          _imageItem("異変4-4"),
+          _imageItem("異変1"),
+          _imageItem("異変2"),
+          _imageItem("異変3"),
+          _imageItem("異変4"),
+          _imageItem("異変5"),
+          _imageItem("異変6"),
+          _imageItem("異変7"),
+          _imageItem("異変8"),
+          _imageItem("異変9"),
+          _imageItem("異変10"),
+          _imageItem("異変11"),
+          _imageItem("異変12"),
+          _imageItem("異変13"),
+          _imageItem("異変14"),
+          _imageItem("異変15"),
+          _imageItem("異変16"),
+          _imageItem("異変17"),
+          _imageItem("異変18"),
           _imageItem("name"),
           _imageItem("name"),
           _imageItem("name"),
@@ -127,7 +127,7 @@ class CollectionScreen extends StatelessWidget {
   }
 
   Widget _imageItem(String name) {
-    var image = "images/ihen/" + name + ".png";
+    var image = "images/" + name + ".png";
     return Container(
       child: Image.asset(image, fit: BoxFit.cover,),
     );
