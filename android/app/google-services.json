@@ -1,13 +1,32 @@
 {
   "project_info": {
-    "project_number": "889650252963",
-    "project_id": "pckapp2",
-    "storage_bucket": "pckapp2.appspot.com"
+    "project_number": "235277619668",
+    "project_id": "pckapp2-fadbf",
+    "storage_bucket": "pckapp2-fadbf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:889650252963:android:db9f1db71631ade6b78316",
+        "mobilesdk_app_id": "1:235277619668:android:1481f6a394525295b50641",
+        "android_client_info": {
+          "package_name": "com.company.pckapp2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_dYuQAfpIEW4fe9ypHp6x32ctpMhMZ7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235277619668:android:3bbc3a1d3523dd3bb50641",
         "android_client_info": {
           "package_name": "com.example.pckapp2"
         }
@@ -15,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC6sGky9xrttL-wxbgjmbRBrR01SiS_eNA"
+          "current_key": "AIzaSyD_dYuQAfpIEW4fe9ypHp6x32ctpMhMZ7s"
         }
       ],
       "services": {
