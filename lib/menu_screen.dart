@@ -36,6 +36,17 @@ class menu_screen extends ConsumerWidget {
                 ),
                 child: const Text('再開')
             ),
+            ElevatedButton(
+                onPressed: () {
+                  stopwatchNotifier.reset(); // 計測開始
+                  context.push('/home');
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow,
+                    fixedSize: const Size(200, 60)
+                ),
+                child: const Text('終了')
+            ),
           ],
         ),
       ),
