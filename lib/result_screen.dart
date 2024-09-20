@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/sharedPreferences_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class result_screen extends ConsumerWidget {
@@ -14,6 +15,7 @@ class result_screen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final asyncPrefs = ref.watch(sharedPreferencesProvider);
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
     return Scaffold(
       body: Center(
         child: Column(
@@ -60,9 +62,13 @@ class result_screen extends ConsumerWidget {
                         onPressed: () async {
                           SharedPreferences prefs =
                           await SharedPreferences.getInstance();
+                          String? userId = prefs.getString('userId');
                           int etime = stopwatchNotifier.ElapsedTime;
                           final int ctime = prefs.getInt('counter_key') ?? 0;
                           if (ctime ==0||etime < ctime) {
+                            await firestore.collection('users').doc(userId).update({
+                              'score': etime,
+                            });
                             await prefs.setInt('counter_key', etime);
                           }
                           ;

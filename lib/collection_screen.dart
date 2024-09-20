@@ -3,12 +3,12 @@ import 'dart:math' as math;
 
 void main() {
   runApp(MaterialApp(
-    home: CollectionScreen(),
+    home: collection_screen(),
   ));
 }
 
-class CollectionScreen extends StatelessWidget {
-  const CollectionScreen({Key? key}) : super(key: key);
+class collection_screen extends StatelessWidget {
+  const collection_screen({Key? key}) : super(key: key);
 
 
   @override

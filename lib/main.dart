@@ -18,6 +18,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:pckapp2/services/user_services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +31,7 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends ConsumerWidget {
 
   final router = GoRouter(
     initialLocation: '/home',
@@ -44,10 +44,10 @@ class MyApp extends StatelessWidget {
         path: '/ranking',
         builder: (context, state) => ranking_screen(),
       ),
-      //GoRoute(
-      //path: '/collection',
-      //builder: (context, state) => collection_screen(),
-      //),
+      GoRoute(
+      path: '/collection',
+      builder: (context, state) => collection_screen(),
+      ),
       GoRoute(
         path: '/settings',
         builder: (context, state) => settings_screen(),
@@ -101,7 +101,11 @@ class MyApp extends StatelessWidget {
 
   }
 
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userService = UserService();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await userService.createUserIfNotExists();
+    });
     return MaterialApp.router(
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,
