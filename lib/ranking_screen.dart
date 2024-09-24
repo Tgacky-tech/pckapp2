@@ -3,6 +3,19 @@ import 'package:go_router/go_router.dart';
 import 'package:pckapp2/providers/topUsers_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+String formatTime(int totalSeconds) {
+  // 時、分、秒を計算
+  int hours = totalSeconds ~/ 3600;
+  int minutes = (totalSeconds % 3600) ~/ 60;
+  int seconds = totalSeconds % 60;
+
+  // 2桁のゼロ埋めされた文字列を作成
+  String hoursStr = hours.toString().padLeft(2, '0');
+  String minutesStr = minutes.toString().padLeft(2, '0');
+  String secondsStr = seconds.toString().padLeft(2, '0');
+
+  return "$hoursStr:$minutesStr:$secondsStr";
+}
 
 class ranking_screen extends ConsumerWidget {
   @override
@@ -13,7 +26,6 @@ class ranking_screen extends ConsumerWidget {
       title: const Text('ランキング'),
     );
     return Scaffold(
-      appBar: appBar,
       body: topUsersAsyncValue.when(
         data: (topUsers) {
           return ListView.builder(
@@ -22,7 +34,7 @@ class ranking_screen extends ConsumerWidget {
               final user = topUsers[index];
               return ListTile(
                 title: Text(user['username']),
-                subtitle: Text('Score: ${user['score']}'),
+                subtitle: Text('Score: ${formatTime(user['score'])}'),
               );
             },
           );
