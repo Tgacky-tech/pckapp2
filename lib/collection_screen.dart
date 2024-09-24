@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -15,6 +16,7 @@ class collection_screen extends StatelessWidget {
   Widget build(BuildContext context) {
     ScrollController controller = ScrollController();
     return Scaffold(
+      backgroundColor: Colors.blue,
       appBar: AppBar(
         title: Text('コレクション'),
       ),
@@ -38,7 +40,7 @@ class collection_screen extends StatelessWidget {
         ],
       ),
       body: GridView.count(
-        crossAxisCount: 3,
+        crossAxisCount: 2,
         mainAxisSpacing: 10.0,
         // 主要軸(縦)の間隔
         crossAxisSpacing: 10.0,
@@ -556,9 +558,9 @@ class collection_screen extends StatelessWidget {
   }
 
   Widget _imageItem(String name) {
-    var image = "images/" + name + ".png";
+    var image = "images/" + name + ".svg";
     return Container(
-      child: Image.asset(image, fit: BoxFit.cover,),
+      child: SvgPicture.asset(image, fit: BoxFit.cover,),
     );
   }
 }
