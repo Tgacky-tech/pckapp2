@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pckapp2/providers/topUsers_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:pckapp2/providers/sharedPreferences_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ranking_screen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final topUsersAsyncValue = ref.watch(topUsersProvider);
+    final asyncPrefs = ref.watch(sharedPreferencesProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -15,104 +17,133 @@ class ranking_screen extends ConsumerWidget {
         shadowColor: Colors.grey.withOpacity(0.4),
         title: const Text('ランキング'),
       ),
-      body: topUsersAsyncValue.when(
-        data: (topUsers) {
-          return ListView.builder(
-            itemCount: topUsers.length,
-            itemBuilder: (context, index) {
-              final user = topUsers[index];
-              return Column(
-                children: [
-                  ListTile(
-                    leading: _getRankWidget(index), // 順位に応じたウィジェットを表示
-                    title: Text(
-                      user['username'],
-                      style: TextStyle(fontSize: 20.0), // 文字サイズを大きくする
-                    ),
-                    subtitle: Text(
-                      'Score: ${formatTime(user['score'])}',
-                      style: TextStyle(fontSize: 18.0), // スコアの文字サイズを設定
-                    ),
-                  ),
-                  Divider(), // 下線を引く
-                ],
-              );
-            },
-          );
-        },
-        loading: () => Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Error: $err')),
+      body: Column(
+        children: [
+          Expanded(
+            child: topUsersAsyncValue.when(
+              data: (topUsers) {
+                return ListView.builder(
+                  itemCount: topUsers.length + 1, // +1で自己ベスト用のスペースを追加
+                  itemBuilder: (context, index) {
+                    if (index < topUsers.length) {
+                      final user = topUsers[index];
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    _getRankWidget(index),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      user['username'],
+                                      style: TextStyle(fontSize: 20.0),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  'Time: ${formatTime(user['score'])}',
+                                  style: TextStyle(fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(),
+                        ],
+                      );
+                    } else {
+                      // 自己ベストの表示部分
+                      return asyncPrefs.when(
+                        data: (prefs) {
+                          final int counterValue = prefs.getInt('counter_key') ?? 0;
+                          final seconds = counterValue % 60;
+                          final minutes = (counterValue ~/ 60) % 60;
+                          final hours = counterValue ~/ 3600;
+
+                          String _twoDigits(int n) => n.toString().padLeft(2, '0');
+                          final btime =
+                              '${_twoDigits(hours)}:${_twoDigits(minutes)}:${_twoDigits(seconds)}';
+
+                          return counterValue > 0
+                              ? Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.0), // 余白を減らす
+                            child: Container(
+                              height: 30.0, // 必要に応じて高さを調整
+                              alignment: Alignment.center,
+                              child: Text(
+                                '自己ベスト: $btime',
+                                style: TextStyle(fontSize: 25, color: Colors.black),
+                              ),
+                            ),
+                          )
+                              : SizedBox.shrink(); // counterValueが0の場合は何も表示しない
+                        },
+                        loading: () => Center(child: CircularProgressIndicator()),
+                        error: (error, stack) => Text('Error: $error'),
+                      );
+                    }
+                  },
+                );
+              },
+              loading: () => Center(child: CircularProgressIndicator()),
+              error: (err, stack) => Center(child: Text('Error: $err')),
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(16.0), // ボタンの周りに余白を追加
+          //   child: OutlinedButton(
+          //     onPressed: () {
+          //
+          //     },
+          //     child: Text('ユーザー名変更'),
+          //     style: OutlinedButton.styleFrom(
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(16),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+        ],
       ),
     );
   }
 
-  // 順位を取得する関数
   Widget _getRankWidget(int index) {
-    Color bronze = Color(0xCD7F32);
+    const double rankWidgetWidth = 40.0;
     if (index == 0) {
-      return Icon(Icons.emoji_events, color: Colors.amber); // 1位
+      return SizedBox(
+        width: rankWidgetWidth,
+        child: Icon(Icons.emoji_events, color: Colors.amber),
+      );
     } else if (index == 1) {
-      return Icon(Icons.emoji_events, color: Colors.grey); // 2位
+      return SizedBox(
+        width: rankWidgetWidth,
+        child: Icon(Icons.emoji_events, color: Colors.grey),
+      );
     } else if (index == 2) {
-      return Icon(Icons.emoji_events, color: Colors.brown); // 3位
+      return SizedBox(
+        width: rankWidgetWidth,
+        child: Icon(Icons.emoji_events, color: Colors.brown),
+      );
     } else {
-      return Text(
-        '${index + 1}', // 4位以下は順位の数字を表示
-        style: TextStyle(fontSize: 20.0), // 数字のサイズを設定
+      return SizedBox(
+        width: rankWidgetWidth,
+        child: Text(
+          '${index + 1}',
+          style: TextStyle(fontSize: 20.0),
+          textAlign: TextAlign.center,
+        ),
       );
     }
   }
 
-  // スコアをフォーマットする関数
   String formatTime(int score) {
     final minutes = score ~/ 60;
     final seconds = score % 60;
     return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 }
-      // body: topUsersAsyncValue.when(
-      //   data: (topUsers) {
-      //     return ListView.builder(
-      //       itemCount: topUsers.length,
-      //       itemBuilder: (context, index) {
-      //         final user = topUsers[index];
-      //
-      //         // ランキングアイコンを決定
-      //         Icon rankingIcon;
-      //         if (index == 0) {
-      //           rankingIcon = Icon(Icons.emoji_events, color: Colors.amber); // 1位
-      //         } else if (index == 1) {
-      //           rankingIcon = Icon(Icons.emoji_events, color: Colors.grey); // 2位
-      //         } else if (index == 2) {
-      //           rankingIcon = Icon(Icons.emoji_events, color: Colors.brown); // 3位
-      //         } else {
-      //           rankingIcon = Icon(Icons.star, color: Colors.blueGrey); // それ以外
-      //         }
-      //
-      //         return ListTile(
-      //           leading: rankingIcon, // アイコンを追加
-      //           title: Text(user['username']),
-      //           subtitle: Text('Score: ${formatTime(user['score'])}'),
-      //         );
-      //       },
-      //     );
-      //   },
-      //   loading: () => Center(child: CircularProgressIndicator()),
-      //   error: (err, stack) => Center(child: Text('Error: $err')),
-      // ),
-      // body: topUsersAsyncValue.when(
-      //   data: (topUsers) {
-      //     return ListView.builder(
-      //       itemCount: topUsers.length,
-      //       itemBuilder: (context, index) {
-      //         final user = topUsers[index];
-      //         return ListTile(
-      //           title: Text(user['username']),
-      //           subtitle: Text('Score: ${formatTime(user['score'])}'),
-      //         );
-      //       },
-      //     );
-      //   },
-      //   loading: () => Center(child: CircularProgressIndicator()),
-      //   error: (err, stack) => Center(child: Text('Error: $err')),
-      // ),
