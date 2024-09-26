@@ -32,7 +32,7 @@ class rule_screen extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               AspectRatio(
-                aspectRatio: 27 / 46,
+                aspectRatio: 27 / 43,
                 child: Container(
                   child: SvgPicture.asset(
                       'images/ゲームの流れ.svg'

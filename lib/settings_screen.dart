@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -7,11 +9,10 @@ void main() {
   ));
 }
 
-class settings_screen extends StatelessWidget {
-  const settings_screen({super.key});
-
+class settings_screen extends ConsumerWidget {
+  const settings_screen({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final pushButton1 = ElevatedButton(
       onPressed: () => context.push('/rule'),
       style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
@@ -29,8 +30,9 @@ class settings_screen extends StatelessWidget {
           _buildSettingItem(
             icon: Icons.info,
             title: 'ルール説明',
-            onTap: () {
-              // ルール説明画面へ遷移するコード
+            onTap: ()async {
+              // final prefs = await SharedPreferences.getInstance();
+              // prefs.setInt('counter_key', 0);
             },
           ),
           _buildSettingItem(

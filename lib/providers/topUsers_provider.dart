@@ -43,7 +43,7 @@ final topUsersProvider = FutureProvider<List<Map<String, dynamic>>>((ref) async 
     Map<String, dynamic> userData = {
       'username': doc['username'],
       'score': doc['score'],
-      'userId': doc['userId']
+      'userId': doc.id
     };
     print('UserID: ${userData['userId']}');
     topUsers.add(userData);

@@ -102,7 +102,7 @@ class task_screen extends ConsumerWidget {
                               height: MediaQuery.of(context).size.height * 0.8,
                               child: MaterialButton(
                                 onPressed: () {
-                                  if(error >= 0){
+                                  if(error >= 19){
                                     ref.read(levelProvider.notifier).state++;
                                     ref.read(errorProvider.notifier).state = random.nextInt(36);
                                     final level = ref.read(levelProvider);
