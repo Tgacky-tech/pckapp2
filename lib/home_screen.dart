@@ -57,9 +57,10 @@ class home_screen extends ConsumerWidget {
         children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        // type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.grey[800], // 背景色を灰色に設定
         selectedItemColor: Colors.black, // 選択されたアイテムの色を白に設定
-        unselectedItemColor: Colors.grey[400], // 未選択のアイテムの色を淡い灰色に設定
+        unselectedItemColor: Colors.grey[600], // 未選択のアイテムの色を淡い灰色に設定
         currentIndex: pageIndex,
         onTap: (index) {
           ref.read(pageIndexProvider.notifier).state = index;

@@ -46,7 +46,8 @@ class rule_screen extends ConsumerWidget {
                     children: <Widget>[
                       Container(),
                       SizedBox(
-                        child: ElevatedButton(
+                        child:
+                        ElevatedButton(
                             onPressed: () {
                               ref.read(errorProvider.notifier).state = random.nextInt(36);
                               stopwatchNotifier.reset(); // ストップウォッチリセット

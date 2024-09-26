@@ -4,12 +4,14 @@ import 'package:pckapp2/providers/topUsers_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/sharedPreferences_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pckapp2/providers/currentUserRank_provider.dart';
 
 class ranking_screen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final topUsersAsyncValue = ref.watch(topUsersProvider);
     final asyncPrefs = ref.watch(sharedPreferencesProvider);
+    final currentUserRank = ref.watch(currentUserRankProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -75,7 +77,7 @@ class ranking_screen extends ConsumerWidget {
                               height: 30.0, // 必要に応じて高さを調整
                               alignment: Alignment.center,
                               child: Text(
-                                '自己ベスト: $btime',
+                                '自己ベスト: $btime (順位: ${currentUserRank != -1 ? currentUserRank : "N/A"})',
                                 style: TextStyle(fontSize: 25, color: Colors.black),
                               ),
                             ),
