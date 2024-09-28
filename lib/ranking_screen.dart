@@ -54,7 +54,10 @@ class ranking_screen extends ConsumerWidget {
                               ],
                             ),
                           ),
-                          Divider(),
+                          Padding( // Dividerの前にPaddingを追加
+                            padding: const EdgeInsets.symmetric(horizontal: 13.0), // 左右に余白を追加
+                            child: Divider(),
+                          )
                         ],
                       );
                     } else {
