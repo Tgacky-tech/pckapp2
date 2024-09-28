@@ -56,34 +56,45 @@ class home_screen extends ConsumerWidget {
         },
         children: pages,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        // type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.grey[800], // 背景色を灰色に設定
-        selectedItemColor: Colors.black, // 選択されたアイテムの色を白に設定
-        unselectedItemColor: Colors.grey[600], // 未選択のアイテムの色を淡い灰色に設定
-        currentIndex: pageIndex,
-        onTap: (index) {
-          ref.read(pageIndexProvider.notifier).state = index;
-          pageController.jumpToPage(index);
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.videogame_asset),
-            label: 'ゲーム',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.collections),
-            label: 'コレクション',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
-            label: 'ランキング',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '設定',
-          ),
-        ],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2), // 影の色
+              spreadRadius: 2, // 影の広がり具合
+              blurRadius: 6,   // 影のぼかし具合
+              offset: Offset(0, -3), // 影の位置 (x, y)
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.grey[800], // 背景色を灰色に設定
+          selectedItemColor: Colors.black, // 選択されたアイテムの色を黒に設定
+          unselectedItemColor: Colors.grey[600], // 未選択のアイテムの色を淡い灰色に設定
+          currentIndex: pageIndex,
+          onTap: (index) {
+            ref.read(pageIndexProvider.notifier).state = index;
+            pageController.jumpToPage(index);
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.videogame_asset),
+              label: 'ゲーム',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.collections),
+              label: 'コレクション',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.leaderboard),
+              label: 'ランキング',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: '設定',
+            ),
+          ],
+        ),
       ),
     );
   }
