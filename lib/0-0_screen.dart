@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/level_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
+import 'dart:math' as math;
 
 class screen00 extends ConsumerWidget {
   const screen00({Key? key}) : super(key: key);
@@ -127,20 +128,55 @@ class screen00 extends ConsumerWidget {
     child: Column(
     mainAxisSize: MainAxisSize.min,
     children: <Widget>[
-    AspectRatio(
-    aspectRatio: 27 / 1.5,
-    child: Container(
-      color: Color(0xFF636363),
-      child: Text(
-        "0"+"$level"+":00",
-        // 'Elapsed Time: ${stopwatchNotifier.formattedElapsedTime}',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
+      AspectRatio(
+          aspectRatio: 27 / 1.7,
+      child: Stack(
+        children: [
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              "0" + "$level" + ":00",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+          ),
+          // 左端にWi-Fiアイコン
+          Positioned(
+            left: 10, // 左側の余白を調整
+            child: Icon(
+              Icons.wifi,
+              color: Colors.black, // アイコンの色を調整
+            ),
+          ),
+        Positioned(
+          right: 10,
+          child:
+          Row(
+            children: [
+              Text(
+                "100%",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              Transform.rotate(
+                angle: -math.pi / -2, // バッテリーアイコンを45度傾ける
+                child: Icon(
+                  Icons.battery_full,
+                  color: Colors.black, // アイコンの色を調整
+                  size: 24, // アイコンのサイズを調整
+                ),
+              ),
+            ],
+          )
+
         ),
+        ],
       ),
-    ),
-    ),
+      ),
     AspectRatio(
     aspectRatio: 27 / 46,
     child: Container(
