@@ -15,6 +15,17 @@ class collection_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScrollController controller = ScrollController();
+    Widget _imageItem(String name) {
+      var image = "images/" + name + ".png";
+      return Container(
+        width: MediaQuery.of(context).size.width * 0.4,
+        height: MediaQuery.of(context).size.width * 0.4,
+        decoration: BoxDecoration(
+          // border: Border.all(color: Colors.grey),
+        ),
+        child: Image.asset(image, fit: BoxFit.cover,),
+      );
+    }
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
@@ -60,7 +71,15 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変1"),
+                          content: _imageItem("異変s1"),
+                          // Container(
+                          //   width: MediaQuery.of(context).size.width * 0.6,
+                          //   height: MediaQuery.of(context).size.width * 0.6,
+                          //   decoration: BoxDecoration(
+                          //     // border: Border.all(color: Colors.grey),
+                          //   ),
+                          //   child: Image.asset("images/異変s1.png", fit: BoxFit.cover), // fit: BoxFit.coverを追加
+                          // ),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -74,7 +93,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変1")
+              child: _imageItem("異変s1")
           ),
           InkWell(
               onTap: (){
@@ -88,7 +107,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変2"),
+                          content: _imageItem("異変s2"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -102,7 +121,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変2")
+              child: _imageItem("異変s2")
           ),
           InkWell(
               onTap: (){
@@ -116,7 +135,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変3"),
+                          content: _imageItem("異変s3"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -130,7 +149,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変3")
+              child: _imageItem("異変s3")
           ),
           InkWell(
               onTap: (){
@@ -144,7 +163,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変4"),
+                          content: _imageItem("異変s4"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -158,7 +177,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変4")
+              child: _imageItem("異変s4")
           ),
           InkWell(
               onTap: (){
@@ -172,7 +191,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変5"),
+                          content: _imageItem("異変s5"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -186,7 +205,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変5")
+              child: _imageItem("異変s5")
           ),
           InkWell(
               onTap: (){
@@ -200,7 +219,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変6"),
+                          content: _imageItem("異変s6"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -214,7 +233,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変6")
+              child: _imageItem("異変s6")
           ),
           InkWell(
               onTap: (){
@@ -228,7 +247,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変7"),
+                          content: _imageItem("異変s7"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -242,7 +261,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変7")
+              child: _imageItem("異変s7")
           ),
           InkWell(
               onTap: (){
@@ -256,7 +275,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変8"),
+                          content: _imageItem("異変s8"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -270,7 +289,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変8")
+              child: _imageItem("異変s8")
           ),
           InkWell(
               onTap: (){
@@ -284,7 +303,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変9"),
+                          content: _imageItem("異変s9"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -298,7 +317,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変9")
+              child: _imageItem("異変s9")
           ),
           InkWell(
               onTap: (){
@@ -312,7 +331,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変10"),
+                          content: _imageItem("異変s10"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -326,7 +345,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変10")
+              child: _imageItem("異変s10")
           ),
           InkWell(
               onTap: (){
@@ -340,7 +359,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変11"),
+                          content: _imageItem("異変s11"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -354,7 +373,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変11")
+              child: _imageItem("異変s11")
           ),
           InkWell(
               onTap: (){
@@ -368,7 +387,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変12"),
+                          content: _imageItem("異変s12"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -382,7 +401,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変12")
+              child: _imageItem("異変s12")
           ),
           InkWell(
               onTap: (){
@@ -396,7 +415,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変13"),
+                          content: _imageItem("異変s13"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -410,7 +429,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変13")
+              child: _imageItem("異変s13")
           ),
           InkWell(
               onTap: (){
@@ -424,7 +443,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変14"),
+                          content: _imageItem("異変s14"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -438,7 +457,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変14")
+              child: _imageItem("異変s14")
           ),
           InkWell(
               onTap: (){
@@ -452,7 +471,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変15"),
+                          content: _imageItem("異変s15"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -466,7 +485,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変15")
+              child: _imageItem("異変s15")
           ),
           InkWell(
               onTap: (){
@@ -480,7 +499,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変16"),
+                          content: _imageItem("異変s16"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -494,7 +513,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変16")
+              child: _imageItem("異変s16")
           ),
           InkWell(
               onTap: (){
@@ -508,7 +527,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変17"),
+                          content: _imageItem("異変s17"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -522,7 +541,7 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変17")
+              child: _imageItem("異変s17")
           ),
           InkWell(
               onTap: (){
@@ -536,7 +555,7 @@ class collection_screen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                             ),),
-                          content: _imageItem("異変18"),
+                          content: _imageItem("異変s18"),
                           actions: <Widget>[
                             GestureDetector(
                               child: Text('閉じる'),
@@ -550,17 +569,17 @@ class collection_screen extends StatelessWidget {
                     )
                 );
               },
-              child: _imageItem("異変18")
+              child: _imageItem("異変s18")
           ),
         ],
       ),
     );
   }
 
-  Widget _imageItem(String name) {
-    var image = "images/" + name + ".svg";
-    return Container(
-      child: SvgPicture.asset(image, fit: BoxFit.cover,),
-    );
-  }
+  // Widget _imageItem(String name) {
+  //   var image = "images/" + name + ".svg";
+  //   return Container(
+  //     child: SvgPicture.asset(image, fit: BoxFit.cover,),
+  //   );
+  // }
 }
