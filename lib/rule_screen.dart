@@ -26,6 +26,12 @@ class rule_screen extends ConsumerWidget {
       return 0;
     });
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 6,
+        shadowColor: Colors.grey.withOpacity(0.4),
+        title: const Text('ゲーム開始'),
+      ),
       body: Center(
         child: Container(
           child: Column(

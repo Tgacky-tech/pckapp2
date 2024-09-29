@@ -29,7 +29,10 @@ class collection_screen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text('コレクション'),
+        backgroundColor: Colors.white,
+        elevation: 6,
+        shadowColor: Colors.grey.withOpacity(0.4),
+        title: const Text('コレクション'),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
