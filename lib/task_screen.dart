@@ -10,6 +10,7 @@ import 'package:pckapp2/providers/level_provider.dart';
 import 'package:pckapp2/providers/scrollPosition_provider.dart';
 import 'package:pckapp2/providers/counter_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
+import 'package:pckapp2/providers/counterList_provider.dart';
 
 class task_screen extends ConsumerWidget {
   @override
@@ -19,6 +20,7 @@ class task_screen extends ConsumerWidget {
     final counter = ref.watch(counterProvider);
     final level = ref.watch(levelProvider);
     final error = ref.watch(errorProvider);
+    final counterList = ref.watch(counterListProvider);
     var random = math.Random();
     int n = 0;
 
@@ -41,6 +43,7 @@ class task_screen extends ConsumerWidget {
                     if(error <= 18){
                       ref.read(levelProvider.notifier).state++;
                       ref.read(errorProvider.notifier).state = random.nextInt(36);
+                      ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
                       final level = ref.read(levelProvider);
                       ref.read(scrollPositionProvider.notifier).state =
                           notification.metrics.pixels;
@@ -59,6 +62,7 @@ class task_screen extends ConsumerWidget {
                     } else{
                       ref.read(levelProvider.notifier).state=0;
                       ref.read(errorProvider.notifier).state = random.nextInt(36);
+                      ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
                       final level = ref.read(levelProvider);
                       ref.read(scrollPositionProvider.notifier).state =
                           notification.metrics.pixels;
@@ -102,9 +106,10 @@ class task_screen extends ConsumerWidget {
                               height: MediaQuery.of(context).size.height * 0.8,
                               child: MaterialButton(
                                 onPressed: () {
-                                  if(error >= 0){
+                                  if(error >= 19){
                                     ref.read(levelProvider.notifier).state++;
                                     ref.read(errorProvider.notifier).state = random.nextInt(36);
+                                    ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
                                     final level = ref.read(levelProvider);
                                     // ref.read(counterProvider.notifier).state++;
                                     // final proceedPath = '/0${ref.read(counterProvider)}';
@@ -121,6 +126,7 @@ class task_screen extends ConsumerWidget {
                                   } else{
                                     ref.read(levelProvider.notifier).state=0;
                                     ref.read(errorProvider.notifier).state = random.nextInt(36);
+                                    ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
                                     final level = ref.read(levelProvider);
                                     // ref.read(counterProvider.notifier).state++;
                                     // final proceedPath = '/0${ref.read(counterProvider)}';
