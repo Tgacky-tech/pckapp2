@@ -56,7 +56,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変1'),
-                          title: Text('焦らせるような文面でも、安易にリンクを開いてはいけません。',
+                          title: Text('焦らせるような文面でも、安易にリンクを開いてはいけません。URLを開いてしまうと、ウイルスがインストールされる可能性があります。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -84,7 +84,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変2'),
-                          title: Text('異変2の説明',
+                          title: Text('迷惑メールは安易に開いてはいけません。メールアプリの送信元を拒否する設定を活用しましょう。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -112,7 +112,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変3'),
-                          title: Text('異変3の説明',
+                          title: Text('ウェブサイトに自分のアカウントでログインすると、登録されたメールアドレスに通知が送られてくることがあります。身に覚えのないログインの場合、アカウント情報が流出している可能性があります。パスワードを変更するなどの対策を取りましょう。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -140,7 +140,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変4'),
-                          title: Text('異変4の説明',
+                          title: Text('メールの添付ファイルを開いただけでも、デバイスがウイルスに感染する可能性があります。知り合いからのメールであっても、注意しましょう。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -168,7 +168,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変5'),
-                          title: Text('異変5の説明',
+                          title: Text('SNSでお金や商品を配ろうとする投稿は、注意しましょう。安易にリンクを開いたり、投稿を拡散してはいけません。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -196,7 +196,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変6'),
-                          title: Text('異変6の説明',
+                          title: Text('SNSでは個人情報を乗せるのはやめましょう。ユーザー名やプロフィール、投稿にも注意しましょう。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -224,7 +224,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変7'),
-                          title: Text('異変7の説明',
+                          title: Text('非公開アカウントであっても、他人への誹謗中傷をSNSに投稿するのはやめましょう。法的な問題になる恐れもあります。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -252,7 +252,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変8'),
-                          title: Text('異変8の説明',
+                          title: Text('他人の個人情報をSNSに乗せるのはやめましょう。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -280,7 +280,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変9'),
-                          title: Text('異変9の説明',
+                          title: Text('写真には個人を特定できる情報が含まれている可能性があります。自宅の写真だけでなく、駅の近くに住んでいるなどの情報を安易に公開しないようにしましょう。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -308,7 +308,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変10'),
-                          title: Text('異変10の説明',
+                          title: Text('ウェブサイトの中には、広告が大量に出てくるサイトもあります。広告をブロックするか、そのようなサイトにはアクセスしないようにしましょう。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -336,7 +336,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変11'),
-                          title: Text('異変11の説明',
+                          title: Text('URLやウェブサイトが似ていても、まったく別のページということもあります。普段からのウイルス対策が重要です。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
@@ -364,7 +364,7 @@ class collection_screen extends StatelessWidget {
                       children: <Widget>[
                         AlertDialog(
                           icon: Text('異変12'),
-                          title: Text('異変12の説明',
+                          title: Text('警告が出てくるなど、安全でないウェブサイトを見つけたら、絶対に開かないようにしましょう。ウイルスに感染したり、個人情報が抜き取られたりする可能性もあります。',
                             style: TextStyle(
                               fontSize: 18,
                             ),),
