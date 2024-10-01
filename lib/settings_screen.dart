@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(
@@ -30,15 +31,18 @@ class settings_screen extends ConsumerWidget {
           _buildSettingItem(
             icon: Icons.info,
             title: 'ルール説明',
-            onTap: () async {
-              // final prefs = await SharedPreferences.getInstance();
-              // await prefs.setInt('counter_key', 0);
-            },
+            onTap: () async {},
           ),
           _buildSettingItem(
             icon: Icons.person,
             title: 'ユーザー名変更',
             onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return ChangeUsernameDialog();
+                },
+              );
             },
           ),
         ],
@@ -54,24 +58,96 @@ class settings_screen extends ConsumerWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0), // ボタンを大きくする
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
         child: Column(
           children: [
             Row(
               children: [
                 Icon(
                   icon,
-                  size: 30.0, // アイコンを大きくする
+                  size: 30.0,
                 ),
                 const SizedBox(width: 16.0),
                 Text(
                   title,
-                  style: const TextStyle(fontSize: 20.0), // 文字を大きくする
+                  style: const TextStyle(fontSize: 20.0),
                 ),
               ],
             ),
             const SizedBox(height: 8.0),
-            const Divider(color: Colors.grey), // 下線を追加
+            const Divider(color: Colors.grey),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ChangeUsernameDialog extends StatefulWidget {
+  @override
+  _ChangeUsernameDialogState createState() => _ChangeUsernameDialogState();
+}
+
+class _ChangeUsernameDialogState extends State<ChangeUsernameDialog> {
+  final TextEditingController _usernameController = TextEditingController();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  bool _isLoading = false;
+
+  Future<void> _changeUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? userId = prefs.getString('userId');
+
+    if (userId != null && _usernameController.text.isNotEmpty) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      // Firestoreのユーザー名を更新
+      await _firestore.collection('users').doc(userId).update({
+        'username': _usernameController.text,
+      });
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      Navigator.pop(context); // ダイアログを閉じる
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'ユーザー名を変更',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _usernameController,
+              decoration: const InputDecoration(
+                labelText: '新しいユーザー名',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            _isLoading
+                ? CircularProgressIndicator() // ユーザー名変更中にローディング表示
+                : ElevatedButton(
+              onPressed: _changeUsername,
+              child: const Text('変更する'),
+            ),
           ],
         ),
       ),

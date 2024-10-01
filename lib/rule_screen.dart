@@ -38,7 +38,7 @@ class rule_screen extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               AspectRatio(
-                aspectRatio: 27 / 43,
+                aspectRatio: 27 / 41,
                 child: Container(
                   child: SvgPicture.asset(
                       'images/ゲームの流れ.svg'
@@ -46,7 +46,7 @@ class rule_screen extends ConsumerWidget {
                 ),
               ),
               AspectRatio(
-                aspectRatio: 27 / 6,
+                aspectRatio: 27 / 3,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
