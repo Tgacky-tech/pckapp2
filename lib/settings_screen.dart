@@ -28,11 +28,11 @@ class settings_screen extends ConsumerWidget {
       ),
       body: ListView(
         children: [
-          _buildSettingItem(
-            icon: Icons.info,
-            title: 'ルール説明',
-            onTap: () async {},
-          ),
+          // _buildSettingItem(
+          //   icon: Icons.info,
+          //   title: 'ルール説明',
+          //   onTap: () async {},
+          // ),
           _buildSettingItem(
             icon: Icons.person,
             title: 'ユーザー名変更',
@@ -102,7 +102,6 @@ class _ChangeUsernameDialogState extends State<ChangeUsernameDialog> {
         _isLoading = true;
       });
 
-      // Firestoreのユーザー名を更新
       await _firestore.collection('users').doc(userId).update({
         'username': _usernameController.text,
       });
@@ -111,7 +110,7 @@ class _ChangeUsernameDialogState extends State<ChangeUsernameDialog> {
         _isLoading = false;
       });
 
-      Navigator.pop(context); // ダイアログを閉じる
+      Navigator.pop(context);
     }
   }
 
@@ -143,7 +142,7 @@ class _ChangeUsernameDialogState extends State<ChangeUsernameDialog> {
             ),
             const SizedBox(height: 16),
             _isLoading
-                ? CircularProgressIndicator() // ユーザー名変更中にローディング表示
+                ? CircularProgressIndicator()
                 : ElevatedButton(
               onPressed: _changeUsername,
               child: const Text('変更する'),

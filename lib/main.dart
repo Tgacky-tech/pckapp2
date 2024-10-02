@@ -107,6 +107,7 @@ class MyApp extends ConsumerWidget {
       await userService.createUserIfNotExists();
     });
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
