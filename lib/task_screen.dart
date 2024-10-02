@@ -11,6 +11,7 @@ import 'package:pckapp2/providers/scrollPosition_provider.dart';
 import 'package:pckapp2/providers/counter_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
 import 'package:pckapp2/providers/counterList_provider.dart';
+import 'package:pckapp2/providers/transitionFromTask_provider.dart';
 
 class task_screen extends ConsumerWidget {
   @override
@@ -56,6 +57,7 @@ class task_screen extends ConsumerWidget {
                           stopwatchNotifier.stop();
                           context.push('/result');
                         } else {
+                          ref.read(transitionFromTaskProvider.notifier).update((state) => true);
                           context.push('/00');
                         }
                       });
@@ -70,6 +72,7 @@ class task_screen extends ConsumerWidget {
                       // final proceedPath = '/0${ref.read(counterProvider)}';
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         // context.push(proceedPath);
+                        ref.read(transitionFromTaskProvider.notifier).update((state) => true);
                         context.push('/00');
                       });
                     };
@@ -106,7 +109,7 @@ class task_screen extends ConsumerWidget {
                               height: MediaQuery.of(context).size.height * 0.8,
                               child: MaterialButton(
                                 onPressed: () {
-                                  if(error >= 19){
+                                  if(error >= 0){
                                     ref.read(levelProvider.notifier).state++;
                                     ref.read(errorProvider.notifier).state = random.nextInt(35) + 1;
                                     ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
@@ -120,6 +123,7 @@ class task_screen extends ConsumerWidget {
                                         stopwatchNotifier.stop();
                                         context.push('/result');
                                       } else {
+                                        ref.read(transitionFromTaskProvider.notifier).update((state) => true);
                                         context.push('/00');
                                       }
                                     });
@@ -132,6 +136,7 @@ class task_screen extends ConsumerWidget {
                                     // final proceedPath = '/0${ref.read(counterProvider)}';
                                     WidgetsBinding.instance.addPostFrameCallback((_) {
                                       // context.push(proceedPath);
+                                      ref.read(transitionFromTaskProvider.notifier).update((state) => true);
                                       context.push('/00');
                                     });
                                   };

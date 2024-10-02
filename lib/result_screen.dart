@@ -55,7 +55,9 @@ class result_screen extends ConsumerWidget {
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
-                        '登場した異変一覧\nコレクションに保存されたよ！',
+                        '登場した異変一覧'
+                            // '\nコレクションに保存されたよ！'
+                            '',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 30,
@@ -76,33 +78,34 @@ class result_screen extends ConsumerWidget {
                             padding: const EdgeInsets.all(8.0),
                             child:
                                 GestureDetector(
-                                  onTap: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return Dialog(
-                                            child: Align(
-                                              alignment: Alignment.center,
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Text('No.$number',
-                                                      style: TextStyle(fontSize: 24),
-                                                    ),
-                                                  ),
-                                                  SvgPicture.asset(
-                                                    'images/異変$number.svg',
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                    );
-                                  },
+                                  // onTap: () {
+                                  //   showDialog(
+                                  //       context: context,
+                                  //       builder: (BuildContext context) {
+                                  //         return Dialog(
+                                  //           child: Align(
+                                  //             alignment: Alignment.center,
+                                  //             child: Column(
+                                  //               mainAxisSize: MainAxisSize.min,
+                                  //               children: [
+                                  //                 Padding(
+                                  //                   padding: const EdgeInsets.all(8.0),
+                                  //                   child: Text('No.$number',
+                                  //                     style: TextStyle(fontSize: 24),
+                                  //                   ),
+                                  //                 ),
+                                  //                 SvgPicture.asset(
+                                  //                   "images/異変$number" + "s.svg",
+                                  //                   fit: BoxFit.cover,
+                                  //                 ),
+                                  //               ],
+                                  //             ),
+                                  //           ),
+                                  //         );
+                                  //       },
+                                  //   );
+                                  // },
+                                  child:Center(
                                   child: Stack(
                                     children: [
                                       Container(
@@ -111,10 +114,14 @@ class result_screen extends ConsumerWidget {
                                           aspectRatio: 4 / 1,
                                           child: ClipRect(
                                             child: Align(
-                                              alignment: Alignment.center,
-                                              child: SvgPicture.asset(
-                                                'images/異変$number.svg',
-                                                fit: BoxFit.cover,
+                                              alignment: Alignment.center, // 中央に合わせる
+                                              child: FractionallySizedBox(
+                                                widthFactor: 1.0, // 横幅を100%に
+                                                heightFactor: 1, // 高さを25%に設定（1:4に合わせるため）
+                                                child: SvgPicture.asset(
+                                                  "images/異変$number" + "s.svg",
+                                                  fit: BoxFit.cover, // 画像を拡大して切り抜く
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -138,34 +145,54 @@ class result_screen extends ConsumerWidget {
                                     ],
                                   ),
                                 ),
+                                ),
                           );
                         }),
                       ),
                     ),
                     SizedBox(height: 20),
-                    ElevatedButton(
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          String? userId = prefs.getString('userId');
-                          int etime = stopwatchNotifier.ElapsedTime;
-                          final int ctime = prefs.getInt('counter_key') ?? 0;
-                          if (ctime == 0 || etime < ctime) {
-                            await firestore
-                                .collection('users')
-                                .doc(userId)
-                                .update({
-                              'score': etime,
-                            });
-                            await prefs.setInt('counter_key', etime);
-                          }
-                          ;
-                          context.push('/home');
-                        },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.yellow,
-                            fixedSize: const Size(200, 60)),
-                        child: const Text('ホーム画面へ')),
+                    OutlinedButton(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
+                        child: Text(
+                          'ホーム画面へ',
+                          style: TextStyle(
+                            fontSize: 24, // 必要に応じて大きさを変更
+                            color: Colors.white,
+                            letterSpacing: 4.0,
+                          ),
+                        ),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.blue, // 背景色をグレーに設定
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        side: const BorderSide(
+                          color: Colors.blueGrey, // ボーダーの色
+                          width: 3.0, // ボーダーの太さを指定
+                        ),
+                      ),
+                      onPressed: () async{
+                        SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                        String? userId = prefs.getString('userId');
+                        int etime = stopwatchNotifier.ElapsedTime;
+                        final int ctime = prefs.getInt('counter_key') ?? 0;
+                        if (ctime == 0 || etime < ctime) {
+                          await firestore
+                              .collection('users')
+                              .doc(userId)
+                              .update({
+                            'score': etime,
+                          });
+                          await prefs.setInt('counter_key', etime);
+                        }
+                        ;
+                        context.push('/home');
+                      },
+                    ),
                   ],
                 );
               },

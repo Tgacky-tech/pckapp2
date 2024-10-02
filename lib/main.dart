@@ -58,7 +58,7 @@ class MyApp extends ConsumerWidget {
       ),
       GoRoute(
         path: '/00',
-        builder: (context, state) => Screen00(),
+        builder: (context, state) => screen00(),
       ),
       GoRoute(
         path: '/1',
