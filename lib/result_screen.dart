@@ -4,9 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/sharedPreferences_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pckapp2/providers/counterList_provider.dart';
+import 'package:pckapp2/providers/error_provider.dart';
 
 class result_screen extends ConsumerWidget {
   const result_screen({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class result_screen extends ConsumerWidget {
     final asyncPrefs = ref.watch(sharedPreferencesProvider);
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     final  counterList = ref.watch(counterListProvider);
+    final error = ref.watch(errorProvider);
     return Scaffold(
       body: Center(
         child: Column(
@@ -68,12 +71,73 @@ class result_screen extends ConsumerWidget {
                         shrinkWrap: true,
                         itemCount: counterList.length,
                         itemBuilder: (context, index) {
+                          final number = counterList[index];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Number: ${counterList[index]}',
-                              style: TextStyle(fontSize: 20),
-                            ),
+                            child:
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Dialog(
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text('No.$number',
+                                                      style: TextStyle(fontSize: 24),
+                                                    ),
+                                                  ),
+                                                  SvgPicture.asset(
+                                                    'images/異変$number.svg',
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                    );
+                                  },
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width: MediaQuery.of(context).size.width*0.8,
+                                        child: AspectRatio(
+                                          aspectRatio: 4 / 1,
+                                          child: ClipRect(
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: SvgPicture.asset(
+                                                'images/異変$number.svg',
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 0,
+                                        left: 0,
+                                        child: Container(
+                                          color: Colors.black54,
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Text(
+                                            'No.$number',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                           );
                         }),
                       ),
