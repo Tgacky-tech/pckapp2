@@ -79,7 +79,7 @@ class rule_screen extends ConsumerWidget {
                             ),
                           ),
                           onPressed: () {
-                            ref.read(errorProvider.notifier).state = random.nextInt(36);
+                            ref.read(errorProvider.notifier).state = random.nextInt(35) + 1;
                             stopwatchNotifier.reset(); // ストップウォッチリセット
                             stopwatchNotifier.start(); // 計測開始
                             context.push('/00');

@@ -42,7 +42,7 @@ class task_screen extends ConsumerWidget {
                     n++;
                     if(error <= 18){
                       ref.read(levelProvider.notifier).state++;
-                      ref.read(errorProvider.notifier).state = random.nextInt(36);
+                      ref.read(errorProvider.notifier).state = random.nextInt(35) + 1;
                       ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
                       final level = ref.read(levelProvider);
                       ref.read(scrollPositionProvider.notifier).state =
@@ -61,7 +61,7 @@ class task_screen extends ConsumerWidget {
                       });
                     } else{
                       ref.read(levelProvider.notifier).state=0;
-                      ref.read(errorProvider.notifier).state = random.nextInt(36);
+                      ref.read(errorProvider.notifier).state = random.nextInt(35) + 1;
                       ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
                       final level = ref.read(levelProvider);
                       ref.read(scrollPositionProvider.notifier).state =
@@ -108,7 +108,7 @@ class task_screen extends ConsumerWidget {
                                 onPressed: () {
                                   if(error >= 19){
                                     ref.read(levelProvider.notifier).state++;
-                                    ref.read(errorProvider.notifier).state = random.nextInt(36);
+                                    ref.read(errorProvider.notifier).state = random.nextInt(35) + 1;
                                     ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
                                     final level = ref.read(levelProvider);
                                     // ref.read(counterProvider.notifier).state++;
@@ -125,7 +125,7 @@ class task_screen extends ConsumerWidget {
                                     });
                                   } else{
                                     ref.read(levelProvider.notifier).state=0;
-                                    ref.read(errorProvider.notifier).state = random.nextInt(36);
+                                    ref.read(errorProvider.notifier).state = random.nextInt(35) + 1;
                                     ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
                                     final level = ref.read(levelProvider);
                                     // ref.read(counterProvider.notifier).state++;
