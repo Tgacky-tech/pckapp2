@@ -114,13 +114,13 @@ class result_screen extends ConsumerWidget {
                                           aspectRatio: 4 / 1,
                                           child: ClipRect(
                                             child: Align(
-                                              alignment: Alignment.center, // 中央に合わせる
+                                              alignment: Alignment.center,
                                               child: FractionallySizedBox(
-                                                widthFactor: 1.0, // 横幅を100%に
-                                                heightFactor: 1, // 高さを25%に設定（1:4に合わせるため）
+                                                widthFactor: 1.0,
+                                                heightFactor: 1,
                                                 child: SvgPicture.asset(
                                                   "images/異変$number" + "s.svg",
-                                                  fit: BoxFit.cover, // 画像を拡大して切り抜く
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
@@ -153,25 +153,25 @@ class result_screen extends ConsumerWidget {
                     SizedBox(height: 20),
                     OutlinedButton(
                       child: FittedBox(
-                        fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
+                        fit: BoxFit.scaleDown,
                         child: Text(
                           'ホーム画面へ',
                           style: TextStyle(
-                            fontSize: 24, // 必要に応じて大きさを変更
+                            fontSize: 24,
                             color: Colors.white,
                             letterSpacing: 4.0,
                           ),
                         ),
                       ),
                       style: OutlinedButton.styleFrom(
-                        backgroundColor: Colors.blue, // 背景色をグレーに設定
+                        backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         side: const BorderSide(
-                          color: Colors.blueGrey, // ボーダーの色
-                          width: 3.0, // ボーダーの太さを指定
+                          color: Colors.blueGrey,
+                          width: 3.0,
                         ),
                       ),
                       onPressed: () async{
