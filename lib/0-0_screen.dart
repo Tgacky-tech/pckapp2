@@ -6,11 +6,54 @@ import 'package:pckapp2/providers/level_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
 import 'dart:math' as math;
 
-class screen00 extends ConsumerWidget {
-  const screen00({Key? key}) : super(key: key);
+class Screen00 extends ConsumerStatefulWidget {
+  const Screen00({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _Screen00State createState() => _Screen00State();
+}
+
+class _Screen00State extends ConsumerState<Screen00>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _translateAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..forward();
+
+    _scaleAnimation = Tween<double>(begin: 4.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _translateAnimation = Tween<double>(
+      begin: 200.0,
+      end: 0.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final level = ref.watch(levelProvider);
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final error = ref.watch(errorProvider);
@@ -27,10 +70,10 @@ class screen00 extends ConsumerWidget {
         height: MediaQuery.of(context).size.width * 0.16,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/nmail.png'),
-              fit: BoxFit.cover,
-            )),
-    ),
+          image: AssetImage('images/nmail.png'),
+          fit: BoxFit.cover,
+        )),
+      ),
     );
     final pushButton2 = MaterialButton(
       onPressed: () {
@@ -45,9 +88,9 @@ class screen00 extends ConsumerWidget {
         height: MediaQuery.of(context).size.width * 0.16,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/nsns.png'),
-              fit: BoxFit.cover,
-            )),
+          image: AssetImage('images/nsns.png'),
+          fit: BoxFit.cover,
+        )),
       ),
     );
     final pushButton3 = MaterialButton(
@@ -63,9 +106,9 @@ class screen00 extends ConsumerWidget {
         height: MediaQuery.of(context).size.width * 0.16,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/nbrowser.png'),
-              fit: BoxFit.cover,
-            )),
+          image: AssetImage('images/nbrowser.png'),
+          fit: BoxFit.cover,
+        )),
       ),
     );
     final pushButton4 = MaterialButton(
@@ -81,9 +124,9 @@ class screen00 extends ConsumerWidget {
         height: MediaQuery.of(context).size.width * 0.16,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/nsettings.png'),
-              fit: BoxFit.cover,
-            )),
+          image: AssetImage('images/nsettings.png'),
+          fit: BoxFit.cover,
+        )),
       ),
     );
     // final pushButton5 = ElevatedButton(
@@ -92,179 +135,196 @@ class screen00 extends ConsumerWidget {
     //   child: const Text('バッテリー'),
     // );
     final pushButton6 = TextButton(
-      onPressed: (){
+      onPressed: () {
         stopwatchNotifier.stop();
         context.push('/menu');
       },
-
-      child: const Text('◁',
+      child: const Text(
+        '◁',
         style: TextStyle(
-        fontSize: 25/*サイズ*/,
-      ),),
+          fontSize: 25 /*サイズ*/,
+        ),
+      ),
     );
 
     final pushButton7 = TextButton(
       onPressed: () {
         context.push('/00');
       },
-      child: const Text('〇',
-        style: TextStyle(
-            fontSize: 20),),
+      child: const Text(
+        '〇',
+        style: TextStyle(fontSize: 20),
+      ),
     );
     final pushButton9 = TextButton(
       onPressed: () => context.push('/task'),
-      child: const Text('□',
-        style: TextStyle(
-            fontSize: 25),),
+      child: const Text(
+        '□',
+        style: TextStyle(fontSize: 25),
+      ),
     );
     return Scaffold(
-    body: Center(
-    child: Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
+      body: Center(
+        child: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
             image: AssetImage('images/background.png'),
             fit: BoxFit.cover,
           )),
-    child: Column(
-    mainAxisSize: MainAxisSize.min,
-    children: <Widget>[
-      AspectRatio(
-          aspectRatio: 27 / 1.7,
-      child: Stack(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            child: Text(
-              "0" + "$level" + ":00",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-              ),
-            ),
-          ),
-          // 左端にWi-Fiアイコン
-          Positioned(
-            left: 10, // 左側の余白を調整
-            child: Icon(
-              Icons.wifi,
-              color: Colors.black, // アイコンの色を調整
-            ),
-          ),
-        Positioned(
-          right: 10,
-          child:
-          Row(
-            children: [
-              Text(
-                "100%",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              AspectRatio(
+                aspectRatio: 27 / 1.7,
+                child: Stack(
+                  children: [
+                    // アニメーションを使用したテキスト
+                    AnimatedBuilder(
+                      animation: _controller,
+                      builder: (context, child) {
+                        return Transform(
+                          transform: Matrix4.identity()
+                            ..translate(0.0, _translateAnimation.value),
+                          // 位置を更新
+                          child: ScaleTransition(
+                            scale: _scaleAnimation,
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "0$level:00",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    // 左端にWi-Fiアイコン
+                    Positioned(
+                      left: 10,
+                      child: Icon(
+                        Icons.wifi,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Positioned(
+                        right: 10,
+                        child: Row(
+                          children: [
+                            Text(
+                              "100%",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                            Transform.rotate(
+                              angle: -math.pi / -2,
+                              child: Icon(
+                                Icons.battery_full,
+                                color: Colors.black,
+                                size: 24,
+                              ),
+                            ),
+                          ],
+                        )),
+                  ],
                 ),
               ),
-              Transform.rotate(
-                angle: -math.pi / -2, // バッテリーアイコンを45度傾ける
-                child: Icon(
-                  Icons.battery_full,
-                  color: Colors.black, // アイコンの色を調整
-                  size: 24, // アイコンのサイズを調整
+              AspectRatio(
+                aspectRatio: 27 / 46,
+                child: Container(
+                  alignment: Alignment.topCenter,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          pushButton1,
+                          Text(
+                            'メール',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          pushButton2,
+                          Text(
+                            'sns',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          pushButton3,
+                          Text(
+                            'ブラウザー',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          pushButton4,
+                          Text(
+                            '設定',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                    // children: <Widget>[
+                    //   pushButton1,
+                    //   pushButton2,
+                    //   pushButton3,
+                    //   pushButton4,
+                    //   // pushButton5,
+                    //
+                    // ],
+                  ),
                 ),
               ),
+              AspectRatio(
+                aspectRatio: 27 / 4,
+                child: Container(
+                  color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      pushButton6,
+                      pushButton7,
+                      // pushButton8,
+                      pushButton9,
+                    ],
+                  ),
+                ),
+              )
+              // TextButton(
             ],
-          )
-
+          ),
         ),
-        ],
       ),
-      ),
-    AspectRatio(
-    aspectRatio: 27 / 46,
-    child: Container(
-      alignment: Alignment.topCenter,
-      padding:EdgeInsets.symmetric(vertical: 10,),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              pushButton1,
-              Text(
-                'メール',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              pushButton2,
-              Text(
-                'sns',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              pushButton3,
-              Text(
-                'ブラウザー',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              pushButton4,
-              Text(
-                '設定',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ],
-        // children: <Widget>[
-        //   pushButton1,
-        //   pushButton2,
-        //   pushButton3,
-        //   pushButton4,
-        //   // pushButton5,
-        //
-        // ],
-      ),
-    ),
-    ),
-    AspectRatio(
-    aspectRatio: 27 / 4,
-    child: Container(
-    color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          pushButton6,
-          pushButton7,
-          // pushButton8,
-          pushButton9,
-        ],
-      ),
-    ),
-    )
-    // TextButton(
-    ],
-    ),
-    ),
-    ),
     );
   }
 }
