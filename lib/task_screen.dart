@@ -89,7 +89,7 @@ class task_screen extends ConsumerWidget {
                     )),
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height *
-                        1.05, // 高さを大きくしてスクロール可能にする
+                        1.05,
                     child: Center(
                       child: Column(
                         children: [
@@ -164,106 +164,6 @@ class task_screen extends ConsumerWidget {
         ),
       ),
     );
-    // final hasScrolled = ref.watch(scrollProvider);
-    // return Scaffold(
-    //   body: Center(
-    //       child: AspectRatio(
-    //           aspectRatio: 27 / 51.5,
-    //       // child: Container(
-    //       // decoration: const BoxDecoration(
-    //       //     image: DecorationImage(
-    //       //   image: AssetImage('images/background2.png'),
-    //       //   fit: BoxFit.cover,
-    //       // )),
-    //       child: Column(
-    //         mainAxisSize: MainAxisSize.min,
-    //         children: <Widget>[
-    //             SingleChildScrollView(
-    //               child: Column(
-    //                 children: [
-    //                   // NotificationListenerでスクロールイベントをリッスン
-    //                   NotificationListener<ScrollNotification>(
-    //                     onNotification: (ScrollNotification notification) {
-    //                       // スクロール位置をログに出力
-    //                       print('Scroll position: ${notification.metrics.pixels}');
-    //
-    //                       // 任意の処理をここに追加
-    //                       // 例えば、一定のスクロール位置に達した場合にアラートを表示するなど
-    //                       if (notification.metrics.pixels > 100) {
-    //                         // 例えば、100ピクセル以上スクロールしたときにアラートを表示
-    //                         print('Scrolled more than 100 pixels!');
-    //                         Navigator.push(
-    //                           context,
-    //                           MaterialPageRoute(builder: (context) => rule_screen()),
-    //                         );
-    //                       }
-    //
-    //                       // スクロールイベントを処理したことを示す
-    //                       return false;
-    //                     },
-    //                     child: Container(
-    //                       width: double.infinity,
-    //                       height: 1000, // 高さを大きくしてスクロール可能にする
-    //                       color: Colors.blueAccent,
-    //                       child: Center(
-    //                         child: Text(
-    //                           'Scrollable Container',
-    //                           style: TextStyle(fontSize: 24, color: Colors.white),
-    //                         ),
-    //                       ),
-    //                     ),
-    //                   ),
-    //                   SizedBox(height: 20),
-    //                   Container(
-    //                     width: double.infinity,
-    //                     height: 500, // 他のコンテンツを追加
-    //                     color: Colors.green,
-    //                     child: Center(
-    //                       child: Text(
-    //                         'Other Content',
-    //                         style: TextStyle(fontSize: 24, color: Colors.white),
-    //                       ),
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    //   );
-    // );
   }
 }
 
-// class task_screen extends ConsumerWidget {
-//   const task_screen({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//
-//     return Scaffold(
-//       body: Center(
-//         child: Container(
-//           decoration: const BoxDecoration(
-//               image: DecorationImage(
-//                 image: AssetImage('images/background2.png'),
-//                 fit: BoxFit.cover,
-//               )),
-//           child: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             children: <Widget>[
-//               AspectRatio(
-//                 aspectRatio: 27 / 51.5,
-//                 child: Container(
-//                 ),
-//               ),
-//               // TextButton(
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
