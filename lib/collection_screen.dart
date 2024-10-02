@@ -449,7 +449,7 @@ class collection_screen extends StatelessWidget {
                                 AlertDialog(
                                   icon: Text('異変13'),
                                   title: Text(
-                                    '異変13の説明',
+                                    'フェイクニュースには気を付けましょう',
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
@@ -477,7 +477,7 @@ class collection_screen extends StatelessWidget {
                                 AlertDialog(
                                   icon: Text('異変14'),
                                   title: Text(
-                                    '異変14の説明',
+                                    '過剰な広告が出てくるウェブサイトは危険な可能性があります。閲覧などは避けましょう。',
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
@@ -505,7 +505,7 @@ class collection_screen extends StatelessWidget {
                                 AlertDialog(
                                   icon: Text('異変15'),
                                   title: Text(
-                                    '異変15の説明',
+                                    '「インターネット共有へ自動接続」の項目がついています。勝手に危険なネットワークに接続してしまう可能性を避けるため、できるだけ接続を切っておきましょう。',
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
@@ -533,7 +533,7 @@ class collection_screen extends StatelessWidget {
                                 AlertDialog(
                                   icon: Text('異変16'),
                                   title: Text(
-                                    '異変16の説明',
+                                    '利用可能なネットワークの項目に表示される、Wi-Fiの名前をSSIDといいます。例え接続ができる状態にあったとしても、知らないSSIDのネットワークには接続しないようにしましょう。',
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
@@ -561,7 +561,7 @@ class collection_screen extends StatelessWidget {
                                 AlertDialog(
                                   icon: Text('異変17'),
                                   title: Text(
-                                    '異変17の説明',
+                                    '安全性の低いネットワークには接続しないようにしましょう。',
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
@@ -589,7 +589,7 @@ class collection_screen extends StatelessWidget {
                                 AlertDialog(
                                   icon: Text('異変18'),
                                   title: Text(
-                                    '異変18の説明',
+                                    'Wi-Fiがオフになっています。',
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
