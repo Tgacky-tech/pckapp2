@@ -195,7 +195,7 @@ class _Screen00State extends ConsumerState<Screen00>
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 24,
+                                  // fontSize: 24,
                                 ),
                               ),
                             ),
