@@ -12,7 +12,12 @@ class menu_screen extends ConsumerWidget {
       backgroundColor: Colors.grey,
       title: const Text('メニュー'),
     );
-    return Scaffold(
+    return WillPopScope( // WillPopScopeを追加
+        onWillPop: () async {
+      // 戻るボタンが押されたときの処理
+      return false; // 戻るボタンの動作をキャンセル
+    },
+    child:Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 6,
@@ -121,6 +126,7 @@ class menu_screen extends ConsumerWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }
