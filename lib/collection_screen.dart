@@ -27,7 +27,7 @@ class collection_screen extends StatelessWidget {
       );
     }
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.blue,//背景の変更
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 6,
@@ -61,6 +61,7 @@ class collection_screen extends StatelessWidget {
         // 横軸の間隔
         childAspectRatio: 1 / 1,
         // アスペクト比
+        padding: EdgeInsets.symmetric(vertical: 5 ,horizontal: 5),//縦と横の余白
         children: <Widget>[
           InkWell(
               onTap: (){
