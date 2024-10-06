@@ -4,16 +4,75 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/level_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
+import 'package:pckapp2/providers/transitionFromTask_provider.dart';
 import 'dart:math' as math;
 
-class screen00 extends ConsumerWidget {
-  const screen00({Key? key}) : super(key: key);
+class Screen00 extends ConsumerStatefulWidget {
+  const Screen00({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _Screen00State createState() => _Screen00State();
+}
+
+class _Screen00State extends ConsumerState<Screen00>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _translateAnimation;
+  bool _isAnimationRunning = false; // アニメーション実行中かを追跡
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    _scaleAnimation = Tween<double>(begin: 4.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _translateAnimation = Tween<double>(
+      begin: 200.0,
+      end: 0.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    // アニメーションの開始条件をPostFrameCallback内に配置
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final transitionFromTask = ref.read(transitionFromTaskProvider);
+      if (transitionFromTask) {
+        _isAnimationRunning = true; // アニメーションが開始されるのでフラグを立てる
+        _controller.forward().then((_) {
+          _isAnimationRunning = false; // アニメーションが終了したらリセット
+        });
+        ref.read(transitionFromTaskProvider.notifier).update((state) => false);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final level = ref.watch(levelProvider);
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final error = ref.watch(errorProvider);
+
+    // 各種ボタン
     final pushButton1 = MaterialButton(
       onPressed: () {
         if (1 <= error && error <= 4) {
@@ -32,6 +91,7 @@ class screen00 extends ConsumerWidget {
             )),
       ),
     );
+
     final pushButton2 = MaterialButton(
       onPressed: () {
         if (5 <= error && error <= 9) {
@@ -50,6 +110,7 @@ class screen00 extends ConsumerWidget {
             )),
       ),
     );
+
     final pushButton3 = MaterialButton(
       onPressed: () {
         if (10 <= error && error <= 14) {
@@ -68,6 +129,7 @@ class screen00 extends ConsumerWidget {
             )),
       ),
     );
+
     final pushButton4 = MaterialButton(
       onPressed: () {
         if (15 <= error && error <= 18) {
@@ -86,37 +148,39 @@ class screen00 extends ConsumerWidget {
             )),
       ),
     );
-    // final pushButton5 = ElevatedButton(
-    //   onPressed: () => context.push('/5'),
-    //   style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
-    //   child: const Text('バッテリー'),
-    // );
+
     final pushButton6 = TextButton(
-      onPressed: (){
+      onPressed: () {
         stopwatchNotifier.stop();
         context.push('/menu');
       },
-
-      child: const Text('◁',
+      child: const Text(
+        '◁',
         style: TextStyle(
-          fontSize: 25/*サイズ*/,
-        ),),
+          fontSize: 25 /*サイズ*/,
+
+        ),
+      ),
     );
 
     final pushButton7 = TextButton(
       onPressed: () {
         context.push('/00');
       },
-      child: const Text('〇',
-        style: TextStyle(
-            fontSize: 20),),
+      child: const Text(
+        '〇',
+        style: TextStyle(fontSize: 20),
+      ),
     );
+
     final pushButton9 = TextButton(
       onPressed: () => context.push('/task'),
-      child: const Text('□',
-        style: TextStyle(
-            fontSize: 25),),
+      child: const Text(
+        '□',
+        style: TextStyle(fontSize: 25),
+      ),
     );
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -132,29 +196,48 @@ class screen00 extends ConsumerWidget {
                 aspectRatio: 27 / 1.7,
                 child: Stack(
                   children: [
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "0" + "$level" + ":00",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
+                    // アニメーションを使用したテキスト
+                    AnimatedBuilder(
+                      animation: _controller,
+                      builder: (context, child) {
+                        return Transform.translate(
+                          offset: _isAnimationRunning
+                              ? Offset(0, _translateAnimation.value)
+                              : const Offset(0, 0),
+                          child: ScaleTransition(
+                            scale: _isAnimationRunning
+                                ? _scaleAnimation
+                                : const AlwaysStoppedAnimation(1.0),
+                            child: Container(
+                              alignment: Alignment.center,
+                              // テキストの表示領域を親に合わせて調整
+                              width: double.infinity,
+                              height: 100, // 必要に応じて高さを調整
+                              child: Text(
+                                "0$level:00",
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15, // フォントサイズを必要に応じて調整
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     // 左端にWi-Fiアイコン
-                    Positioned(
-                      left: 10, // 左側の余白を調整
+                    const Positioned(
+                      left: 10,
                       child: Icon(
                         Icons.wifi,
-                        color: Colors.black, // アイコンの色を調整
+                        color: Colors.black,
                       ),
                     ),
                     Positioned(
                         right: 10,
-                        child:
-                        Row(
-                          children: [
+                        child: Row(
+                          children:  [
                             Text(
                               "100%",
                               textAlign: TextAlign.center,
@@ -163,17 +246,15 @@ class screen00 extends ConsumerWidget {
                               ),
                             ),
                             Transform.rotate(
-                              angle: -math.pi / -2, // バッテリーアイコンを45度傾ける
+                              angle: -math.pi / -2,
                               child: Icon(
                                 Icons.battery_full,
-                                color: Colors.black, // アイコンの色を調整
-                                size: 24, // アイコンのサイズを調整
+                                color: Colors.black,
+                                size: 24,
                               ),
                             ),
                           ],
-                        )
-
-                    ),
+                        )),
                   ],
                 ),
               ),
@@ -181,18 +262,20 @@ class screen00 extends ConsumerWidget {
                 aspectRatio: 27 / 46,
                 child: Container(
                   alignment: Alignment.topCenter,
-                  padding:EdgeInsets.symmetric(vertical: 10,),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Column(
                         children: <Widget>[
                           pushButton1,
-                          Text(
+                          const Text(
                             'メール',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -200,11 +283,11 @@ class screen00 extends ConsumerWidget {
                       Column(
                         children: <Widget>[
                           pushButton2,
-                          Text(
+                          const Text(
                             'sns',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -212,11 +295,11 @@ class screen00 extends ConsumerWidget {
                       Column(
                         children: <Widget>[
                           pushButton3,
-                          Text(
+                          const Text(
                             'ブラウザー',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -224,24 +307,16 @@ class screen00 extends ConsumerWidget {
                       Column(
                         children: <Widget>[
                           pushButton4,
-                          Text(
+                          const Text(
                             '設定',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ],
                       ),
                     ],
-                    // children: <Widget>[
-                    //   pushButton1,
-                    //   pushButton2,
-                    //   pushButton3,
-                    //   pushButton4,
-                    //   // pushButton5,
-                    //
-                    // ],
                   ),
                 ),
               ),
@@ -254,13 +329,11 @@ class screen00 extends ConsumerWidget {
                     children: [
                       pushButton6,
                       pushButton7,
-                      // pushButton8,
                       pushButton9,
                     ],
                   ),
                 ),
               )
-              // TextButton(
             ],
           ),
         ),
