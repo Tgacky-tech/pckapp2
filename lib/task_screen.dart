@@ -27,7 +27,17 @@ class task_screen extends ConsumerWidget {
 
     return Scaffold(
       body: Center(
-        child: AspectRatio(
+        child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.95,
+    height: MediaQuery.of(context).size.width * 1.8,
+    child: Container(
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(10),
+    border: Border.all(color: Colors.black, width: 2),
+    ),
+    padding: EdgeInsets.all(8),
+    child:AspectRatio(
           aspectRatio: 27 / 51.5,
           child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification notification) {
@@ -55,10 +65,10 @@ class task_screen extends ConsumerWidget {
                         if (level > 8) {
                           ref.read(levelProvider.notifier).state = 0;
                           stopwatchNotifier.stop();
-                          context.push('/result');
+                          context.go('/result');
                         } else {
                           ref.read(transitionFromTaskProvider.notifier).update((state) => true);
-                          context.push('/00');
+                          context.go('/00');
                         }
                       });
                     } else{
@@ -73,7 +83,7 @@ class task_screen extends ConsumerWidget {
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         // context.push(proceedPath);
                         ref.read(transitionFromTaskProvider.notifier).update((state) => true);
-                        context.push('/00');
+                        context.go('/00');
                       });
                     };
                   }
@@ -96,10 +106,10 @@ class task_screen extends ConsumerWidget {
                     child: Center(
                       child: Column(
                         children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.03,
-                            height: MediaQuery.of(context).size.height * 0.03,
-                          ),
+                          // Container(
+                          //   width: MediaQuery.of(context).size.width * 0.03,
+                          //   height: MediaQuery.of(context).size.height * 0.03,
+                          // ),
                           Container(
                             // color: Colors.yellow,
                             width: MediaQuery.of(context).size.width * 0.8,
@@ -121,10 +131,10 @@ class task_screen extends ConsumerWidget {
                                       if (level > 8) {
                                         ref.read(levelProvider.notifier).state = 0;
                                         stopwatchNotifier.stop();
-                                        context.push('/result');
+                                        context.go('/result');
                                       } else {
                                         ref.read(transitionFromTaskProvider.notifier).update((state) => true);
-                                        context.push('/00');
+                                        context.go('/00');
                                       }
                                     });
                                   } else{
@@ -137,7 +147,7 @@ class task_screen extends ConsumerWidget {
                                     WidgetsBinding.instance.addPostFrameCallback((_) {
                                       // context.push(proceedPath);
                                       ref.read(transitionFromTaskProvider.notifier).update((state) => true);
-                                      context.push('/00');
+                                      context.go('/00');
                                     });
                                   };
                                 },
@@ -168,6 +178,7 @@ class task_screen extends ConsumerWidget {
           ),
         ),
       ),
+    ),),
     );
   }
 }

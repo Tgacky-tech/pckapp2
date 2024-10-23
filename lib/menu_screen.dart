@@ -64,7 +64,7 @@ class menu_screen extends ConsumerWidget {
                 ),
                 onPressed: () {
                   stopwatchNotifier.start(); // 計測開始
-                  Navigator.of(context).pop();
+                  context.go('/00');
                 },
               ),
             ),
@@ -97,7 +97,7 @@ class menu_screen extends ConsumerWidget {
                 ),
                 onPressed: () {
                   stopwatchNotifier.reset(); // 計測開始
-                  context.push('/home');
+                  context.go('/home');
                 },
               ),
             ),

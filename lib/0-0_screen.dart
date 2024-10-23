@@ -5,6 +5,7 @@ import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/level_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
 import 'package:pckapp2/providers/transitionFromTask_provider.dart';
+import 'package:pckapp2/animations/countdown_animation.dart';
 import 'dart:math' as math;
 
 class Screen00 extends ConsumerStatefulWidget {
@@ -15,15 +16,25 @@ class Screen00 extends ConsumerStatefulWidget {
 }
 
 class _Screen00State extends ConsumerState<Screen00>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _translateAnimation;
-  bool _isAnimationRunning = false; // アニメーション実行中かを追跡
+  bool _isAnimationRunning = false;
+  bool _isAnimationVisible = true;
+  // bool _isCurrentScreen = false;
+
+  void _onAnimationComplete() {
+    setState(() {
+      _isAnimationVisible = false;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance!.addObserver(this);
 
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
@@ -47,13 +58,12 @@ class _Screen00State extends ConsumerState<Screen00>
       ),
     );
 
-    // アニメーションの開始条件をPostFrameCallback内に配置
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final transitionFromTask = ref.read(transitionFromTaskProvider);
       if (transitionFromTask) {
-        _isAnimationRunning = true; // アニメーションが開始されるのでフラグを立てる
+        _isAnimationRunning = true;
         _controller.forward().then((_) {
-          _isAnimationRunning = false; // アニメーションが終了したらリセット
+          _isAnimationRunning = false;
         });
         ref.read(transitionFromTaskProvider.notifier).update((state) => false);
       }
@@ -62,14 +72,34 @@ class _Screen00State extends ConsumerState<Screen00>
 
   @override
   void dispose() {
+    // WidgetsBindingObserverを解除
     _controller.dispose();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
+  // アプリのライフサイクルの変化を監視
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    // ライフサイクルの状態が変化した時に呼び出される
+    // 現在のパスを取得
+    if (state == AppLifecycleState.resumed) {
+      // フォアグラウンド状態に戻った時の処理
+        // バックグラウンド状態になったときの処理
+        context.push('/menu');
+    } else if (state == AppLifecycleState.paused) {
+      // バックグラウンド状態に移行した時の処理
+      final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+      stopwatchNotifier.stop();
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    final level = ref.watch(levelProvider);
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+    final level = ref.watch(levelProvider);
     final error = ref.watch(errorProvider);
 
     // 各種ボタン
@@ -82,8 +112,8 @@ class _Screen00State extends ConsumerState<Screen00>
         }
       },
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.16,
-        height: MediaQuery.of(context).size.width * 0.16,
+        width: MediaQuery.of(context).size.width * 0.1475,
+        height: MediaQuery.of(context).size.width * 0.1475,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nmail.png'),
@@ -101,8 +131,8 @@ class _Screen00State extends ConsumerState<Screen00>
         }
       },
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.16,
-        height: MediaQuery.of(context).size.width * 0.16,
+        width: MediaQuery.of(context).size.width * 0.1475,
+        height: MediaQuery.of(context).size.width * 0.1475,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nsns.png'),
@@ -120,8 +150,8 @@ class _Screen00State extends ConsumerState<Screen00>
         }
       },
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.16,
-        height: MediaQuery.of(context).size.width * 0.16,
+        width: MediaQuery.of(context).size.width * 0.1475,
+        height: MediaQuery.of(context).size.width * 0.1475,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nbrowser.png'),
@@ -139,8 +169,8 @@ class _Screen00State extends ConsumerState<Screen00>
         }
       },
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.16,
-        height: MediaQuery.of(context).size.width * 0.16,
+        width: MediaQuery.of(context).size.width * 0.1475,
+        height: MediaQuery.of(context).size.width * 0.1475,
         decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/nsettings.png'),
@@ -152,20 +182,19 @@ class _Screen00State extends ConsumerState<Screen00>
     final pushButton6 = TextButton(
       onPressed: () {
         stopwatchNotifier.stop();
-        context.push('/menu');
+        context.go('/menu');
       },
       child: const Text(
         '◁',
         style: TextStyle(
-          fontSize: 25 /*サイズ*/,
-
+          fontSize: 25,
         ),
       ),
     );
 
     final pushButton7 = TextButton(
       onPressed: () {
-        context.push('/00');
+        context.go('/00');
       },
       child: const Text(
         '〇',
@@ -183,7 +212,17 @@ class _Screen00State extends ConsumerState<Screen00>
 
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.95,
+    height: MediaQuery.of(context).size.width * 1.8,
+    child: Container(
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(10),
+    border: Border.all(color: Colors.black, width: 2),
+    ),
+    padding: EdgeInsets.all(8),
+    child:Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/background.png'),
@@ -212,7 +251,7 @@ class _Screen00State extends ConsumerState<Screen00>
                               alignment: Alignment.center,
                               // テキストの表示領域を親に合わせて調整
                               width: double.infinity,
-                              height: 100, // 必要に応じて高さを調整
+                              height: 100, // 固定の高さを設定
                               child: Text(
                                 "0$level:00",
                                 textAlign: TextAlign.center,
@@ -235,26 +274,27 @@ class _Screen00State extends ConsumerState<Screen00>
                       ),
                     ),
                     Positioned(
-                        right: 10,
-                        child: Row(
-                          children:  [
-                            Text(
-                              "100%",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
+                      right: 10,
+                      child: Row(
+                        children: [
+                          Text(
+                            "100%",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
                             ),
-                            Transform.rotate(
-                              angle: -math.pi / -2,
-                              child: Icon(
-                                Icons.battery_full,
-                                color: Colors.black,
-                                size: 24,
-                              ),
+                          ),
+                          Transform.rotate(
+                            angle: -math.pi / -2,
+                            child: Icon(
+                              Icons.battery_full,
+                              color: Colors.black,
+                              size: 24,
                             ),
-                          ],
-                        )),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -265,78 +305,77 @@ class _Screen00State extends ConsumerState<Screen00>
                   padding: const EdgeInsets.symmetric(
                     vertical: 10,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Column(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          pushButton1,
-                          const Text(
-                            'メール',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
+                          Column(
+                            children: <Widget>[
+                              pushButton1,
+                              const Text(
+                                'メール',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              pushButton2,
+                              const Text(
+                                'SNS',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              pushButton3,
+                              const Text(
+                                'ブラウザ',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              pushButton4,
+                              const Text(
+                                '設定',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      Column(
-                        children: <Widget>[
-                          pushButton2,
-                          const Text(
-                            'sns',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width * 0.35,
                       ),
-                      Column(
-                        children: <Widget>[
-                          pushButton3,
-                          const Text(
-                            'ブラウザー',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
+                      if (_isAnimationVisible) // アニメーションが表示されている間
+                        SizedBox(
+                          height: 300, // アニメーションの高さを固定
+                          child: CountdownAnimation(
+                            // countdownDuration: const Duration(seconds: 3),
+                            onComplete: _onAnimationComplete,
                           ),
-                        ],
-                      ),
-                      Column(
-                        children: <Widget>[
-                          pushButton4,
-                          const Text(
-                            '設定',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
                     ],
-                  ),
+                  )
                 ),
               ),
-              AspectRatio(
-                aspectRatio: 27 / 4,
-                child: Container(
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      pushButton6,
-                      pushButton7,
-                      pushButton9,
-                    ],
-                  ),
-                ),
-              )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  pushButton6,
+                  pushButton7,
+                  pushButton9,
+                ],
+              ),
             ],
           ),
         ),
+      ),
+    ),
       ),
     );
   }

@@ -190,7 +190,7 @@ class result_screen extends ConsumerWidget {
                           await prefs.setInt('counter_key', etime);
                         }
                         ;
-                        context.push('/home');
+                        context.go('/home');
                       },
                     ),
                   ],

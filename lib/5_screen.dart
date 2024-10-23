@@ -29,7 +29,7 @@ class screen5 extends ConsumerWidget {
 
     final pushButton7 = TextButton(
       onPressed: () {
-        context.push('/00');
+        context.go('/00');
       },
       child: const Text('〇',
         style: TextStyle(
@@ -43,7 +43,17 @@ class screen5 extends ConsumerWidget {
     );
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.95,
+    height: MediaQuery.of(context).size.width * 1.8,
+    child: Container(
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(10),
+    border: Border.all(color: Colors.black, width: 2),
+    ),
+    padding: EdgeInsets.all(8),
+    child:Container(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -102,7 +112,7 @@ class screen5 extends ConsumerWidget {
                 aspectRatio: 27 / 46,
                 child: Container(
                   child: SvgPicture.asset(
-                      'images/異変$error.svg'
+                      'images/異変$error.svg',fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -126,6 +136,7 @@ class screen5 extends ConsumerWidget {
           ),
         ),
       ),
+              ),),
     );
   }
 }
