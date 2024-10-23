@@ -348,17 +348,17 @@ class _Screen00State extends ConsumerState<Screen00>
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.width * 0.35,
-                      ),
-                      if (_isAnimationVisible) // アニメーションが表示されている間
-                        SizedBox(
-                          height: 300, // アニメーションの高さを固定
-                          child: CountdownAnimation(
-                            // countdownDuration: const Duration(seconds: 3),
-                            onComplete: _onAnimationComplete,
-                          ),
-                        ),
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.width * 0.35,
+                      // ),
+                      // if (_isAnimationVisible) // アニメーションが表示されている間
+                      //   SizedBox(
+                      //     height: 300, // アニメーションの高さを固定
+                      //     child: CountdownAnimation(
+                      //       // countdownDuration: const Duration(seconds: 3),
+                      //       onComplete: _onAnimationComplete,
+                      //     ),
+                      //   ),
                     ],
                   )
                 ),
