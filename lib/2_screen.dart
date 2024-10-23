@@ -51,11 +51,11 @@ class screen2 extends ConsumerWidget {
           height: MediaQuery.of(context).size.width * 1.8,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(6),
               border: Border.all(color: Colors.black, width: 2),
             ),
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.all(4),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[

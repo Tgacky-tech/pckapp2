@@ -217,11 +217,11 @@ class _Screen00State extends ConsumerState<Screen00>
     height: MediaQuery.of(context).size.width * 1.8,
     child: Container(
     decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(10),
+    color: Colors.black,
+    borderRadius: BorderRadius.circular(6),
     border: Border.all(color: Colors.black, width: 2),
     ),
-    padding: EdgeInsets.all(8),
+    padding: EdgeInsets.all(4),
     child:Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
