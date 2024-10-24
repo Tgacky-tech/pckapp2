@@ -15,6 +15,28 @@ void main() {
 
 class rule_screen extends ConsumerWidget {
   const rule_screen({Key? key}) : super(key: key);
+  Future<bool> isFirstTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('button_pressed') ?? true;
+  }
+
+  // 初回であることを記録する関数
+  Future<void> setFirstTimeFlag() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('button_pressed', false);
+  }
+
+  // ボタンを押したときの処理
+  void onButtonPressed(BuildContext context) async {
+    if (await isFirstTime()) {
+      // チュートリアル画面に遷移するコードを書く
+      // 初回であることを記録
+      await setFirstTimeFlag();
+    } else {
+      // 2回目以降なら「通常の画面」に遷移
+      context.push('/00');
+    }
+  }
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
@@ -82,7 +104,7 @@ class rule_screen extends ConsumerWidget {
                             ref.read(errorProvider.notifier).state = random.nextInt(35) + 1;
                             stopwatchNotifier.reset(); // ストップウォッチリセット
                             stopwatchNotifier.start(); // 計測開始
-                            context.push('/00');
+                            onButtonPressed(context);
                           },
                         ),
                       ),
