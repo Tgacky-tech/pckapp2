@@ -68,7 +68,7 @@ class task_screen extends ConsumerWidget {
                           context.go('/result');
                         } else {
                           ref.read(transitionFromTaskProvider.notifier).update((state) => true);
-                          context.go('/00');
+                          context.push('/00');
                         }
                       });
                     } else{
@@ -83,7 +83,7 @@ class task_screen extends ConsumerWidget {
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         // context.push(proceedPath);
                         ref.read(transitionFromTaskProvider.notifier).update((state) => true);
-                        context.go('/00');
+                        context.push('/00');
                       });
                     };
                   }
@@ -134,7 +134,7 @@ class task_screen extends ConsumerWidget {
                                         context.go('/result');
                                       } else {
                                         ref.read(transitionFromTaskProvider.notifier).update((state) => true);
-                                        context.go('/00');
+                                        context.push('/00');
                                       }
                                     });
                                   } else{
@@ -147,7 +147,7 @@ class task_screen extends ConsumerWidget {
                                     WidgetsBinding.instance.addPostFrameCallback((_) {
                                       // context.push(proceedPath);
                                       ref.read(transitionFromTaskProvider.notifier).update((state) => true);
-                                      context.go('/00');
+                                      context.push('/00');
                                     });
                                   };
                                 },
