@@ -17,6 +17,13 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pckapp2/tutorial_1_screen.dart';
+import 'package:pckapp2/tutorial_2_screen.dart';
+import 'package:pckapp2/tutorial_3_screen.dart';
+import 'package:pckapp2/tutorial_4_screen.dart';
+import 'package:pckapp2/tutorial_screen.dart';
+import 'package:pckapp2/tutorialError_screen.dart';
+import 'package:pckapp2/tutorialTask_screen.dart';
 import 'firebase_options.dart';
 import 'package:pckapp2/services/user_services.dart';
 
@@ -55,6 +62,34 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: '/rule',
         builder: (context, state) => rule_screen(),
+      ),
+      GoRoute(
+        path: '/tutorial',
+        builder: (context, state) => tutorial_screen(),
+      ),
+      GoRoute(
+        path: '/tutorialError',
+        builder: (context, state) => tutorialError_screen(),
+      ),
+      GoRoute(
+        path: '/tutorialTask',
+        builder: (context, state) => tutorialTask_screen(),
+      ),
+      GoRoute(
+        path: '/tutorial1',
+        builder: (context, state) => tutorialScreen1(),
+      ),
+      GoRoute(
+        path: '/tutorial2',
+        builder: (context, state) => tutorialScreen2(),
+      ),
+      GoRoute(
+        path: '/tutorial3',
+        builder: (context, state) => tutorialScreen3(),
+      ),
+      GoRoute(
+        path: '/tutorial4',
+        builder: (context, state) => tutorialScreen4(),
       ),
       GoRoute(
         path: '/00',
