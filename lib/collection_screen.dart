@@ -138,25 +138,29 @@ class collection_screen extends StatelessWidget {
             crossAxisSpacing: 10.0,
             childAspectRatio: 1 / 1.2,
             children: <Widget>[
-          Text(
-          'mail',
-            style: TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
+              Center(
+                child: Text(
+                  'mail',
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
               Image.asset('images/nmail.png'),
               _dialog('1','焦らせるような文面でも、安易にリンクを開いてはいけません。URLを開いてしまうと、ウイルスがインストールされる可能性があります。'),
               _dialog('2', '迷惑メールは安易に開いてはいけません。メールアプリの送信元を拒否する設定を活用しましょう。'),
               _dialog('3', 'ウェブサイトに自分のアカウントでログインすると、登録されたメールアドレスに通知が送られてくることがあります。身に覚えのないログインの場合、アカウント情報が流出している可能性があります。パスワードを変更するなどの対策を取りましょう。'),
               _dialog('4', 'メールの添付ファイルを開いただけでも、デバイスがウイルスに感染する可能性があります。知り合いからのメールであっても、注意しましょう。'),
-              Text(
-                'SNS',
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
+              Center(
+                child: Text(
+                  'SNS',
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
               Image.asset('images/nsns.png'),
@@ -166,12 +170,14 @@ class collection_screen extends StatelessWidget {
               _dialog('8', '他人の個人情報をSNSに乗せるのはやめましょう。'),
               _dialog('9', '写真には個人を特定できる情報が含まれている可能性があります。自宅の写真だけでなく、駅の近くに住んでいるなどの情報を安易に公開しないようにしましょう。'),
               Text(''),
-              Text(
-                'Web',
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
+              Center(
+                child: Text(
+                  'Web',
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
               Image.asset('images/nbrowser.png'),
@@ -181,12 +187,14 @@ class collection_screen extends StatelessWidget {
               _dialog('13', 'フェイクニュースには気を付けましょう。'),
               _dialog('14', '過剰な広告が出てくるウェブは危険な可能性があります。閲覧などは避けましょう。'),
               Text(''),
-              Text(
-                'setting',
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
+              Center(
+                child: Text(
+                  'setting',
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
               Image.asset('images/nsettings.png'),
