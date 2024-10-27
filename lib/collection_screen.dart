@@ -124,11 +124,31 @@ class collection_screen extends StatelessWidget {
       ),
       body: Stack(children: [
         Positioned.fill(
-          child: Image.asset(
-            "images/background2.png",
-            fit: BoxFit.cover,
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,// 横に並べる画像の数
+              childAspectRatio: 1.4, // 正方形として表示
+            ),
+            itemBuilder: (context, index) {
+              return FittedBox(
+                fit: BoxFit.contain, // 画像全体が見えるように縮小
+                child: Transform.rotate(
+                  angle: -0.1, // 画像を斜めにする角度（ラジアンで指定）
+                  child: Image.asset(
+                    'images/grey.png', // 使用する画像のパス
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            },
           ),
         ),
+        // Positioned.fill(
+        //   child: Image.asset(
+        //     "images/background2.png",
+        //     fit: BoxFit.cover,
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: GridView.count(
@@ -145,6 +165,7 @@ class collection_screen extends StatelessWidget {
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
+                    color: Colors.green,
                   ),
                 ),
               ),
