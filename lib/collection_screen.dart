@@ -142,6 +142,8 @@ class collection_screen extends StatelessWidget {
           'mail',
             style: TextStyle(
               fontSize: 50,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
             ),
           ),
               _dialog('1','焦らせるような文面でも、安易にリンクを開いてはいけません。URLを開いてしまうと、ウイルスがインストールされる可能性があります。'),
@@ -153,6 +155,8 @@ class collection_screen extends StatelessWidget {
                 'SNS',
                 style: TextStyle(
                   fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
                 ),
               ),
               _dialog('5', 'SNSでお金や商品を配ろうとする投稿は、注意しましょう。安易にリンクを開いたり、投稿を拡散してはいけません。'),
@@ -164,6 +168,8 @@ class collection_screen extends StatelessWidget {
                 'Web',
                 style: TextStyle(
                   fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
                 ),
               ),
               _dialog('10', 'ウェブサイトの中には、広告が大量に出てくるサイトもあります。広告をブロックするか、そのようなサイトにはアクセスしないようにしましょう。'),
@@ -175,6 +181,8 @@ class collection_screen extends StatelessWidget {
                 'setting',
                 style: TextStyle(
                   fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
                 ),
               ),
               _dialog('15', '「インターネット共有へ自動接続」の項目がついています。勝手に危険なネットワークに接続してしまう可能性を避けるため、できるだけ接続を切っておきましょう。'),
