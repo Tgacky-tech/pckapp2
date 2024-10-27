@@ -1,9 +1,10 @@
 diff a/lib/collection_screen.dart b/lib/collection_screen.dart	(rejected hunks)
-@@ -61,6 +61,7 @@
-         // 横軸の間隔
-         childAspectRatio: 1 / 1,
-         // アスペクト比
-+        padding: EdgeInsets.symmetric(vertical: 5 ,horizontal: 5),//縦と横の余白
-         children: <Widget>[
-           InkWell(
-               onTap: (){
+@@ -449,7 +449,7 @@
+                                 AlertDialog(
+                                   icon: Text('異変13'),
+                                   title: Text(
+-                                    '異変13の説明',
++                                    'フェイクニュースには気を付けましょう',
+                                     style: TextStyle(
+                                       fontSize: 18,
+                                     ),
