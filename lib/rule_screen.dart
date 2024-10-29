@@ -35,6 +35,7 @@ class rule_screen extends ConsumerWidget {
       // チュートリアル画面に遷移するコードを書く
       // 初回であることを記録
       await setFirstTimeFlag();
+      context.push('/tutorial');
     } else {
       // 2回目以降なら「通常の画面」に遷移
       context.push('/00');
