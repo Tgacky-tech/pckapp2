@@ -5,6 +5,7 @@ import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/level_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
 import 'package:pckapp2/providers/transitionFromTask_provider.dart';
+import 'package:pckapp2/providers/difficulty_provider.dart';
 import 'dart:math' as math;
 import 'dart:math';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -86,36 +87,83 @@ class _Screen00State extends ConsumerState<Screen00>
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final level = ref.watch(levelProvider);
     final error = ref.watch(errorProvider);
+    final dif = ref.watch(difficultyProvider);
 
     final pushButton1 = _buildButton('images/nmail.png', () {
-      if (1 <= error && error <= 4) {
-        context.push('/5');
-      } else {
-        context.push('/1');
+      if (dif==0) {
+        if (1 <= error && error <= 4) {
+          context.push('/5');
+        } else {
+          context.push('/1');
+        }
+      }else{
+        if (1 <= error && error <= 4 || 19 <= error && error <= 20 || error == 22) {
+          context.push('/5');
+        } else if (error == 21) {
+          context.push('/10');
+        } else if(5 <= error && error <= 18){
+          context.push('/1');
+      }else{
+          context.push('/6');
+        }
       }
     });
 
     final pushButton2 = _buildButton('images/nsns.png', () {
-      if (5 <= error && error <= 9) {
-        context.push('/5');
-      } else {
-        context.push('/2');
+      if(dif==0) {
+        if (5 <= error && error <= 9) {
+          context.push('/5');
+        } else {
+          context.push('/2');
+        }
+      }else{
+        if (5 <= error && error <= 9 || 23 <= error && error <= 25) {
+          context.push('/5');
+        } else if (error == 26) {
+          context.push('/11');
+        } else if(error<=18){
+          context.push('/2');
+        }else{
+          context.push('/7');
+        }
       }
     });
 
     final pushButton3 = _buildButton('images/nbrowser.png', () {
-      if (10 <= error && error <= 14) {
-        context.push('/5');
-      } else {
-        context.push('/3');
+      if(dif==0) {
+        if (10 <= error && error <= 14) {
+          context.push('/5');
+        } else {
+          context.push('/3');
+        }
+      }else{
+        if (10 <= error && error <= 14 || 27 <= error && error <= 30) {
+          context.push('/5');
+        } else if(error<=18){
+          context.push('/3');
+        }else{
+          context.push('/8');
+        }
       }
     });
 
     final pushButton4 = _buildButton('images/nsettings.png', () {
-      if (15 <= error && error <= 18) {
-        context.push('/5');
-      } else {
-        context.push('/4');
+      if(dif==0) {
+        if (15 <= error && error <= 18) {
+          context.push('/5');
+        } else {
+          context.push('/4');
+        }
+      }else{
+        if (15 <= error && error <= 18 || 31 <= error && error <= 33) {
+          context.push('/5');
+        } else if (error == 34) {
+          context.push('/12');
+        } else if(error<=18){
+          context.push('/4');
+        }else{
+          context.push('/9');
+        }
       }
     });
 
@@ -153,10 +201,6 @@ class _Screen00State extends ConsumerState<Screen00>
     return Scaffold(
       body: Stack(
         children: [
-    //       Positioned.fill(
-    //         child: SvgPicture.asset('images/mainbackground.svg'
-    //     ,fit: BoxFit.cover,),
-    // ),
           Positioned.fill(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -10,6 +10,13 @@ import 'package:pckapp2/2_screen.dart';
 import 'package:pckapp2/3_screen.dart';
 import 'package:pckapp2/4_screen.dart';
 import 'package:pckapp2/5_screen.dart';
+import 'package:pckapp2/6_screen.dart';
+import 'package:pckapp2/7_screen.dart';
+import 'package:pckapp2/8_screen.dart';
+import 'package:pckapp2/9_screen.dart';
+import 'package:pckapp2/10_screen.dart';
+import 'package:pckapp2/11_screen.dart';
+import 'package:pckapp2/12_screen.dart';
 import 'package:pckapp2/menu_screen.dart';
 import 'package:pckapp2/result_screen.dart';
 import 'package:pckapp2/task_screen.dart';
@@ -114,6 +121,34 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: '/5',
         builder: (context, state) => screen5(),
+      ),
+      GoRoute(
+        path: '/6',
+        builder: (context, state) => screen6(),
+      ),
+      GoRoute(
+        path: '/7',
+        builder: (context, state) => screen7(),
+      ),
+      GoRoute(
+        path: '/8',
+        builder: (context, state) => screen8(),
+      ),
+      GoRoute(
+        path: '/9',
+        builder: (context, state) => screen9(),
+      ),
+      GoRoute(
+        path: '/10',
+        builder: (context, state) => screen10(),
+      ),
+      GoRoute(
+        path: '/11',
+        builder: (context, state) => screen11(),
+      ),
+      GoRoute(
+        path: '/12',
+        builder: (context, state) => screen12(),
       ),
       GoRoute(
         path: '/menu',

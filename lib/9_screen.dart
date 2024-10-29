@@ -4,43 +4,42 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/level_provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pckapp2/providers/error_provider.dart';
 import 'dart:math' as math;
 
-class screen4 extends ConsumerWidget {
-  const screen4({Key? key}) : super(key: key);
+class screen9 extends ConsumerWidget {
+  const screen9({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final level = ref.watch(levelProvider);
+    final error = ref.watch(errorProvider);
     final pushButton6 = TextButton(
-      onPressed: () {
+      onPressed: (){
         stopwatchNotifier.stop();
         context.push('/menu');
       },
-      child: const Text(
-        '◁',
+
+      child: const Text('◁',
         style: TextStyle(
-          fontSize: 25 /*サイズ*/,
-        ),
-      ),
+          fontSize: 25/*サイズ*/,
+        ),),
     );
 
     final pushButton7 = TextButton(
       onPressed: () {
         context.go('/00');
       },
-      child: const Text(
-        '〇',
-        style: TextStyle(fontSize: 20),
-      ),
+      child: const Text('〇',
+        style: TextStyle(
+            fontSize: 20),),
     );
     final pushButton9 = TextButton(
       onPressed: () => context.push('/task'),
-      child: const Text(
-        '□',
-        style: TextStyle(fontSize: 25),
-      ),
+      child: const Text('□',
+        style: TextStyle(
+            fontSize: 25),),
     );
     return Scaffold(
       body:Stack(
@@ -75,7 +74,7 @@ class screen4 extends ConsumerWidget {
               border: Border.all(color: Colors.black, width: 2),
             ),
             padding: EdgeInsets.all(4),
-            child: Container(
+            child:Container(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -83,7 +82,7 @@ class screen4 extends ConsumerWidget {
                     aspectRatio: 27 / 1.7,
                     child: Container(
                       color: Colors.white,
-                      child: Stack(
+                      child:Stack(
                         children: [
                           Container(
                             alignment: Alignment.center,
@@ -105,7 +104,8 @@ class screen4 extends ConsumerWidget {
                           ),
                           Positioned(
                               right: 10,
-                              child: Row(
+                              child:
+                              Row(
                                 children: [
                                   Text(
                                     "100%",
@@ -123,7 +123,8 @@ class screen4 extends ConsumerWidget {
                                     ),
                                   ),
                                 ],
-                              )),
+                              )
+                          ),
                         ],
                       ),
                     ),
@@ -131,7 +132,9 @@ class screen4 extends ConsumerWidget {
                   AspectRatio(
                     aspectRatio: 27 / 46,
                     child: Container(
-                      child: SvgPicture.asset('images/wifi.svg'),
+                      child: SvgPicture.asset(
+                        'images/battery.svg',fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   AspectRatio(
@@ -154,8 +157,7 @@ class screen4 extends ConsumerWidget {
               ),
             ),
           ),
-        ),
-      ),
+        ),),
     ]
       ),
     );

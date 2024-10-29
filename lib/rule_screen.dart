@@ -6,6 +6,7 @@ import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
 import 'package:pckapp2/providers/counterList_provider.dart';
 import 'package:pckapp2/providers/tutorial_provider.dart';
+import 'package:pckapp2/providers/difficulty_provider.dart';
 import 'dart:math' as math;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -56,7 +57,8 @@ class rule_screen extends ConsumerWidget {
         shadowColor: Colors.grey.withOpacity(0.4),
         title: const Text('ゲーム開始'),
       ),
-      body: Center(
+      body: SingleChildScrollView(
+    child:Center(
         child: Container(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -151,10 +153,58 @@ class rule_screen extends ConsumerWidget {
                     ],
                 ),
               ),
+          AspectRatio(
+          aspectRatio: 27 / 3,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context).size.width * 0.13,
+                child:
+                OutlinedButton(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
+                    child: Text(
+                      'HARDモード',
+                      style: TextStyle(
+                        fontSize: 24, // 必要に応じて大きさを変更
+                        color: Colors.white,
+                        letterSpacing: 4.0,
+                      ),
+                    ),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.blue, // 背景色をグレーに設定
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    side: const BorderSide(
+                      color: Colors.blueGrey, // ボーダーの色
+                      width: 3.0, // ボーダーの太さを指定
+                    ),
+                  ),
+                  onPressed: () {
+                    ref.read(difficultyProvider.notifier).state =1;
+                    ref.read(counterListProvider.notifier).state = [];
+                    // ref.read(errorProvider.notifier).state = 34;
+                    ref.read(errorProvider.notifier).state = random.nextInt(67) + 1;
+                    ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
+                    stopwatchNotifier.reset(); // ストップウォッチリセット
+                    stopwatchNotifier.start(); // 計測開始
+                    onButtonPressed(context);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
               // TextButton(
             ],
           ),
         ),
+      ),
       ),
     );
   }
