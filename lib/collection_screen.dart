@@ -19,14 +19,15 @@ class collection_screen extends StatelessWidget {
     Widget _simageItem(String name) {
       var image = "images/" + name + ".svg";
       return Container(
-        width: MediaQuery.of(context).size.width * 0.4,
-        height: MediaQuery.of(context).size.width * 0.4,
+
         decoration: BoxDecoration(
           // border: Border.all(color: Colors.grey),
         ),
         child: SvgPicture.asset(
           image,
           fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width * 0.7,
+          // height: MediaQuery.of(context).size.width * 0.4,
         ),
       );
     }
@@ -174,6 +175,10 @@ class collection_screen extends StatelessWidget {
               _dialog('2', '迷惑メールは安易に開いてはいけません。メールアプリの送信元を拒否する設定を活用しましょう。'),
               _dialog('3', 'ウェブサイトに自分のアカウントでログインすると、登録されたメールアドレスに通知が送られてくることがあります。身に覚えのないログインの場合、アカウント情報が流出している可能性があります。パスワードを変更するなどの対策を取りましょう。'),
               _dialog('4', 'メールの添付ファイルを開いただけでも、デバイスがウイルスに感染する可能性があります。知り合いからのメールであっても、注意しましょう。'),
+              _dialog('19',''),
+              _dialog('20',''),
+              _dialog('21',''),
+              _dialog('22',''),
               Center(
                 child: Text(
                   'SNS',
@@ -181,6 +186,7 @@ class collection_screen extends StatelessWidget {
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
+                    color: Colors.green,
                   ),
                 ),
               ),
@@ -202,6 +208,7 @@ class collection_screen extends StatelessWidget {
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
+                    color: Colors.green,
                   ),
                 ),
               ),
@@ -215,7 +222,6 @@ class collection_screen extends StatelessWidget {
               _dialog('28',''),
               _dialog('29',''),
               _dialog('30',''),
-              _dialog('34',''),
               Text(''),
               Center(
                 child: Text(
@@ -224,6 +230,7 @@ class collection_screen extends StatelessWidget {
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
+                    color: Colors.green,
                   ),
                 ),
               ),
@@ -235,24 +242,21 @@ class collection_screen extends StatelessWidget {
               _dialog('31',''),
               _dialog('32',''),
               _dialog('33',''),
-              _dialog('35',''),
-              _dialog('36',''),
-              _dialog('37',''),
-              Center(
-                child: Text(
-                  'phone',
-                      style: TextStyle(
-    fontSize: 50,
-    fontWeight: FontWeight.bold,
-    fontStyle: FontStyle.italic,
-    )
-                )
-              ),
-              Image.asset('images/nphone.png'),
-              _dialog('19',''),
-              _dialog('20',''),
-              _dialog('21',''),
-              _dialog('22',''),
+    //           Center(
+    //             child: Text(
+    //               'phone',
+    //                   style: TextStyle(
+    // fontSize: 50,
+    // fontWeight: FontWeight.bold,
+    // fontStyle: FontStyle.italic,
+    // )
+    //             )
+    //           ),
+    //           Image.asset('images/nphone.png'),
+    //           _dialog('19',''),
+    //           _dialog('20',''),
+    //           _dialog('21',''),
+    //           _dialog('22',''),
             ],
           ),
         ),
