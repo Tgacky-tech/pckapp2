@@ -35,7 +35,7 @@ class rule_screen extends ConsumerWidget {
       // チュートリアル画面に遷移するコードを書く
       // 初回であることを記録
       await setFirstTimeFlag();
-      context.push('/tutorial');
+      // context.push('/tutorial');
     } else {
       // 2回目以降なら「通常の画面」に遷移
       context.push('/00');
@@ -125,7 +125,7 @@ class rule_screen extends ConsumerWidget {
                           child: FittedBox(
                             fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
                             child: Text(
-                              'チュートリアル',
+                              'チュートリアル(未完成)',
                               style: TextStyle(
                                 fontSize: 24, // 必要に応じて大きさを変更
                                 color: Colors.white,
