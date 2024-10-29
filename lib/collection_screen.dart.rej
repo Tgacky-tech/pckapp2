@@ -1,10 +1,10 @@
 diff a/lib/collection_screen.dart b/lib/collection_screen.dart	(rejected hunks)
-@@ -449,7 +449,7 @@
-                                 AlertDialog(
-                                   icon: Text('異変13'),
-                                   title: Text(
--                                    '異変13の説明',
-+                                    'フェイクニュースには気を付けましょう',
-                                     style: TextStyle(
-                                       fontSize: 18,
-                                     ),
+@@ -266,4 +266,5 @@
+ }
+ 
+ 
+-// _dialog('','')
+\ No newline at end of file
++// _dialog('','')
++//
+\ No newline at end of file

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 void main() {
   runApp(MaterialApp(
-    home: collection_screen(),
+    home: CollectionScreen(),
   ));
 }
 
-class collection_screen extends StatelessWidget {
+class CollectionScreen extends StatelessWidget {
 
-  const collection_screen({Key? key})
+  const CollectionScreen({Key? key})
       : super(key: key);
 
   @override

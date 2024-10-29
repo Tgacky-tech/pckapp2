@@ -60,7 +60,7 @@ class MyApp extends ConsumerWidget {
       ),
       GoRoute(
       path: '/collection',
-      builder: (context, state) => collection_screen(),
+      builder: (context, state) => CollectionScreen(),
       ),
       GoRoute(
         path: '/settings',
