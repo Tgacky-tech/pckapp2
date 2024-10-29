@@ -190,6 +190,10 @@ class collection_screen extends StatelessWidget {
               _dialog('7', '非公開アカウントであっても、他人への誹謗中傷をSNSに投稿するのはやめましょう。法的な問題になる恐れもあります。'),
               _dialog('8', '他人の個人情報をSNSに乗せるのはやめましょう。'),
               _dialog('9', '写真には個人を特定できる情報が含まれている可能性があります。自宅の写真だけでなく、駅の近くに住んでいるなどの情報を安易に公開しないようにしましょう。'),
+              _dialog('23',''),
+              _dialog('24',''),
+              _dialog('25',''),
+              _dialog('26',''),
               Text(''),
               Center(
                 child: Text(
@@ -207,6 +211,11 @@ class collection_screen extends StatelessWidget {
               _dialog('12', '警告が出てくるなど、安全でないウェブサイトを見つけたら、絶対に開かないようにしましょう。ウイルスに感染したり、個人情報が抜き取られたりする可能性もあります。'),
               _dialog('13', 'フェイクニュースには気を付けましょう。'),
               _dialog('14', '過剰な広告が出てくるウェブは危険な可能性があります。閲覧などは避けましょう。'),
+              _dialog('27',''),
+              _dialog('28',''),
+              _dialog('29',''),
+              _dialog('30',''),
+              _dialog('34',''),
               Text(''),
               Center(
                 child: Text(
@@ -223,6 +232,27 @@ class collection_screen extends StatelessWidget {
               _dialog('16', '利用可能なネットワークの項目に表示される、Wi-Fiの名前をSSIDといいます。例え接続ができる状態にあったとしても、知らないSSIDのネットワークには接続しないようにしましょう。'),
               _dialog('17', '安全性の低いネットワークには接続しないようにしましょう。'),
               _dialog('18', 'Wi-Fiがオフになっています。'),
+              _dialog('31',''),
+              _dialog('32',''),
+              _dialog('33',''),
+              _dialog('35',''),
+              _dialog('36',''),
+              _dialog('37',''),
+              Center(
+                child: Text(
+                  'phone',
+                      style: TextStyle(
+    fontSize: 50,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.italic,
+    )
+                )
+              ),
+              Image.asset('images/nphone.png'),
+              _dialog('19',''),
+              _dialog('20',''),
+              _dialog('21',''),
+              _dialog('22',''),
             ],
           ),
         ),
@@ -230,3 +260,6 @@ class collection_screen extends StatelessWidget {
     );
   }
 }
+
+
+// _dialog('','')
