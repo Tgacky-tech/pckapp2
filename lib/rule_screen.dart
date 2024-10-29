@@ -154,6 +154,9 @@ class rule_screen extends ConsumerWidget {
                     ],
                 ),
               ),
+          SizedBox(
+            height:10,
+          ),
           AspectRatio(
           aspectRatio: 27 / 3,
           child: Row(
