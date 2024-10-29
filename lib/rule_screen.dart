@@ -76,7 +76,7 @@ class rule_screen extends ConsumerWidget {
                     children: <Widget>[
                       Container(),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.6,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         height: MediaQuery.of(context).size.width * 0.13,
                         child:
                         OutlinedButton(
@@ -113,52 +113,44 @@ class rule_screen extends ConsumerWidget {
                         ),
                       ),
                       Container(),
+                      Container(),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.width * 0.13,
+                        child:
+                        OutlinedButton(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
+                            child: Text(
+                              'チュートリアル',
+                              style: TextStyle(
+                                fontSize: 24, // 必要に応じて大きさを変更
+                                color: Colors.white,
+                                letterSpacing: 4.0,
+                              ),
+                            ),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.blue, // 背景色をグレーに設定
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            side: const BorderSide(
+                              color: Colors.blueGrey, // ボーダーの色
+                              width: 3.0, // ボーダーの太さを指定
+                            ),
+                          ),
+                          onPressed: () {
+                            ref.read(tutorialProvider.notifier).setTutorial(0);
+                            context.push('/tutorial');
+                          },
+                        ),
+                      ),
+                      Container(),
                     ],
                 ),
               ),
-              AspectRatio(
-                aspectRatio: 27 / 3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Container(),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      height: MediaQuery.of(context).size.width * 0.13,
-                      child:
-                      OutlinedButton(
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
-                          child: Text(
-                            'チュートリアル',
-                            style: TextStyle(
-                              fontSize: 24, // 必要に応じて大きさを変更
-                              color: Colors.white,
-                              letterSpacing: 4.0,
-                            ),
-                          ),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: Colors.blue, // 背景色をグレーに設定
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          side: const BorderSide(
-                            color: Colors.blueGrey, // ボーダーの色
-                            width: 3.0, // ボーダーの太さを指定
-                          ),
-                        ),
-                        onPressed: () {
-                          ref.read(tutorialProvider.notifier).setTutorial(0);
-                          context.push('/tutorial');
-                        },
-                      ),
-                    ),
-                    Container(),
-                  ],
-                ),
-              )
               // TextButton(
             ],
           ),

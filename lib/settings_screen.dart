@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pckapp2/providers/tutorial_provider.dart';
 
 void main() {
   runApp(
@@ -43,6 +44,16 @@ class settings_screen extends ConsumerWidget {
                   return ChangeUsernameDialog();
                 },
               );
+
+            },
+          ),
+          _buildSettingItem(
+            icon: Icons.sports_esports,
+            title: 'チュートリアル',
+            onTap: () {
+              ref.read(tutorialProvider.notifier).setTutorial(0);
+              context.push('/tutorial');
+
             },
           ),
         ],
