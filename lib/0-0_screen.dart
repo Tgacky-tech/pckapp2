@@ -360,7 +360,7 @@ class _Screen00State extends ConsumerState<Screen00>
             animation: _controller,
             builder: (context, child) {
               return Positioned(
-                top: MediaQuery.of(context).size.height * 0.08, // アニメーションの位置調整
+                top: MediaQuery.of(context).size.height * 0.094, // アニメーションの位置調整
                 left: 0,
                 right: 0,
                 child: Transform.translate(
