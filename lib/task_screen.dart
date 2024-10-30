@@ -368,8 +368,8 @@ class task_screen extends ConsumerWidget {
                                       height:
                                           MediaQuery.of(context).size.width *
                                               1.4,
-                                      child: Image.asset(
-                                        'images/mscreen.png',
+                                      child: SvgPicture.asset(
+                                        'images/mscreen.svg',
                                         fit: BoxFit.cover,
                                       ),
                                     ),
