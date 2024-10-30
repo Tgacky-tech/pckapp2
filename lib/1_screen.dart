@@ -115,7 +115,7 @@ class _screen1State extends ConsumerState<screen1>
               border: Border.all(color: Colors.black, width: 2),
             ),
             padding: EdgeInsets.all(4),
-            child: Column(
+            child: SingleChildScrollView(child:Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 AspectRatio(
@@ -195,6 +195,7 @@ class _screen1State extends ConsumerState<screen1>
           ),
         ),
       ),
+    ),
     ]
       ),
     );

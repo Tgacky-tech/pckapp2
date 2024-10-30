@@ -74,7 +74,7 @@ class screen6 extends ConsumerWidget {
               border: Border.all(color: Colors.black, width: 2),
             ),
             padding: EdgeInsets.all(4),
-            child:Container(
+            child:SingleChildScrollView(child:Container(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -157,7 +157,7 @@ class screen6 extends ConsumerWidget {
               ),
             ),
           ),
-        ),),
+        ),),),
     ]
       ),
     );

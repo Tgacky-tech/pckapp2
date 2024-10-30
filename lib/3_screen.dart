@@ -73,7 +73,7 @@ class screen3 extends ConsumerWidget {
     ),
       padding: EdgeInsets.all(4),
     child:
-    Container(
+    SingleChildScrollView(child:Container(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -159,6 +159,7 @@ class screen3 extends ConsumerWidget {
       ),
               ),
       ),
+          ),
     ]
       ),
     );

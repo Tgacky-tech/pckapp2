@@ -232,7 +232,7 @@ class _Screen00State extends ConsumerState<Screen00>
                   border: Border.all(color: Colors.black, width: 2),
                 ),
                 padding: EdgeInsets.all(4),
-                child: Container(
+                child: SingleChildScrollView(child:Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('images/background.png'),
@@ -351,6 +351,7 @@ class _Screen00State extends ConsumerState<Screen00>
                     ],
                   ),
                 ),
+                      ),
               ),
             ),
           ),
