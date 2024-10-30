@@ -60,7 +60,9 @@ class task_screen extends ConsumerWidget {
               border: Border.all(color: Colors.black, width: 2),
             ),
             padding: EdgeInsets.all(4),
-            child: SingleChildScrollView(child:AspectRatio(
+            child:
+            // SingleChildScrollView(child:
+            AspectRatio(
               aspectRatio: 27 / 51.5,
               child: NotificationListener<ScrollNotification>(
                 onNotification: (ScrollNotification notification) {
@@ -390,7 +392,7 @@ class task_screen extends ConsumerWidget {
           ),
         ),
       ),
-          ),
+          // ),
     ]
       ),
     );
