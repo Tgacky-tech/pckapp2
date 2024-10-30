@@ -109,6 +109,7 @@ class rule_screen extends ConsumerWidget {
                             ),
                           ),
                           onPressed: () {
+                            ref.read(difficultyProvider.notifier).state =0;
                             ref
                                 .read(levelProvider.notifier)
                                 .state = 0;
