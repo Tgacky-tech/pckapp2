@@ -76,7 +76,7 @@ class MyApp extends ConsumerWidget {
       ),
       GoRoute(
         path: '/tutorialTask',
-        builder: (context, state) => tutorialTask_screen(),
+        builder: (context, state) => TutorialTaskScreen(),
       ),
       GoRoute(
         path: '/tutorial1',
