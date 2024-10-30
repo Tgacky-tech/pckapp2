@@ -8,6 +8,7 @@ import 'package:pckapp2/providers/error_provider.dart';
 import 'package:pckapp2/providers/counterList_provider.dart';
 import 'package:pckapp2/providers/tutorial_provider.dart';
 import 'package:pckapp2/providers/difficulty_provider.dart';
+import 'package:pckapp2/providers/level_provider.dart';
 import 'dart:math' as math;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -48,7 +49,7 @@ class rule_screen extends ConsumerWidget {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final error = ref.watch(errorProvider);
     var random = math.Random();
-    // final level = ref.watch(levelProvider);
+    final level = ref.watch(levelProvider);
     final valueProvider = StateProvider<int>((ref) {
       // 初期値を設定
       return 0;
@@ -108,6 +109,9 @@ class rule_screen extends ConsumerWidget {
                             ),
                           ),
                           onPressed: () {
+                            ref
+                                .read(levelProvider.notifier)
+                                .state = 0;
                             ref.read(counterListProvider.notifier).state = [];
                             ref.read(errorProvider.notifier).state = random.nextInt(35) + 1;
                             ref.read(counterListProvider.notifier).addRandomNumber(ref.read(errorProvider));
@@ -127,7 +131,7 @@ class rule_screen extends ConsumerWidget {
                           child: FittedBox(
                             fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
                             child: Text(
-                              'チュートリアル(未完成)',
+                              'チュートリアル',
                               style: TextStyle(
                                 fontSize: 24, // 必要に応じて大きさを変更
                                 color: Colors.white,
@@ -193,6 +197,9 @@ class rule_screen extends ConsumerWidget {
                     ),
                   ),
                   onPressed: () {
+                    ref
+                        .read(levelProvider.notifier)
+                        .state = 0;
                     ref.read(difficultyProvider.notifier).state =1;
                     ref.read(counterListProvider.notifier).state = [];
                     // ref.read(errorProvider.notifier).state = 34;
