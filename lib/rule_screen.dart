@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pckapp2/providers/level_provider.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
 import 'package:pckapp2/providers/counterList_provider.dart';
@@ -147,6 +148,7 @@ class rule_screen extends ConsumerWidget {
                           ),
                           onPressed: () {
                             ref.read(tutorialProvider.notifier).setTutorial(0);
+                            ref.read(levelProvider.notifier).state = 0;
                             context.push('/tutorialStart');
                           },
                         ),

@@ -94,7 +94,7 @@ class _screenErrorState extends ConsumerState<tutorialError_screen>
     final pushButton6 = TextButton(
       onPressed: () {
         stopwatchNotifier.stop();
-        context.push('/menu');
+        context.go('/menu');
       },
       child: const Text(
         '◁',
@@ -105,9 +105,7 @@ class _screenErrorState extends ConsumerState<tutorialError_screen>
     );
 
     final pushButton7 = TextButton(
-      onPressed: () {
-        context.go('/tutorial');
-      },
+      onPressed: null,
       child: const Text(
         '〇',
         style: TextStyle(fontSize: 20),
