@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pckapp2/providers/counterList_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
+import 'dart:convert';
 
 class result_screen extends ConsumerWidget {
   const result_screen({Key? key}) : super(key: key);
@@ -175,6 +176,7 @@ class result_screen extends ConsumerWidget {
                         ),
                       ),
                       onPressed: () async{
+                        await SharedPreferencesHelper.addUniqueIntItems(counterList);
                         SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                         String? userId = prefs.getString('userId');
@@ -206,5 +208,40 @@ class result_screen extends ConsumerWidget {
         ),
       ),
     );
+  }
+}
+class SharedPreferencesHelper {
+  static const String _listKey = 'intListKey';
+
+  // intリストを取得するメソッド
+  static Future<List<int>> getIntList() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? encodedList = prefs.getString(_listKey);
+    if (encodedList != null) {
+      return List<int>.from(jsonDecode(encodedList));
+    } else {
+      return [];
+    }
+  }
+
+  // intリストを保存するメソッド
+  static Future<void> saveIntList(List<int> list) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(_listKey, jsonEncode(list));
+  }
+
+  // 重複しない要素のみを既存リストに追加するメソッド
+  static Future<void> addUniqueIntItems(List<int> newItems) async {
+    List<int> currentList = await getIntList();
+
+    // 新しいリストから既存リストに含まれていないアイテムを追加
+    for (int item in newItems) {
+      if (!currentList.contains(item)) {
+        currentList.add(item);
+      }
+    }
+
+    // 更新したリストを保存
+    await saveIntList(currentList);
   }
 }

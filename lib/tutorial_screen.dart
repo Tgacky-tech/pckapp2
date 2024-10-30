@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pckapp2/0-0_screen.dart';
 import 'package:pckapp2/providers/tutorial_provider.dart';
 import 'package:pckapp2/tutorialError_screen.dart';
@@ -210,9 +209,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
 
     final pushButton9 = TextButton(
       key: keyButton4,
-      onPressed: () {
-        context.go('/tutorialTask');
-      },
+      onPressed: () => context.push('/tutorialTask'),
       child: const Text(
         '□',
         style: TextStyle(fontSize: 25),
@@ -477,7 +474,10 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                 align: ContentAlign.top,
                 child: Text(
                   "今回は異変がないようです\nタスク管理画面に行き\n正誤判断をしましょう",
-                  style: GoogleFonts.lato(),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20
+                  ),
                 ),
               ),
             ],

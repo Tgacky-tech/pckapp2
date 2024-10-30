@@ -34,8 +34,6 @@ dependencies:
   firebase_core: ^3.5.0
   cloud_firestore: ^5.4.2
   tutorial_coach_mark:
-  flutter_overboard:
-  google_fonts:
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -59,9 +59,7 @@ class _screen2State extends ConsumerState<tutorialScreen2>
     )
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
       _showTutorial(context, targets);
-    });
 
     final pushButton6 = TextButton(
       onPressed: () {
