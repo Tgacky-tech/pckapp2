@@ -95,7 +95,28 @@ class _screen4State extends ConsumerState<tutorialScreen4>
     );
 
     return Scaffold(
-      body: Center(
+      body:  Stack(
+        children: [
+      Positioned.fill(
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,// 横に並べる画像の数
+        childAspectRatio: 1.4, // 正方形として表示
+      ),
+      itemBuilder: (context, index) {
+        return FittedBox(
+          fit: BoxFit.contain, // 画像全体が見えるように縮小
+          child: Transform.rotate(
+            angle: -0.1, // 画像を斜めにする角度（ラジアンで指定）
+            child: Image.asset(
+              'images/grey.png', // 使用する画像のパス
+              fit: BoxFit.cover,
+            ),
+          ),
+        );
+      },
+    ),
+    ),Center(
         child: SizedBox(
           key: keyButton1,
           width: MediaQuery.of(context).size.width * 0.95,
@@ -183,6 +204,8 @@ class _screen4State extends ConsumerState<tutorialScreen4>
             ),
           ),
         ),
+      ),
+    ]
       ),
     );
   }
