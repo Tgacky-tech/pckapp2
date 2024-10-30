@@ -44,7 +44,7 @@ class home_screen extends ConsumerWidget {
     );
     final pages = [
       rule_screen(),
-      CollectionScreen(),
+      collection_screen(),
       ranking_screen(),
       settings_screen(),
     ];

@@ -10,13 +10,6 @@ import 'package:pckapp2/2_screen.dart';
 import 'package:pckapp2/3_screen.dart';
 import 'package:pckapp2/4_screen.dart';
 import 'package:pckapp2/5_screen.dart';
-import 'package:pckapp2/6_screen.dart';
-import 'package:pckapp2/7_screen.dart';
-import 'package:pckapp2/8_screen.dart';
-import 'package:pckapp2/9_screen.dart';
-import 'package:pckapp2/10_screen.dart';
-import 'package:pckapp2/11_screen.dart';
-import 'package:pckapp2/12_screen.dart';
 import 'package:pckapp2/menu_screen.dart';
 import 'package:pckapp2/result_screen.dart';
 import 'package:pckapp2/task_screen.dart';
@@ -24,6 +17,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pckapp2/tutorialStart_screen.dart';
 import 'package:pckapp2/tutorial_1_screen.dart';
 import 'package:pckapp2/tutorial_2_screen.dart';
 import 'package:pckapp2/tutorial_3_screen.dart';
@@ -60,7 +54,7 @@ class MyApp extends ConsumerWidget {
       ),
       GoRoute(
       path: '/collection',
-      builder: (context, state) => CollectionScreen(),
+      builder: (context, state) => collection_screen(),
       ),
       GoRoute(
         path: '/settings',
@@ -99,6 +93,10 @@ class MyApp extends ConsumerWidget {
         builder: (context, state) => tutorialScreen4(),
       ),
       GoRoute(
+        path: '/tutorialStart',
+        builder: (context, state) => tutorialStartScreen(),
+      ),
+      GoRoute(
         path: '/00',
         builder: (context, state) => Screen00(),
       ),
@@ -121,34 +119,6 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: '/5',
         builder: (context, state) => screen5(),
-      ),
-      GoRoute(
-        path: '/6',
-        builder: (context, state) => screen6(),
-      ),
-      GoRoute(
-        path: '/7',
-        builder: (context, state) => screen7(),
-      ),
-      GoRoute(
-        path: '/8',
-        builder: (context, state) => screen8(),
-      ),
-      GoRoute(
-        path: '/9',
-        builder: (context, state) => screen9(),
-      ),
-      GoRoute(
-        path: '/10',
-        builder: (context, state) => screen10(),
-      ),
-      GoRoute(
-        path: '/11',
-        builder: (context, state) => screen11(),
-      ),
-      GoRoute(
-        path: '/12',
-        builder: (context, state) => screen12(),
       ),
       GoRoute(
         path: '/menu',

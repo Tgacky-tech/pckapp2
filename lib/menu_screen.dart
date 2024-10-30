@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
-import 'package:pckapp2/providers/counterList_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 class menu_screen extends ConsumerWidget {
   const menu_screen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
-    final  counterList = ref.watch(counterListProvider);
     final appBar = AppBar(
       backgroundColor: Colors.grey,
       title: const Text('メニュー'),
@@ -99,10 +95,7 @@ class menu_screen extends ConsumerWidget {
                     width: 3.0, // ボーダーの太さを指定
                   ),
                 ),
-                onPressed: () async {
-                  await SharedPreferencesHelper.addUniqueIntItems(counterList);
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
+                onPressed: () {
                   stopwatchNotifier.reset(); // 計測開始
                   context.go('/home');
                 },
@@ -135,40 +128,5 @@ class menu_screen extends ConsumerWidget {
       ),
     ),
     );
-  }
-}
-class SharedPreferencesHelper {
-  static const String _listKey = 'intListKey';
-
-  // intリストを取得するメソッド
-  static Future<List<int>> getIntList() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? encodedList = prefs.getString(_listKey);
-    if (encodedList != null) {
-      return List<int>.from(jsonDecode(encodedList));
-    } else {
-      return [];
-    }
-  }
-
-  // intリストを保存するメソッド
-  static Future<void> saveIntList(List<int> list) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(_listKey, jsonEncode(list));
-  }
-
-  // 重複しない要素のみを既存リストに追加するメソッド
-  static Future<void> addUniqueIntItems(List<int> newItems) async {
-    List<int> currentList = await getIntList();
-
-    // 新しいリストから既存リストに含まれていないアイテムを追加
-    for (int item in newItems) {
-      if (!currentList.contains(item)) {
-        currentList.add(item);
-      }
-    }
-
-    // 更新したリストを保存
-    await saveIntList(currentList);
   }
 }
