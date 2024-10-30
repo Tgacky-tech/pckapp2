@@ -209,7 +209,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
 
     final pushButton9 = TextButton(
       key: keyButton4,
-      onPressed: () => context.push('/tutorialTask'),
+      onPressed: () => context.go('/tutorialTask'),
       child: const Text(
         '□',
         style: TextStyle(fontSize: 25),
@@ -473,7 +473,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
               TargetContent(
                 align: ContentAlign.top,
                 child: Text(
-                  "今回は異変がないようです\nタスク管理画面に行き\n正誤判断をしましょう",
+                  "今回は異変がないようです\nタスク管理画面に行き\n判断が正しいか確かめましょう",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20

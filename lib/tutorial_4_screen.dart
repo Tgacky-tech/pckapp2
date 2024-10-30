@@ -59,7 +59,7 @@ class _screen4State extends ConsumerState<tutorialScreen4>
     )
     );
 
-      _showTutorial(context, targets);
+    _showTutorial(context, targets);
 
     final pushButton6 = TextButton(
       onPressed: () {
@@ -87,7 +87,7 @@ class _screen4State extends ConsumerState<tutorialScreen4>
     );
 
     final pushButton9 = TextButton(
-      onPressed: () => context.push('/tutorialTask'),
+      onPressed: () => context.go('/tutorialTask'),
       child: const Text(
         '□',
         style: TextStyle(fontSize: 25),

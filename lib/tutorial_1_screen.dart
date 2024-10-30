@@ -89,7 +89,7 @@ class _screen1State extends ConsumerState<tutorialScreen1>
     )
     );
 
-      _showTutorial(context, targets);
+    _showTutorial(context, targets);
 
     final pushButton6 = TextButton(
       onPressed: () {

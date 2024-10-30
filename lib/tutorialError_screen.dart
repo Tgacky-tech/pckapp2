@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:pckapp2/providers/level_provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,10 +11,10 @@ class tutorialError_screen extends ConsumerStatefulWidget {
   const tutorialError_screen({Key? key}) : super(key: key);
 
   @override
-  _screen1State createState() => _screen1State();
+  _screenErrorState createState() => _screenErrorState();
 }
 
-class _screen1State extends ConsumerState<tutorialError_screen>
+class _screenErrorState extends ConsumerState<tutorialError_screen>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   @override
   void initState() {
@@ -48,10 +49,48 @@ class _screen1State extends ConsumerState<tutorialError_screen>
     }
   }
 
+  GlobalKey keyButton1 = GlobalKey();
+  GlobalKey keyButton2 = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final level = ref.watch(levelProvider);
+
+    List<TargetFocus> targets = [];
+
+    targets.add(TargetFocus(
+      identify: "Target",
+      keyTarget: keyButton1,
+      contents: [
+        TargetContent(
+          align: ContentAlign.top,
+        ),
+      ],
+      shape: ShapeLightFocus.RRect,
+      radius: 5,
+    )
+    );
+    targets.add(TargetFocus(
+      identify: "Target",
+      keyTarget: keyButton2,
+      contents: [
+        TargetContent(
+          align: ContentAlign.top,
+          child: Text(
+            "SNSに個人情報が投稿されていますね\n特定の可能性があり危険です\nこれは異変です\nタスク管理画面に行き\nタスクを削除しましょう",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20
+            ),
+          ),
+        ),
+      ],
+    )
+    );
+
+    _showTutorial(context, targets);
+
     final pushButton6 = TextButton(
       onPressed: () {
         stopwatchNotifier.stop();
@@ -75,7 +114,8 @@ class _screen1State extends ConsumerState<tutorialError_screen>
       ),
     );
     final pushButton9 = TextButton(
-      onPressed: () => context.push('/tutorialTask'),
+      key: keyButton2,
+      onPressed: () => context.go('/tutorialTask'),
       child: const Text(
         '□',
         style: TextStyle(fontSize: 25),
@@ -84,6 +124,7 @@ class _screen1State extends ConsumerState<tutorialError_screen>
     return Scaffold(
       body: Center(
         child: SizedBox(
+          key: keyButton1,
           width: MediaQuery.of(context).size.width * 0.95,
           height: MediaQuery.of(context).size.width * 1.8,
           child: Container(
@@ -148,7 +189,7 @@ class _screen1State extends ConsumerState<tutorialError_screen>
                 AspectRatio(
                   aspectRatio: 27 / 46,
                   child: Container(
-                    child: SvgPicture.asset('images/異変8.svg'
+                    child: SvgPicture.asset('images/異変9.svg'
                       ,fit: BoxFit.cover,),
                   ),
                 ),
@@ -174,5 +215,13 @@ class _screen1State extends ConsumerState<tutorialError_screen>
         ),
       ),
     );
+  }
+  void _showTutorial(BuildContext context, List<TargetFocus> targets) {
+    TutorialCoachMark(
+      targets: targets,
+      colorShadow: Colors.black,
+      textSkip: "SKIP",
+      paddingFocus: 10,
+    )..show(context: context);
   }
 }

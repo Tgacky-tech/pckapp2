@@ -146,7 +146,7 @@ class rule_screen extends ConsumerWidget {
                           ),
                           onPressed: () {
                             ref.read(tutorialProvider.notifier).setTutorial(0);
-                            context.push('/tutorial');
+                            context.push('/tutorialStart');
                           },
                         ),
                       ),
