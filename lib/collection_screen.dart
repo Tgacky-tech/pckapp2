@@ -10,92 +10,167 @@ void main() {
   ));
 }
 
-class CollectionScreen extends StatelessWidget {
+class CollectionScreen extends StatefulWidget {
+  const CollectionScreen({Key? key}) : super(key: key);
 
-  const CollectionScreen({Key? key})
-      : super(key: key);
+  @override
+  _CollectionScreenState createState() => _CollectionScreenState();
+}
 
+class _CollectionScreenState extends State<CollectionScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+  Widget _simageItem(String name) {
+    var image = "images/" + name + ".svg";
+    return Container(
+
+      decoration: BoxDecoration(
+        // border: Border.all(color: Colors.grey),
+      ),
+      child: SvgPicture.asset(
+        image,
+        fit: BoxFit.cover,
+        width: MediaQuery.of(context).size.width * 0.7,
+        // height: MediaQuery.of(context).size.width * 0.4,
+      ),
+    );
+  }
+
+  Widget _imageItem(String name) {
+    var image = "images/" + name + "s.svg";
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start, // 左揃えにする
+      children: [
+        // ラベルの表示
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+          // ラベルに上下の余白を追加
+          color: Colors.grey[700],
+          // ラベルの背景色を黒に設定
+          child: Text(
+            name,
+            style: const TextStyle(
+              color: Colors.white, // 文字色を白に設定
+              fontSize: 16,
+            ),
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width * 0.4,
+          height: MediaQuery.of(context).size.width * 0.4,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+          ),
+          child: SvgPicture.asset(image, fit: BoxFit.cover),
+        ),
+      ],
+    );
+  }
+  Widget _dialog(String ihenNumber, String discription) {
+    return FutureBuilder<bool>(
+      future: _containsValue(ihenNumber),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // 読み込み中のインジケーター
+        } else if (snapshot.hasError) {
+          return Text('エラーが発生しました');
+        } else {
+          bool containsValue = snapshot.data ?? false;
+
+          // 値が含まれている場合はContainer、含まれていない場合は別のWidgetを表示
+          return containsValue
+              ? InkWell(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) => Column(
+                      children: <Widget>[
+                        AlertDialog(
+                          icon: Text('異変$ihenNumber'),
+                          title: Text(
+                            '$discription',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                          content: _simageItem('異変$ihenNumber'),
+                          actions: <Widget>[
+                            GestureDetector(
+                              child: Text('閉じる'),
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                            )
+                          ],
+                        ),
+                      ],
+                    ));
+              },
+              child: _imageItem('異変$ihenNumber')
+          )
+              : Column(
+            crossAxisAlignment: CrossAxisAlignment.start, // 左揃えにする
+            children: [
+              // ラベルの表示
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                // ラベルに上下の余白を追加
+                color: Colors.grey[700],
+                // ラベルの背景色を黒に設定
+                child: Text(
+                  "異変"+ihenNumber,
+                  style: const TextStyle(
+                    color: Colors.white, // 文字色を白に設定
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+                  Container(
+                  width: MediaQuery.of(context).size.width * 0.4,
+        height: MediaQuery.of(context).size.width * 0.4,
+        color: Colors.red,
+        child: Center(
+        child: Text(
+        '未開放', // 含まれていない場合の表示
+        style: TextStyle(fontSize: 16, color: Colors.white),
+        textAlign: TextAlign.center,
+        ),
+        ),
+        )
+            ],
+          );Container(
+            width: MediaQuery.of(context).size.width * 0.4,
+            height: MediaQuery.of(context).size.width * 0.4,
+            color: Colors.red,
+            child: Center(
+              child: Text(
+                'このメッセージは表示されません', // 含まれていない場合の表示
+                style: TextStyle(fontSize: 16, color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        }
+      },
+    );
+  }
+  Future<bool> _containsValue(String targetValue) async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? intListString = prefs.getString("intListKey");
+
+    if (intListString != null) {
+      List<int> intList = List<int>.from(jsonDecode(intListString));
+      return intList.contains(int.parse(targetValue)); // 文字列をintに変換してチェック
+    }
+    return false; // 値が存在しない場合
+  }
   @override
   Widget build(BuildContext context) {
     ScrollController controller = ScrollController();
-    Widget _simageItem(String name) {
-      var image = "images/" + name + ".svg";
-      return Container(
 
-        decoration: BoxDecoration(
-          // border: Border.all(color: Colors.grey),
-        ),
-        child: SvgPicture.asset(
-          image,
-          fit: BoxFit.cover,
-          width: MediaQuery.of(context).size.width * 0.7,
-          // height: MediaQuery.of(context).size.width * 0.4,
-        ),
-      );
-    }
-
-    Widget _imageItem(String name) {
-      var image = "images/" + name + "s.svg";
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // 左揃えにする
-        children: [
-          // ラベルの表示
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-            // ラベルに上下の余白を追加
-            color: Colors.grey[700],
-            // ラベルの背景色を黒に設定
-            child: Text(
-              name,
-              style: const TextStyle(
-                color: Colors.white, // 文字色を白に設定
-                fontSize: 16,
-              ),
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.4,
-            height: MediaQuery.of(context).size.width * 0.4,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
-            ),
-            child: SvgPicture.asset(image, fit: BoxFit.cover),
-          ),
-        ],
-      );
-    }
-
-    Widget _dialog(String ihenNumber,String discription){
-      return InkWell(
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (context) => Column(
-                  children: <Widget>[
-                    AlertDialog(
-                      icon: Text('異変$ihenNumber'),
-                      title: Text(
-                        '$discription',
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                      content: _simageItem('異変$ihenNumber'),
-                      actions: <Widget>[
-                        GestureDetector(
-                          child: Text('閉じる'),
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                        )
-                      ],
-                    ),
-                  ],
-                ));
-          },
-          child: _imageItem('異変$ihenNumber')
-      );
-    }
 
     return Scaffold(
       // backgroundColor: Colors.blue,
