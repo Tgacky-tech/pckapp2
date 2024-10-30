@@ -67,7 +67,7 @@ class tutorialTask_screen extends ConsumerWidget {
                                 WidgetsBinding.instance.addPostFrameCallback((_) {
                                   // context.push(proceedPath);
                                   ref.read(levelProvider.notifier).state = 0;
-                                  context.go('/tutorial');
+                                  context.go('/tutorialEnd');
                                 });
                               }
                             }

@@ -17,6 +17,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pckapp2/tutorialEnd_screen.dart';
 import 'package:pckapp2/tutorialStart_screen.dart';
 import 'package:pckapp2/tutorialStart_screen.dart';
 import 'package:pckapp2/tutorial_1_screen.dart';
@@ -96,6 +97,10 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: '/tutorialStart',
         builder: (context, state) => tutorialStartScreen(),
+      ),
+      GoRoute(
+        path: '/tutorialEnd',
+        builder: (context, state) => tutorialEndScreen(),
       ),
       GoRoute(
         path: '/00',
