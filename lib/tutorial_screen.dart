@@ -328,16 +328,17 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                   AspectRatio(
                     aspectRatio: 27 / 46,
                     child: Container(
-                        alignment: Alignment.topCenter,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Column(
+                      alignment: Alignment.topCenter,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Flexible(
+                                child: Column(
                                   children: <Widget>[
                                     pushButton1,
                                     const Text(
@@ -346,7 +347,9 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                     ),
                                   ],
                                 ),
-                                Column(
+                              ),
+                              Flexible(
+                                child: Column(
                                   children: <Widget>[
                                     pushButton2,
                                     const Text(
@@ -355,7 +358,9 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                     ),
                                   ],
                                 ),
-                                Column(
+                              ),
+                              Flexible(
+                                child: Column(
                                   children: <Widget>[
                                     pushButton3,
                                     const Text(
@@ -364,7 +369,9 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                     ),
                                   ],
                                 ),
-                                Column(
+                              ),
+                              Flexible(
+                                child: Column(
                                   children: <Widget>[
                                     pushButton4,
                                     const Text(
@@ -373,21 +380,11 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
-                            // SizedBox(
-                            //   height: MediaQuery.of(context).size.width * 0.35,
-                            // ),
-                            // if (_isAnimationVisible) // アニメーションが表示されている間
-                            //   SizedBox(
-                            //     height: 300, // アニメーションの高さを固定
-                            //     child: CountdownAnimation(
-                            //       // countdownDuration: const Duration(seconds: 3),
-                            //       onComplete: _onAnimationComplete,
-                            //     ),
-                            //   ),
-                          ],
-                        )
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Row(
