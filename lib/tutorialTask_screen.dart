@@ -152,7 +152,7 @@ class _TutorialTaskScreenState extends ConsumerState<TutorialTaskScreen> {
                                               ref
                                                   .read(
                                                       tutorialProvider.notifier)
-                                                  .setTutorial(0);
+                                                  .setTutorial(5);
                                             });
                                           }
                                         },
