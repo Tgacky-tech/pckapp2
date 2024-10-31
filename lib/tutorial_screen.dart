@@ -104,6 +104,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
   GlobalKey keyButton2 = GlobalKey();
   GlobalKey keyButton3 = GlobalKey();
   GlobalKey keyButton4 = GlobalKey();
+  GlobalKey keyButton5 = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -492,6 +493,41 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                 align: ContentAlign.top,
                 child: Text(
                   "今回は異変がないようです\nタスク管理画面に行き\n判断が正しいか確かめましょう",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ];
+      case 5:
+        return [
+          TargetFocus(
+            identify: "Button 5",
+            keyTarget: keyButton5,
+            contents: [
+              TargetContent(
+                align: ContentAlign.top,
+                child: Text(
+                  "時計が一時間進んでいます\nこれは先ほどの判断が正しかったということです",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20
+                  ),
+                ),
+              ),
+            ],
+          ),
+          TargetFocus(
+            identify: "Button 0",
+            keyTarget: keyButton0,
+            contents: [
+              TargetContent(
+                align: ContentAlign.bottom,
+                child: Text(
+                  "メールアプリを押して\n異変がないか確認しましょう",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20

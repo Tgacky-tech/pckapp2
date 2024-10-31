@@ -26,7 +26,6 @@ import 'package:pckapp2/providers/stopwatch_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pckapp2/tutorialEnd_screen.dart';
 import 'package:pckapp2/tutorialStart_screen.dart';
-import 'package:pckapp2/tutorialStart_screen.dart';
 import 'package:pckapp2/tutorial_1_screen.dart';
 import 'package:pckapp2/tutorial_2_screen.dart';
 import 'package:pckapp2/tutorial_3_screen.dart';
