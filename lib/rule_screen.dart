@@ -11,6 +11,7 @@ import 'package:pckapp2/providers/difficulty_provider.dart';
 import 'package:pckapp2/providers/level_provider.dart';
 import 'dart:math' as math;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pckapp2/services/user_services.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -45,6 +46,11 @@ class rule_screen extends ConsumerWidget {
   }
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final userService = UserService();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      print('snlanjgaejoaegjgae');
+      await userService.createUserIfNotExists();
+    });
     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
     final error = ref.watch(errorProvider);
     var random = math.Random();

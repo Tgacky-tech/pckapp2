@@ -182,10 +182,6 @@ class MyApp extends ConsumerWidget {
   }
 
   Widget build(BuildContext context, WidgetRef ref) {
-    final userService = UserService();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await userService.createUserIfNotExists();
-    });
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routeInformationProvider: router.routeInformationProvider,
