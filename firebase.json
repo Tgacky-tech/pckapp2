@@ -28,6 +28,17 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "rewrites": [ {
+      "source": "**",
+      "destination": "/iliteracy-75b8b.web.app/#/home"
+    } ],
+    "headers": [{
+      "source" : "**",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "max-age=300"
+      }]
+    }]
   }
 }
