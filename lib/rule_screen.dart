@@ -64,8 +64,8 @@ class rule_screen extends ConsumerWidget {
                   height: 120,
                 ),
                 Container(
-                  child: Image.asset(
-                      'images/iLiteracy2.png'
+                  child: SvgPicture.asset(
+                      'images/firstbackground.svg'
                   ),
                 ),
                 AspectRatio(
