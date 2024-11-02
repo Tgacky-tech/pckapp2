@@ -1,20 +1,17 @@
 buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
     dependencies {
-        // ここに google-services プラグインを追加
-        classpath 'com.google.gms:google-services:4.4.2' // 最新バージョンに合わせてください
+        classpath 'com.android.tools.build:gradle:3.3.0'
     }
 }
-plugins {
-    // ...
 
-    // Add the dependency for the Google services Gradle plugin
-    id 'com.google.gms.google-services' version '4.4.2' apply false
-
-}
 allprojects {
     repositories {
+        jcenter()
         google()
-        mavenCentral()
     }
 }
 
