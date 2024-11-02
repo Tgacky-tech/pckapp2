@@ -93,8 +93,7 @@ class _screen1State extends ConsumerState<tutorialScreen1>
 
     final pushButton6 = TextButton(
       onPressed: () {
-        stopwatchNotifier.stop();
-        context.go('/menu');
+        null;
       },
       child: const Text(
         '◁',
@@ -126,6 +125,9 @@ class _screen1State extends ConsumerState<tutorialScreen1>
       body:  Stack(
         children: [
       Positioned.fill(
+        child:SizedBox(
+          width: MediaQuery.of(context).size.width * 1,
+          height: MediaQuery.of(context).size.height * 1,
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,// 横に並べる画像の数
@@ -144,7 +146,7 @@ class _screen1State extends ConsumerState<tutorialScreen1>
         );
       },
     ),
-    ),Center(
+    ),),Center(
         child: FittedBox(
     fit: BoxFit.scaleDown,child:SizedBox(
           key: keyButton1,

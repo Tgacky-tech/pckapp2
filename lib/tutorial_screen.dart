@@ -74,31 +74,6 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     });
   }
 
-  @override
-  void dispose() {
-    // WidgetsBindingObserverを解除
-    _controller.dispose();
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  // アプリのライフサイクルの変化を監視
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    // ライフサイクルの状態が変化した時に呼び出される
-    // 現在のパスを取得
-    if (state == AppLifecycleState.resumed) {
-      // フォアグラウンド状態に戻った時の処理
-      // バックグラウンド状態になったときの処理
-      context.push('/menu');
-    } else if (state == AppLifecycleState.paused) {
-      // バックグラウンド状態に移行した時の処理
-      final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
-      stopwatchNotifier.stop();
-    }
-  }
-
   GlobalKey keyButton0 = GlobalKey();
   GlobalKey keyButton1 = GlobalKey();
   GlobalKey keyButton2 = GlobalKey();
@@ -188,7 +163,6 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     final pushButton6 = TextButton(
       onPressed: () {
         stopwatchNotifier.stop();
-        context.go('/menu');
       },
       child: const Text(
         '◁',
@@ -220,26 +194,27 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     return Scaffold(
       body:  Stack(
         children: [
-      Positioned.fill(
-      child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,// 横に並べる画像の数
-        childAspectRatio: 1.4, // 正方形として表示
-      ),
-      itemBuilder: (context, index) {
-        return FittedBox(
-          fit: BoxFit.contain, // 画像全体が見えるように縮小
-          child: Transform.rotate(
-            angle: -0.1, // 画像を斜めにする角度（ラジアンで指定）
-            child: Image.asset(
-              'images/grey.png', // 使用する画像のパス
-              fit: BoxFit.cover,
-            ),
-          ),
-        );
-      },
-    ),
-    ),Center(
+    //   Positioned.fill(
+    //   child: GridView.builder(
+    //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //     crossAxisCount: 4,// 横に並べる画像の数
+    //     childAspectRatio: 1.4, // 正方形として表示
+    //   ),
+    //   itemBuilder: (context, index) {
+    //     return FittedBox(
+    //       fit: BoxFit.contain, // 画像全体が見えるように縮小
+    //       child: Transform.rotate(
+    //         angle: -0.1, // 画像を斜めにする角度（ラジアンで指定）
+    //         child: Image.asset(
+    //           'images/grey.png', // 使用する画像のパス
+    //           fit: BoxFit.cover,
+    //         ),
+    //       ),
+    //     );
+    //   },
+    // ),
+    // ),
+        Center(
         child: FittedBox(
             fit: BoxFit.scaleDown,child:SizedBox(
           width: MediaQuery.of(context).size.width * 0.95,
@@ -251,7 +226,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
               border: Border.all(color: Colors.black, width: 2),
             ),
             padding: EdgeInsets.all(4),
-            child: SingleChildScrollView(child:Container(
+            child:Container(
               decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/background.png'),
@@ -399,7 +374,6 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                   ),
                 ],
               ),
-            ),
           ),
         ),
         ),
