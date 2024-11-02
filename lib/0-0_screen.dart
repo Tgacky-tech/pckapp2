@@ -239,7 +239,40 @@ class _Screen00State extends ConsumerState<Screen00>
                       fit: BoxFit.cover,
                     ),
                   ),
-                  child: Column(
+                  child: Stack(
+    children: [
+      AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Positioned(
+            top: 0, // アニメーションの位置調整
+            left: 0,
+            right: 0,
+            child: Transform.translate(
+              offset: _isAnimationRunning
+                  ? Offset(0, _translateAnimation.value)
+                  : const Offset(0, 0),
+              child: ScaleTransition(
+                scale: _isAnimationRunning
+                    ? _scaleAnimation
+                    : const AlwaysStoppedAnimation(1.0),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "0$level:00",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+      Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       AspectRatio(
@@ -348,44 +381,16 @@ class _Screen00State extends ConsumerState<Screen00>
                           pushButton9,
                         ],
                       ),
+
                     ],
                   ),
+                  ],
                 ),
                       ),
               ),
             ),
           ),
           // アニメーションを画面上部のAspectRatioの位置に表示する
-          AnimatedBuilder(
-            animation: _controller,
-            builder: (context, child) {
-              return Positioned(
-                top: MediaQuery.of(context).size.height * 0.094, // アニメーションの位置調整
-                left: 0,
-                right: 0,
-                child: Transform.translate(
-                  offset: _isAnimationRunning
-                      ? Offset(0, _translateAnimation.value)
-                      : const Offset(0, 0),
-                  child: ScaleTransition(
-                    scale: _isAnimationRunning
-                        ? _scaleAnimation
-                        : const AlwaysStoppedAnimation(1.0),
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "0$level:00",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            },
           ),
         ],
       ),
