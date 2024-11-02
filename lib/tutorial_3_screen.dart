@@ -121,7 +121,7 @@ class _screen3State extends ConsumerState<tutorialScreen3>
           key: keyButton1,
           width: MediaQuery.of(context).size.width * 0.95,
           height: MediaQuery.of(context).size.width * 1.8,
-          child: Container(
+    child: SingleChildScrollView(child: Container(
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(6),
@@ -203,6 +203,7 @@ class _screen3State extends ConsumerState<tutorialScreen3>
               ],
             ),
           ),
+        ),
         ),
       ),
     ]

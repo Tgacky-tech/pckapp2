@@ -15,7 +15,7 @@ import 'package:pckapp2/providers/scrollPosition_provider.dart';
 import 'package:pckapp2/providers/counter_provider.dart';
 import 'package:pckapp2/providers/error_provider.dart';
 import 'package:pckapp2/providers/counterList_provider.dart';
-import 'package:pckapp2/providers/transitionFromTask_provider.dart';
+  import 'package:pckapp2/providers/transitionFromTask_provider.dart';
 
 class TutorialTaskScreen extends ConsumerStatefulWidget {
   const TutorialTaskScreen({Key? key}) : super(key: key);

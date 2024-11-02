@@ -146,7 +146,7 @@ class _screenErrorState extends ConsumerState<tutorialError_screen>
           key: keyButton1,
           width: MediaQuery.of(context).size.width * 0.95,
           height: MediaQuery.of(context).size.width * 1.8,
-          child: Container(
+    child: SingleChildScrollView(child: Container(
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(6),
@@ -231,6 +231,7 @@ class _screenErrorState extends ConsumerState<tutorialError_screen>
               ],
             ),
           ),
+    ),
         ),
       ),
     ]

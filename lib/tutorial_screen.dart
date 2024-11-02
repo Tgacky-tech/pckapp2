@@ -250,7 +250,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
               border: Border.all(color: Colors.black, width: 2),
             ),
             padding: EdgeInsets.all(4),
-            child:Container(
+            child: SingleChildScrollView(child:Container(
               decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/background.png'),
@@ -400,6 +400,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
               ),
             ),
           ),
+        ),
         ),
       ),]),
     );
