@@ -67,20 +67,24 @@ class rule_screen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(
-                  height: 120,
+                  height: MediaQuery.of(context).size.width * 0.3,
                 ),
+                AspectRatio(aspectRatio: 3/1,
+                child:
                 Container(
                   child: SvgPicture.asset(
                       'images/firstbackground.svg'
                   ),
+                ),
                 ),
                 AspectRatio(
                   aspectRatio: 27 / 30,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Container(),
-                      Container(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width * 0.1,
+                      ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.8,
                         height: MediaQuery.of(context).size.width * 0.2,
