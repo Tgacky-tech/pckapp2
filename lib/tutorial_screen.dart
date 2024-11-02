@@ -74,6 +74,31 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     });
   }
 
+  @override
+  void dispose() {
+    // WidgetsBindingObserverを解除
+    _controller.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  // アプリのライフサイクルの変化を監視
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    // ライフサイクルの状態が変化した時に呼び出される
+    // 現在のパスを取得
+    if (state == AppLifecycleState.resumed) {
+      // フォアグラウンド状態に戻った時の処理
+      // バックグラウンド状態になったときの処理
+      context.push('/menu');
+    } else if (state == AppLifecycleState.paused) {
+      // バックグラウンド状態に移行した時の処理
+      final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+      stopwatchNotifier.stop();
+    }
+  }
+
   GlobalKey keyButton0 = GlobalKey();
   GlobalKey keyButton1 = GlobalKey();
   GlobalKey keyButton2 = GlobalKey();
@@ -109,7 +134,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     );
 
     final pushButton2 = MaterialButton(
-        key: keyButton1,
+
       onPressed: () {
         if (level == 0) {
           context.go('/tutorial2');
@@ -129,7 +154,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     );
 
     final pushButton3 = MaterialButton(
-      key: keyButton2,
+      // key: keyButton2,
       onPressed: () {
         context.go('/tutorial3');
       },
@@ -145,7 +170,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     );
 
     final pushButton4 = MaterialButton(
-      key: keyButton3,
+      // key: keyButton3,
       onPressed: () {
         context.go('/tutorial4');
       },
@@ -163,6 +188,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     final pushButton6 = TextButton(
       onPressed: () {
         stopwatchNotifier.stop();
+        context.go('/menu');
       },
       child: const Text(
         '◁',
@@ -183,7 +209,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     );
 
     final pushButton9 = TextButton(
-      key: keyButton4,
+      // key: keyButton4,
       onPressed: () => context.go('/tutorialTask'),
       child: const Text(
         '□',
@@ -194,27 +220,26 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     return Scaffold(
       body:  Stack(
         children: [
-    //   Positioned.fill(
-    //   child: GridView.builder(
-    //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //     crossAxisCount: 4,// 横に並べる画像の数
-    //     childAspectRatio: 1.4, // 正方形として表示
-    //   ),
-    //   itemBuilder: (context, index) {
-    //     return FittedBox(
-    //       fit: BoxFit.contain, // 画像全体が見えるように縮小
-    //       child: Transform.rotate(
-    //         angle: -0.1, // 画像を斜めにする角度（ラジアンで指定）
-    //         child: Image.asset(
-    //           'images/grey.png', // 使用する画像のパス
-    //           fit: BoxFit.cover,
-    //         ),
-    //       ),
-    //     );
-    //   },
-    // ),
-    // ),
-        Center(
+      Positioned.fill(
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,// 横に並べる画像の数
+        childAspectRatio: 1.4, // 正方形として表示
+      ),
+      itemBuilder: (context, index) {
+        return FittedBox(
+          fit: BoxFit.contain, // 画像全体が見えるように縮小
+          child: Transform.rotate(
+            angle: -0.1, // 画像を斜めにする角度（ラジアンで指定）
+            child: Image.asset(
+              'images/grey.png', // 使用する画像のパス
+              fit: BoxFit.cover,
+            ),
+          ),
+        );
+      },
+    ),
+    ),Center(
         child: FittedBox(
             fit: BoxFit.scaleDown,child:SizedBox(
           width: MediaQuery.of(context).size.width * 0.95,
@@ -226,7 +251,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
               border: Border.all(color: Colors.black, width: 2),
             ),
             padding: EdgeInsets.all(4),
-            child:Container(
+            child: SingleChildScrollView(child:Container(
               decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/background.png'),
@@ -302,6 +327,29 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                       ],
                     ),
                   ),
+                  Stack(
+                    children: [Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          key: keyButton1,
+                          width: MediaQuery.of(context).size.width * 0.1475,
+                          height: MediaQuery.of(context).size.width * 0.1475,
+                        ),SizedBox(
+                          key: keyButton2,
+                          width: MediaQuery.of(context).size.width * 0.1475,
+                          height: MediaQuery.of(context).size.width * 0.1475,
+                        ),SizedBox(
+                          key: keyButton3,
+                          width: MediaQuery.of(context).size.width * 0.1475,
+                          height: MediaQuery.of(context).size.width * 0.1475,
+                        ),SizedBox(
+                          key: keyButton4,
+                          width: MediaQuery.of(context).size.width * 0.1475,
+                          height: MediaQuery.of(context).size.width * 0.1475,
+                        ),
+                      ]
+                    ),
                   AspectRatio(
                     aspectRatio: 27 / 46,
                     child: Container(
@@ -315,7 +363,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               Flexible(
-                                child:Column(
+                                child: Column(
                                   children: <Widget>[
                                     pushButton1,
                                     const Text(
@@ -326,7 +374,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                 ),
                               ),
                               Flexible(
-                                child:Column(
+                                child: Column(
                                   children: <Widget>[
                                     pushButton2,
                                     const Text(
@@ -337,7 +385,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                 ),
                               ),
                               Flexible(
-                                child:Column(
+                                child: Column(
                                   children: <Widget>[
                                     pushButton3,
                                     const Text(
@@ -363,6 +411,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                         ],
                       ),
                     ),
+                  ),]
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -374,6 +423,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                   ),
                 ],
               ),
+            ),
           ),
         ),
         ),
