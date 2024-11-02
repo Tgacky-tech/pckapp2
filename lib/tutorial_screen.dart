@@ -314,8 +314,8 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              // Flexible(
-                                Column(
+                              Flexible(
+                                child:Column(
                                   children: <Widget>[
                                     pushButton1,
                                     const Text(
@@ -324,9 +324,9 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                     ),
                                   ],
                                 ),
-                              // ),
-                              // Flexible(
-                                Column(
+                              ),
+                              Flexible(
+                                child:Column(
                                   children: <Widget>[
                                     pushButton2,
                                     const Text(
@@ -335,9 +335,9 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                     ),
                                   ],
                                 ),
-                              // ),
-                              // Flexible(
-                                Column(
+                              ),
+                              Flexible(
+                                child:Column(
                                   children: <Widget>[
                                     pushButton3,
                                     const Text(
@@ -346,9 +346,9 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                     ),
                                   ],
                                 ),
-                              // ),
-                              // Flexible(
-                                 Column(
+                              ),
+                              Flexible(
+                                child: Column(
                                   children: <Widget>[
                                     pushButton4,
                                     const Text(
@@ -357,7 +357,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                                     ),
                                   ],
                                 ),
-
+                              ),
                             ],
                           ),
                         ],
