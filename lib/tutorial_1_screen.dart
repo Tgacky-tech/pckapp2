@@ -93,8 +93,7 @@ class _screen1State extends ConsumerState<tutorialScreen1>
 
     final pushButton6 = TextButton(
       onPressed: () {
-        stopwatchNotifier.stop();
-        context.go('/menu');
+        null;
       },
       child: const Text(
         '◁',
