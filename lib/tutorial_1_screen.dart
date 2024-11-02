@@ -32,23 +32,23 @@ class _screen1State extends ConsumerState<tutorialScreen1>
 
   // アプリのライフサイクルの変化を監視
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    // ライフサイクルの状態が変化した時に呼び出される
-    final currentLocation =
-        GoRouter.of(context).routerDelegate.currentConfiguration;
-    // 現在のパスを取得
-    if (state == AppLifecycleState.resumed) {
-      // フォアグラウンド状態に戻った時の処理
-
-      // バックグラウンド状態になったときの処理
-      context.push('/menu');
-    } else if (state == AppLifecycleState.paused) {
-      // バックグラウンド状態に移行した時の処理
-      final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
-      stopwatchNotifier.stop();
-    }
-  }
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   super.didChangeAppLifecycleState(state);
+  //   // ライフサイクルの状態が変化した時に呼び出される
+  //   final currentLocation =
+  //       GoRouter.of(context).routerDelegate.currentConfiguration;
+  //   // 現在のパスを取得
+  //   if (state == AppLifecycleState.resumed) {
+  //     // フォアグラウンド状態に戻った時の処理
+  //
+  //     // バックグラウンド状態になったときの処理
+  //     context.push('/menu');
+  //   } else if (state == AppLifecycleState.paused) {
+  //     // バックグラウンド状態に移行した時の処理
+  //     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+  //     stopwatchNotifier.stop();
+  //   }
+  // }
 
   GlobalKey keyButton1 = GlobalKey();
   GlobalKey keyButton2 = GlobalKey();
