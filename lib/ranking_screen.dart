@@ -32,10 +32,11 @@ class ranking_screen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         elevation: 6,
         shadowColor: Colors.grey.withOpacity(0.4),
-        title: const Text('ランキング'),
+        title: const Text('ランキング',
+        style: TextStyle(color: Colors.white),),
       ),
       body: Column(
         children: [

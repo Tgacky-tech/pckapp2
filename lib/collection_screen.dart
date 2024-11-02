@@ -175,10 +175,11 @@ class _CollectionScreenState extends State<CollectionScreen> {
     return Scaffold(
       // backgroundColor: Colors.blue,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         elevation: 6,
         shadowColor: Colors.grey.withOpacity(0.4),
-        title: const Text('コレクション'),
+        title: const Text('コレクション',
+          style: TextStyle(color: Colors.white),),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,

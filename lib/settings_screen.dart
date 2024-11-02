@@ -22,10 +22,11 @@ class settings_screen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         elevation: 6,
         shadowColor: Colors.grey.withOpacity(0.4),
-        title: const Text('設定'),
+        title: const Text('設定',
+            style: TextStyle(color: Colors.white),),
       ),
       body: ListView(
         children: [
@@ -52,7 +53,7 @@ class settings_screen extends ConsumerWidget {
             title: 'チュートリアル',
             onTap: () {
               ref.read(tutorialProvider.notifier).setTutorial(0);
-              context.push('/tutorial');
+              context.push('/tutorialStart');
 
             },
           ),
