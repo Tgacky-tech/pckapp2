@@ -222,7 +222,8 @@ class _Screen00State extends ConsumerState<Screen00>
             ),
           ),
           Center(
-            child: SizedBox(
+            child: FittedBox(
+          fit: BoxFit.scaleDown,child:SizedBox(
               width: MediaQuery.of(context).size.width * 0.95,
               height: MediaQuery.of(context).size.width * 1.8,
               child: Container(
@@ -391,6 +392,7 @@ class _Screen00State extends ConsumerState<Screen00>
             ),
           ),
           // アニメーションを画面上部のAspectRatioの位置に表示する
+          ),
           ),
         ],
       ),

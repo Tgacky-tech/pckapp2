@@ -142,7 +142,8 @@ class _screenErrorState extends ConsumerState<tutorialError_screen>
       },
     ),
     ),Center(
-        child: SizedBox(
+        child:FittedBox(
+    fit: BoxFit.scaleDown,child: SizedBox(
           key: keyButton1,
           width: MediaQuery.of(context).size.width * 0.95,
           height: MediaQuery.of(context).size.width * 1.8,
@@ -233,7 +234,7 @@ class _screenErrorState extends ConsumerState<tutorialError_screen>
           ),
     ),
         ),
-      ),
+      ),),
     ]
       ),
     );

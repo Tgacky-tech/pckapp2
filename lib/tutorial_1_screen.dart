@@ -145,18 +145,19 @@ class _screen1State extends ConsumerState<tutorialScreen1>
       },
     ),
     ),Center(
-        child: SizedBox(
+        child: FittedBox(
+    fit: BoxFit.scaleDown,child:SizedBox(
           key: keyButton1,
           width: MediaQuery.of(context).size.width * 0.95,
           height: MediaQuery.of(context).size.width * 1.8,
-    child: SingleChildScrollView(child: Container(
+    child:  Container(
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(6),
               border: Border.all(color: Colors.black, width: 2),
             ),
             padding: EdgeInsets.all(4),
-            child: Column(
+            child:Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 AspectRatio(
@@ -234,9 +235,9 @@ class _screen1State extends ConsumerState<tutorialScreen1>
               ],
             ),
           ),
+            ),
         ),
         ),
-      ),
     ]
       ),
     );

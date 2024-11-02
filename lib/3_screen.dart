@@ -62,7 +62,8 @@ class screen3 extends ConsumerWidget {
       },
     ),
     ),Center(
-        child: SizedBox(
+        child:FittedBox(
+    fit: BoxFit.scaleDown,child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.95,
     height: MediaQuery.of(context).size.width * 1.8,
     child: Container(
@@ -159,7 +160,7 @@ class screen3 extends ConsumerWidget {
       ),
               ),
       ),
-          ),
+          ),),
     ]
       ),
     );

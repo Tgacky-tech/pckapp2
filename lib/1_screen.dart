@@ -105,7 +105,8 @@ class _screen1State extends ConsumerState<screen1>
     ),
     ),
     Center(
-        child: SizedBox(
+        child: FittedBox(
+    fit: BoxFit.scaleDown,child:SizedBox(
           width: MediaQuery.of(context).size.width * 0.95,
           height: MediaQuery.of(context).size.width * 1.8,
           child: Container(
@@ -195,7 +196,7 @@ class _screen1State extends ConsumerState<screen1>
           ),
         ),
       ),
-    ),
+    ),),
     ]
       ),
     );
