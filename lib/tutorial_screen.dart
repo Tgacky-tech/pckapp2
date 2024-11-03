@@ -134,7 +134,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     );
 
     final pushButton2 = MaterialButton(
-
+        key: keyButton1,
       onPressed: () {
         if (level == 0) {
           context.go('/tutorial2');
@@ -152,9 +152,8 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
             )),
       ),
     );
-
     final pushButton3 = MaterialButton(
-      // key: keyButton2,
+      key: keyButton2,
       onPressed: () {
         context.go('/tutorial3');
       },
@@ -170,7 +169,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     );
 
     final pushButton4 = MaterialButton(
-      // key: keyButton3,
+      key: keyButton3,
       onPressed: () {
         context.go('/tutorial4');
       },
@@ -187,8 +186,9 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
 
     final pushButton6 = TextButton(
       onPressed: () {
-        stopwatchNotifier.stop();
-        context.go('/menu');
+        null;
+        // stopwatchNotifier.stop();
+        // context.go('/menu');
       },
       child: const Text(
         '◁',
@@ -209,7 +209,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     );
 
     final pushButton9 = TextButton(
-      // key: keyButton4,
+      key: keyButton4,
       onPressed: () => context.go('/tutorialTask'),
       child: const Text(
         '□',
@@ -332,19 +332,19 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
-                          key: keyButton1,
+
                           width: MediaQuery.of(context).size.width * 0.1475,
                           height: MediaQuery.of(context).size.width * 0.1475,
                         ),SizedBox(
-                          key: keyButton2,
+                          // key: keyButton2,
                           width: MediaQuery.of(context).size.width * 0.1475,
                           height: MediaQuery.of(context).size.width * 0.1475,
                         ),SizedBox(
-                          key: keyButton3,
+                          // key: keyButton3,
                           width: MediaQuery.of(context).size.width * 0.1475,
                           height: MediaQuery.of(context).size.width * 0.1475,
                         ),SizedBox(
-                          key: keyButton4,
+                          // key: keyButton4,
                           width: MediaQuery.of(context).size.width * 0.1475,
                           height: MediaQuery.of(context).size.width * 0.1475,
                         ),
