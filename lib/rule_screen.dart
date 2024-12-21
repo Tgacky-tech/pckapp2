@@ -22,30 +22,6 @@ void main() {
 class rule_screen extends ConsumerWidget {
   const rule_screen({Key? key}) : super(key: key);
 
-  Future<bool> isFirstTime() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('button_pressed') ?? true;
-  }
-
-  // 初回であることを記録する関数
-  Future<void> setFirstTimeFlag() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('button_pressed', false);
-  }
-
-  // ボタンを押したときの処理
-  void onButtonPressed(BuildContext context) async {
-    if (await isFirstTime()) {
-      // チュートリアル画面に遷移するコードを書く
-      // 初回であることを記録
-      await setFirstTimeFlag();
-      context.push('/tutorial');
-    } else {
-      // 2回目以降なら「通常の画面」に遷移
-      context.push('/00');
-    }
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userService = UserService();
@@ -105,7 +81,7 @@ class rule_screen extends ConsumerWidget {
                           child: FittedBox(
                             fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
                             child: Text(
-                              'チュートリアル',
+                              'チュートリアル\n(Androidのみ対応)',
                               style: TextStyle(
                                 fontSize: 36, // 必要に応じて大きさを変更
                                 color: Colors.white,
@@ -184,7 +160,7 @@ class rule_screen extends ConsumerWidget {
                                 .addRandomNumber(ref.read(errorProvider));
                             stopwatchNotifier.reset(); // ストップウォッチリセット
                             stopwatchNotifier.start(); // 計測開始
-                            onButtonPressed(context);
+                            context.go('/00');
                           },
                         ),
                       ),
@@ -240,7 +216,7 @@ class rule_screen extends ConsumerWidget {
                                 .addRandomNumber(ref.read(errorProvider));
                             stopwatchNotifier.reset(); // ストップウォッチリセット
                             stopwatchNotifier.start(); // 計測開始
-                            onButtonPressed(context);
+                            context.go('/00');
                           },
                         ),
                       ),

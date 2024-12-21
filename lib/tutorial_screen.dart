@@ -74,6 +74,31 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
     });
   }
 
+  @override
+  void dispose() {
+    // WidgetsBindingObserverを解除
+    _controller.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  // アプリのライフサイクルの変化を監視
+  @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   super.didChangeAppLifecycleState(state);
+  //   // ライフサイクルの状態が変化した時に呼び出される
+  //   // 現在のパスを取得
+  //   if (state == AppLifecycleState.resumed) {
+  //     // フォアグラウンド状態に戻った時の処理
+  //     // バックグラウンド状態になったときの処理
+  //     context.push('/menu');
+  //   } else if (state == AppLifecycleState.paused) {
+  //     // バックグラウンド状態に移行した時の処理
+  //     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+  //     stopwatchNotifier.stop();
+  //   }
+  // }
+
   GlobalKey keyButton0 = GlobalKey();
   GlobalKey keyButton1 = GlobalKey();
   GlobalKey keyButton2 = GlobalKey();
@@ -127,7 +152,6 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
             )),
       ),
     );
-
     final pushButton3 = MaterialButton(
       key: keyButton2,
       onPressed: () {
@@ -162,7 +186,9 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
 
     final pushButton6 = TextButton(
       onPressed: () {
-        stopwatchNotifier.stop();
+        null;
+        // stopwatchNotifier.stop();
+        // context.go('/menu');
       },
       child: const Text(
         '◁',
@@ -301,6 +327,29 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                       ],
                     ),
                   ),
+                  Stack(
+                    children: [Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+
+                          width: MediaQuery.of(context).size.width * 0.1475,
+                          height: MediaQuery.of(context).size.width * 0.1475,
+                        ),SizedBox(
+                          // key: keyButton2,
+                          width: MediaQuery.of(context).size.width * 0.1475,
+                          height: MediaQuery.of(context).size.width * 0.1475,
+                        ),SizedBox(
+                          // key: keyButton3,
+                          width: MediaQuery.of(context).size.width * 0.1475,
+                          height: MediaQuery.of(context).size.width * 0.1475,
+                        ),SizedBox(
+                          // key: keyButton4,
+                          width: MediaQuery.of(context).size.width * 0.1475,
+                          height: MediaQuery.of(context).size.width * 0.1475,
+                        ),
+                      ]
+                    ),
                   AspectRatio(
                     aspectRatio: 27 / 46,
                     child: Container(
@@ -362,6 +411,7 @@ class _ScreenTutorialState extends ConsumerState<tutorial_screen>
                         ],
                       ),
                     ),
+                  ),]
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

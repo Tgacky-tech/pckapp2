@@ -32,23 +32,23 @@ class _screen1State extends ConsumerState<tutorialScreen1>
 
   // アプリのライフサイクルの変化を監視
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    // ライフサイクルの状態が変化した時に呼び出される
-    final currentLocation =
-        GoRouter.of(context).routerDelegate.currentConfiguration;
-    // 現在のパスを取得
-    if (state == AppLifecycleState.resumed) {
-      // フォアグラウンド状態に戻った時の処理
-
-      // バックグラウンド状態になったときの処理
-      context.push('/menu');
-    } else if (state == AppLifecycleState.paused) {
-      // バックグラウンド状態に移行した時の処理
-      final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
-      stopwatchNotifier.stop();
-    }
-  }
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   super.didChangeAppLifecycleState(state);
+  //   // ライフサイクルの状態が変化した時に呼び出される
+  //   final currentLocation =
+  //       GoRouter.of(context).routerDelegate.currentConfiguration;
+  //   // 現在のパスを取得
+  //   if (state == AppLifecycleState.resumed) {
+  //     // フォアグラウンド状態に戻った時の処理
+  //
+  //     // バックグラウンド状態になったときの処理
+  //     context.push('/menu');
+  //   } else if (state == AppLifecycleState.paused) {
+  //     // バックグラウンド状態に移行した時の処理
+  //     final stopwatchNotifier = ref.watch(stopwatchProvider.notifier);
+  //     stopwatchNotifier.stop();
+  //   }
+  // }
 
   GlobalKey keyButton1 = GlobalKey();
   GlobalKey keyButton2 = GlobalKey();
@@ -125,6 +125,9 @@ class _screen1State extends ConsumerState<tutorialScreen1>
       body:  Stack(
         children: [
       Positioned.fill(
+        child:SizedBox(
+          width: MediaQuery.of(context).size.width * 1,
+          height: MediaQuery.of(context).size.height * 1,
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,// 横に並べる画像の数
@@ -143,7 +146,7 @@ class _screen1State extends ConsumerState<tutorialScreen1>
         );
       },
     ),
-    ),Center(
+    ),),Center(
         child: FittedBox(
     fit: BoxFit.scaleDown,child:SizedBox(
           key: keyButton1,
