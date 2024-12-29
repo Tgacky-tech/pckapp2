@@ -81,7 +81,7 @@ class rule_screen extends ConsumerWidget {
                           child: FittedBox(
                             fit: BoxFit.scaleDown, // ボタンに収まるように文字サイズを調整
                             child: Text(
-                              'チュートリアル\n(Androidのみ対応)',
+                              'チュートリアル',
                               style: TextStyle(
                                 fontSize: 36, // 必要に応じて大きさを変更
                                 color: Colors.white,

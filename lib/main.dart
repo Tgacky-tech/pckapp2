@@ -35,6 +35,8 @@ import 'package:pckapp2/tutorialError_screen.dart';
 import 'package:pckapp2/tutorialTask_screen.dart';
 import 'firebase_options.dart';
 import 'package:pckapp2/services/user_services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -187,6 +189,16 @@ class MyApp extends ConsumerWidget {
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
+      locale: const Locale('ja', 'JP'), // デフォルトを日本語に設定
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ja', 'JP'), // 日本語
+        Locale('en', 'US'), // 必要に応じて他の言語も追加
+      ],
     );
   }
 }

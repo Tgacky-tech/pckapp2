@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "235277619668",
     "project_id": "pckapp2-fadbf",
-    "storage_bucket": "pckapp2-fadbf.appspot.com"
+    "storage_bucket": "pckapp2-fadbf.firebasestorage.app"
   },
   "client": [
     {
@@ -29,6 +29,25 @@
         "mobilesdk_app_id": "1:235277619668:android:3bbc3a1d3523dd3bb50641",
         "android_client_info": {
           "package_name": "com.example.pckapp2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_dYuQAfpIEW4fe9ypHp6x32ctpMhMZ7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235277619668:android:c31f616d95cdafecb50641",
+        "android_client_info": {
+          "package_name": "com.iliteracy.app"
         }
       },
       "oauth_client": [],
