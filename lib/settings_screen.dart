@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pckapp2/providers/tutorial_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(
@@ -20,6 +21,22 @@ class settings_screen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final String email = 'iliteracy43@gmail.com';
+
+    // メールアプリを開く関数
+    void _launchEmail() async {
+      final Uri emailUri = Uri(
+        scheme: 'mailto',
+        path: email,
+        query: Uri.encodeComponent('Subject=Hello&Body=How are you?'), // 件名と本文のデフォルト値を設定
+      );
+
+      if (await canLaunch(emailUri.toString())) {
+        await launch(emailUri.toString());
+      } else {
+        throw 'Could not launch email app';
+      }
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -55,6 +72,13 @@ class settings_screen extends ConsumerWidget {
               ref.read(tutorialProvider.notifier).setTutorial(0);
               context.push('/tutorialStart');
 
+            },
+          ),
+          _buildSettingItem(
+            icon: Icons.mail,
+            title: 'お問い合わせ',
+            onTap: () {
+              _launchEmail;
             },
           ),
         ],

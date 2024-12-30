@@ -37,6 +37,7 @@ dependencies:
   cloud_firestore: ^5.4.2
   tutorial_coach_mark:
   flutter_overboard:
+  url_launcher: ^6.0.10
 
 
   # The following adds the Cupertino Icons font to your application.
