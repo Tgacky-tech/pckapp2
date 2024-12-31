@@ -90,78 +90,80 @@ class _Screen00State extends ConsumerState<Screen00>
     final dif = ref.watch(difficultyProvider);
 
     final pushButton1 = _buildButton('images/nmail.png', () {
-      if (dif==0) {
+      if (dif == 0) {
         if (1 <= error && error <= 4) {
           context.push('/5');
         } else {
           context.push('/1');
         }
-      }else{
-        if (1 <= error && error <= 4 || 19 <= error && error <= 20 || error == 22) {
+      } else {
+        if (1 <= error && error <= 4 ||
+            19 <= error && error <= 20 ||
+            error == 22) {
           context.push('/5');
         } else if (error == 21) {
           context.push('/10');
-        } else if(5 <= error && error <= 18){
+        } else if (5 <= error && error <= 18) {
           context.push('/1');
-      }else{
+        } else {
           context.push('/6');
         }
       }
     });
 
     final pushButton2 = _buildButton('images/nsns.png', () {
-      if(dif==0) {
+      if (dif == 0) {
         if (5 <= error && error <= 9) {
           context.push('/5');
         } else {
           context.push('/2');
         }
-      }else{
+      } else {
         if (5 <= error && error <= 9 || 23 <= error && error <= 25) {
           context.push('/5');
         } else if (error == 26) {
           context.push('/11');
-        } else if(error<=18){
+        } else if (error <= 18) {
           context.push('/2');
-        }else{
+        } else {
           context.push('/7');
         }
       }
     });
 
     final pushButton3 = _buildButton('images/nbrowser.png', () {
-      if(dif==0) {
+      if (dif == 0) {
         if (10 <= error && error <= 14) {
           context.push('/5');
         } else {
           context.push('/3');
         }
-      }else{
+      } else {
         if (10 <= error && error <= 14 || 27 <= error && error <= 30) {
           context.push('/5');
-        } else if(error<=18){
+        } else if (error <= 18) {
           context.push('/3');
-        }else{
+        } else {
           context.push('/8');
         }
       }
     });
 
     final pushButton4 = _buildButton('images/nsettings.png', () {
-      if(dif==0) {
+      if (dif == 0) {
         if (15 <= error && error <= 18) {
           context.push('/5');
         } else {
           context.push('/4');
         }
-      }else{
+      } else {
         if (15 <= error && error <= 18 || 31 <= error && error <= 33) {
           context.push('/5');
         } else if (error == 34) {
           context.push('/12');
-        } else if(error<=18){
+        } else if (error <= 18) {
           context.push('/4');
-        }else{
+        } else {
           context.push('/9');
         }
       }
@@ -204,7 +206,7 @@ class _Screen00State extends ConsumerState<Screen00>
           Positioned.fill(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,// 横に並べる画像の数
+                crossAxisCount: 4, // 横に並べる画像の数
                 childAspectRatio: 1.4, // 正方形として表示
               ),
               itemBuilder: (context, index) {
@@ -223,176 +225,182 @@ class _Screen00State extends ConsumerState<Screen00>
           ),
           Center(
             child: FittedBox(
-          fit: BoxFit.scaleDown,child:SizedBox(
-              width: MediaQuery.of(context).size.width * 0.95,
-              height: MediaQuery.of(context).size.width * 1.8,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(color: Colors.black, width: 2),
-                ),
-                padding: EdgeInsets.all(4),
-                child: SingleChildScrollView(child:Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/background.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Stack(
-    children: [
-      AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return Positioned(
-            top: 0, // アニメーションの位置調整
-            left: 0,
-            right: 0,
-            child: Transform.translate(
-              offset: _isAnimationRunning
-                  ? Offset(0, _translateAnimation.value)
-                  : const Offset(0, 0),
-              child: ScaleTransition(
-                scale: _isAnimationRunning
-                    ? _scaleAnimation
-                    : const AlwaysStoppedAnimation(1.0),
+              fit: BoxFit.scaleDown,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.95,
+                height: MediaQuery.of(context).size.width * 1.78,
                 child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "0$level:00",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(color: Colors.black, width: 5),
                   ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-      Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      AspectRatio(
-                        aspectRatio: 27 / 1.7,
-                        child: Stack(
-                          children: [
-                            const Positioned(
-                              left: 10,
-                              child: Icon(
-                                Icons.wifi,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Positioned(
-                              right: 10,
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "100%",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  Transform.rotate(
-                                    angle: -math.pi / -2,
-                                    child: Icon(
-                                      Icons.battery_full,
-                                      color: Colors.black,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                  child: SingleChildScrollView(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/background.png'),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      AspectRatio(
-                        aspectRatio: 27 / 46,
-                        child: Container(
-                          alignment: Alignment.topCenter,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 10,
+                      child: Stack(
+                        children: [
+                          AnimatedBuilder(
+                            animation: _controller,
+                            builder: (context, child) {
+                              return Positioned(
+                                top: 0, // アニメーションの位置調整
+                                left: 0,
+                                right: 0,
+                                child: Transform.translate(
+                                  offset: _isAnimationRunning
+                                      ? Offset(0, _translateAnimation.value)
+                                      : const Offset(0, 0),
+                                  child: ScaleTransition(
+                                    scale: _isAnimationRunning
+                                        ? _scaleAnimation
+                                        : const AlwaysStoppedAnimation(1.0),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "0$level:00",
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                          child: Column(
-                            children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              AspectRatio(
+                                aspectRatio: 27 / 1.7,
+                                child: Stack(
+                                  children: [
+                                    const Positioned(
+                                      left: 10,
+                                      child: Icon(
+                                        Icons.wifi,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      right: 10,
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            "100%",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          Transform.rotate(
+                                            angle: -math.pi / -2,
+                                            child: Icon(
+                                              Icons.battery_full,
+                                              color: Colors.black,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              AspectRatio(
+                                aspectRatio: 27 / 46,
+                                child: Container(
+                                  alignment: Alignment.topCenter,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 10,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Flexible(
+                                            child: Column(
+                                              children: <Widget>[
+                                                pushButton1,
+                                                const Text(
+                                                  'メール',
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: Column(
+                                              children: <Widget>[
+                                                pushButton2,
+                                                const Text(
+                                                  'SNS',
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: Column(
+                                              children: <Widget>[
+                                                pushButton3,
+                                                const Text(
+                                                  'ブラウザ',
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: Column(
+                                              children: <Widget>[
+                                                pushButton4,
+                                                const Text(
+                                                  '設定',
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  Flexible(
-                                    child: Column(
-                                      children: <Widget>[
-                                        pushButton1,
-                                        const Text(
-                                          'メール',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Column(
-                                      children: <Widget>[
-                                        pushButton2,
-                                        const Text(
-                                          'SNS',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Column(
-                                      children: <Widget>[
-                                        pushButton3,
-                                        const Text(
-                                          'ブラウザ',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Column(
-                                      children: <Widget>[
-                                        pushButton4,
-                                        const Text(
-                                          '設定',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  pushButton6,
+                                  pushButton7,
+                                  pushButton9,
                                 ],
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          pushButton6,
-                          pushButton7,
-                          pushButton9,
                         ],
                       ),
-
-                    ],
+                    ),
                   ),
-                  ],
                 ),
-                      ),
               ),
+              // アニメーションを画面上部のAspectRatioの位置に表示する
             ),
-          ),
-          // アニメーションを画面上部のAspectRatioの位置に表示する
-          ),
           ),
         ],
       ),
@@ -412,6 +420,8 @@ class _Screen00State extends ConsumerState<Screen00>
           ),
         ),
       ),
+      splashColor: Colors.transparent, // リップルエフェクトを透明に
+      highlightColor: Colors.transparent,
     );
   }
 }

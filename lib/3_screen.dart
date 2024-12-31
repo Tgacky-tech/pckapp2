@@ -64,15 +64,14 @@ class screen3 extends ConsumerWidget {
     ),Center(
         child:FittedBox(
     fit: BoxFit.scaleDown,child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.95,
-    height: MediaQuery.of(context).size.width * 1.8,
-    child: Container(
-    decoration: BoxDecoration(
-      color: Colors.black,
-      borderRadius: BorderRadius.circular(6),
-      border: Border.all(color: Colors.black, width: 2),
-    ),
-      padding: EdgeInsets.all(4),
+          width: MediaQuery.of(context).size.width * 0.95,
+          height: MediaQuery.of(context).size.width * 1.78,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(color: Colors.black, width: 5),
+            ),
     child:
     SingleChildScrollView(child:Container(
           child: Column(

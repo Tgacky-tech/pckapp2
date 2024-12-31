@@ -70,14 +70,13 @@ class screen2 extends ConsumerWidget {
         child: FittedBox(
     fit: BoxFit.scaleDown,child:SizedBox(
           width: MediaQuery.of(context).size.width * 0.95,
-          height: MediaQuery.of(context).size.width * 1.8,
+          height: MediaQuery.of(context).size.width * 1.78,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(6),
-              border: Border.all(color: Colors.black, width: 2),
+              border: Border.all(color: Colors.black, width: 5),
             ),
-            padding: EdgeInsets.all(4),
             child: SingleChildScrollView(child:Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[

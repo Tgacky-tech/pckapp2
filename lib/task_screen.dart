@@ -79,7 +79,7 @@ class task_screen extends ConsumerWidget {
                           if (scrollPosition <= 110 && n == 0) {
                             n++;
                             if (dif == 0) {
-                              if (error <= 18) {
+                              if (error <= 100) {//18
                                 ref.read(levelProvider.notifier).state++;
                                 ref.read(errorProvider.notifier).state =
                                     random.nextInt(35) + 1;

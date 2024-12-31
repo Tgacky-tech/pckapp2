@@ -19,7 +19,47 @@ void main() {
     home: rule_screen(),
   ));
 }
+class InfoButton extends StatelessWidget {
+  void _showInfoDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              Icon(Icons.info, color: Colors.black),
+              SizedBox(width: 8),
+              Text('Information'),
+            ],
+          ),
+          content: Text('ハードモードは異変なし画面の種類が増え、異変の種類も通常より多いゲームモードです。'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('閉じる'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        Icons.info,
+        size: 30,
+        color: Colors.white,
+      ),
+      onPressed: () {
+        _showInfoDialog(context);
+      },
+    );
+  }
+}
 class CustomButton extends StatefulWidget {
   const CustomButton({Key? key}) : super(key: key);
 
@@ -424,6 +464,11 @@ class _CustomButtonState3 extends State<CustomButton3> with SingleTickerProvider
                 color: Colors.white, // アイコンの色
               ),
             ),
+            Positioned(
+              top: MediaQuery.of(context).size.width * 0,// 下部に余白を追加
+              right: 0,
+              child: InfoButton(),
+            ),
           ],
         ),
       ),
@@ -510,6 +555,15 @@ class rule_screen extends ConsumerWidget {
     var random = math.Random();
     final level = ref.watch(levelProvider);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        elevation: 6,
+        shadowColor: Colors.grey.withOpacity(0.4),
+        title: const Text(
+          'ホーム画面',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
@@ -517,7 +571,7 @@ class rule_screen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 AspectRatio(
                   aspectRatio: 3.1 / 1,
